@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+		<style>
+.col-md-half { @extend .col-md-1;
+	width: 4.166666667%;
+}
+</style>
+
+
+		<div class="container-fluid px-3 my-0">
+
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+
+					<a th:if="${instaCartd}" type="button" class="btn btn-success btn-sm"
+						th:href="@{/faculty/show_Cours}"><i class="fas fa-plus-circle"></i>
+						Add New Course </a>
+<b th:if="${instaCart6}">Home/</b><span th:if="${instaCart6}" class="text-success"><small>Cart</small></span></b></h5>
+
+
+				</div>
+				<div class="card-body" th:if="${instaCartd}">
+
+
+
+
+					<form action="#" th:object="${instaCartd}"
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/orderStu/process-orderStu}">
+						<!--  <input type="hidden" th:value="${contact.cId}" name="cId"/> -->
+						<input type="hidden" th:value="${user.id}" name="userid" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<div class="row text-center  my-2  h-100 align-items-center">
+							<h4>
+								<b>Course Following-Up Checklist:-</b>
+							</h4>
+							<span><p class="pt-2 pr-2">To be filled by the section
+									representative student</p></span>
+						</div>
+						<div class="row  my-2 h-100 align-items-center">
+							<div class="col-md-7 form-inline px-0">
+								<label class="" for="inlineFormCustomSelectPrefa">Faculty:</label>
+								<div class="col-md-8 mb-1" id="inlineFormCustomSelectPrefa"
+									style="border-bottom: 1px solid currentColor;">FMIE</div>
+							</div>
+							<div class="col-md-5 px-0">
+								<div class="radio-pillbox">
+									<radiogroup>
+									<div class="col-md-1 px-0"
+										style="border: 1px solid currentColor; border-style: dotted;">
+										<input type="radio" name="bam" id="easy1" value="1"
+											class="first" required> <label for="easy1"
+											class="radio-label"></label>
+									</div>
+									<label for="easy1" class="radio-label"> &nbsp;
+										&nbsp;Before Mid Exam: </label>
+									<div class="col-md-1 px-0"
+										style="border: 1px solid currentColor; border-style: dotted;">
+										<input type="radio" name="bam" id="tricky2" value="2"
+											class="first" required> <label for="tricky2"
+											class="radio-label"></label>
+									</div>
+									<label for="tricky2" class="radio-label"> &nbsp;
+										&nbsp;After Mid Exam: </label> </radiogroup>
+								</div>
+							</div>
+						</div>
+						<div class="row   my-2 h-100 align-items-center">
+							<label class="" for="inlineFormCustomSelectPref">Academic
+								Year:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Semester:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<div class="m-0 px-0 text-center">
+									<!-- <label for="fmie" class="col-form-label">: </label> -->
+									<select class="browser-default custom-select pr-0 pl-0" required id="semesterid"
+										style="border: none; outline: 0; box-shadow: none;background: none !important;"
+										name="semesterid">
+										<option value="" selected disabled>--Select
+											Semester--</option>
+										<option th:each="f : ${semesters}" th:value="${f.id}"
+											th:utext="${f.name}"></option>
+									</select>
+								</div>
+							</div>
+
+							<label class="px-1" for="inlineFormCustomSelectPref2">&nbsp;Year:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+
+
+								<div class="m-0 px-0 text-center">
+									<!-- <label for="fmie" class="col-form-label">: </label> -->
+									<select class="browser-default custom-select pr-0 pl-0" required id="yearid"
+										style="border: none; outline: 0; box-shadow: none;background: none !important;"
+										name="yearid">
+										<option value="" selected disabled>--Select Year--</option>
+										<option th:each="f : ${years}" th:value="${f.id}"
+											th:utext="${f.name}"></option>
+									</select>
+								</div>
+
+
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Section:</label>
+							<div class="col-md-1 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<!-- <input class="form-control text-center text-uppercase"
+									id="section" name="section" type="text" placeholder="A"
+									required style="border: none; outline: 0; box-shadow: none;"> -->
+									<select class="browser-default custom-select pr-0 pl-2" 
+												required id="section" name="section" style="border: none; outline: 0; box-shadow: none;background: none !important;">
+												<option value="" selected disabled>-A-</option>
+												<option  th:value="A">A</option>
+												<option  th:value="B">B</option>
+												<option  th:value="C">C</option>
+												<option  th:value="D">D</option>
+												<option  th:value="E">E</option>
+												<option  th:value="F">F</option>							
+											</select>
+									
+									
+							</div>
+						</div>
+
+						<div class="row my-2">
+							<div class="radio-pillbox">
+								<radiogroup> <b><h5>Program</h5></b> &nbsp;
+								&nbsp;&nbsp; &nbsp;
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="prog" id="easy" value="1" required
+										class="first"> <label for="easy" class="radio-label"></label>
+								</div>
+								<label for="easy" class="radio-label"> &nbsp;
+									&nbsp;Regular: </label>
+
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="prog" id="tricky" value="2"
+										class="first"> <label for="tricky" class="radio-label"></label>
+								</div>
+								<label for="tricky" class="radio-label"> &nbsp;
+									&nbsp;Extension: </label>
+
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="prog" id="sum" value="3"
+										class="first"> <label for="sum" class="radio-label"></label>
+								</div>
+								<label for="sum" class="radio-label"> &nbsp;
+									&nbsp;Summer: </label> </radiogroup>
+							</div>
+						</div>
+						 
+
+
+
+
+
+
+
+
+
+
+
+						<br>
+						<p class="pb-0 mb-0 pl-0 ml-0"><strong>Note:</strong>N.B :- * using comma separator |Before Mid Exam,After Mid Exam| Ex:-<span class="badge badge-info"> 5,6 </span>
+						          you are enter one according to above checked box </p>
+						<div class="row text-center   px-0">
+							<div class="col-md-half  px-0" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">No</div>
+								</div>
+							</div>
+							<div class="col-md-4 px-0 justify-content-center"
+								style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">Course Name</div>
+								</div>
+							</div>
+							<div class="col-md-1 " style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">Course Code</div>
+								</div>
+							</div>
+							<div class="col-md-5 ">
+								<div class="row" style="border: 1px solid #858796;">
+									<div class="col-md-6 px-0 "
+										style="text-align: center; border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center">
+											<div class="col-md-12 col-sm-12 ">Total No Of Chapter</div>
+										</div>
+									</div>
+									<div class="col-md-6 px-0 my-2">
+										<div class="row text-center   h-100 align-items-center">
+											<div class="col-md-12 col-sm-12">Total Number of
+												Assessments</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12">In The Course</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">Planned</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">Covered</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">Planed</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">Delivered</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">FeedBack Given Back
+												To Students</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1 pt-4" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">Remark</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<div class="row text-center   px-0"
+							th:each="i,status : ${instaCartd}"
+							th:with="coursout= ${i.coursout}">
+							<div class="col-md-half  px-0 "
+								style="text-align: center; border: 1px solid #858796;">
+
+								<!-- <input type="hidden" th:value="${i.id}" name="id"/>
+    <input type="hidden" th:value="${i.userid}" name="userid" /> -->
+								<input type="hidden" th:value="${i.coursoutid}"
+									name="coursoutid" />
+
+								<div class="row text-center   h-100 align-items-center ">
+
+
+
+
+
+
+
+									<!--  <span>      <form method="post" th:action="@{'/order/update-cart/'+${i.id}}">
+													<button type="submit" class="btn  btn-sm"
+														id="editButtonnn">
+														<i class="fas fa-edit"></i>
+													</button>
+												</form></span>  -->
+
+
+
+
+
+
+									<div class="col-md-6 col-sm-6 px-0 mx-0">
+
+										<div class="dropdown no-arrow  mx-0 px-1">
+											<a class="dropdown-toggle  mx-0 px-1" href="#" role="button"
+												id="dropdownMenuLink" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"> <i
+												class="fas fa-ellipsis-v  fa-fw text-success"></i>
+											</a>
+											<div
+												class="dropdown-menu dropdown-menu-right shadow animated--fade-in  px-1"
+												aria-labelledby="dropdownMenuLink">
+												<div class="dropdown-header">Action:</div>
+												<a class="dropdown-item"
+													th:href="@{'/orderStu/update-cartStu/'+${i.id}}"><i
+													class="fas fa-edit"></i> Edite</a> <a
+													th:onclick="|deleteCartsStu(${i.id})|"
+													class="dropdown-item" id="deleteButtonnn"><i
+													class="fas fa-trash"></i> Delete</a>
+											</div>
+
+										</div>
+
+									</div>
+									<div class="col-md-6 col-sm-6 px-0 mx-0">
+										[[${status.count}]]</div>
+								</div>
+							</div>
+							<div class="col-md-4 px-0 justify-content-center"
+								style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+
+
+
+										<span th:text="${coursout.title}"></span>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1 " style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<b> <span th:text="${coursout.ccode}"></span>
+
+
+										</b>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 " style="border: 1px solid #858796;" >
+								<div class="row text-center  h-100 px-0">
+									<div class="col-md-2  px-0 "
+										style="text-align: center; border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+
+												<span th:text="${coursout.chapbf}"></span>,<span
+													th:text="${coursout.chapaf}"></span>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+
+												<span th:text="${coursout.chapbfmidplan}"></span><b>,</b><span
+													th:text="${coursout.chapafmidplan}"></span>
+
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<span th:text="${i.ncco}"></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+
+												<span th:text="${coursout.assbfmidplan}"></span><b>,</b><span
+													th:text="${coursout.assafmidplan}"></span>
+
+
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<span th:text="${i.nad}"></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<span th:text="${i.naf}"></span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="col-md-1 px-0" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<span th:text="${i.rema}"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+
+
+
+
+						<!-- <div class="row   my-0 h-100 align-items-center">
+							<label class="" for="inlineFormCustomSelectPref">1.
+								Section Representative Student's Name:</label>
+							<div class="col-md-3 px-1 mb-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${user.name}"></span>
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+							<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<span><img class="img-fluid"
+									th:src="@{'/img/'+${user.imageUrl}}"
+									alt=" Signature image Null Plase Upload"
+									style="width: 80%; height: 40px" /></span>
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+							<div class="col-md-1 px-0 mb-2 mr-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<span class="mx-0" th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span>
+
+							</div>
+							(Filled)
+
+						</div> -->
+						<!-- 
+						<div class="row   my-2 h-100 align-items-center">
+							<label class="" for="inlineFormCustomSelectPref">2.
+								Section Advisor's Name:</label>
+							<div class="col-md-4 px-1 mb-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">2021</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+							<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">first</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+							<div class="col-md-1 px-1 mb-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">6/27/2021</div>
+							(Approved)
+						</div>
+
+						<div class="row   my-2 h-100 align-items-center">
+							<label class="" for="inlineFormCustomSelectPref">3.
+								Academic Program Officer's Name:</label>
+							<div class="col-md-3 px-1 mb-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">2021</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+							<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">first</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+							<div class="col-md-1 px-1 mb-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">6/27/2021</div>
+							(Endorsed)
+						</div> -->
+						<br> <br>
+
+
+
+
+
+						<!-- <div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div class="m-2 text-center">
+									<label for="fmie" class="col-form-label">: </label>
+									<select class="custom-selects" required id="approvedby"
+										name="approvedby">
+										<option value="" selected disabled>---Select Advisor's---</option>
+										<option th:each="a : ${advisor}" th:value="${a.id}"
+											th:text="${a.name}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+ -->
+
+
+
+
+						<!-- <div class="container text-center">
+							<button type="submit" class="btn btn-outline-success btn-sm">Filled</button>
+						</div> -->
+
+
+
+
+
+
+						<br />
+						<br />
+						<br />
+
+
+
+
+
+
+						<div class="row px-0">
+							<div class="col-md-1">
+								<a type="button" data-toggle="collapse"
+									data-target=".multi-collapse" aria-expanded="false"
+									aria-controls="multiCollapseExample1 multiCollapseExample2">
+									<img th:src="@{/img/clicklast.png}" style="width: 60px; height: 60px"
+									alt="Click Me " />
+								</a> 
+							</div>
+							<div class="col-md-11 pt-4 pl-2">
+							
+							<a type="button" data-toggle="collapse"
+									data-target=".multi-collapse" aria-expanded="false"
+									aria-controls="multiCollapseExample1 multiCollapseExample2">
+								<b>If Filled Course Name Before Mid Or After Mid</b>	</a>						</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col">
+								<div class="collapse multi-collapse" id="multiCollapseExample1">
+									<div class="card card-body">
+
+										<div class="row   my-2 h-100 align-items-center">
+											<div class="col-md-12">
+												<div class="row">
+													<label class="" for="inlineFormCustomSelectPref"> <b>Section
+															Representative Student's Name:</b></label>
+													<div class="col-md-6 px-1 mb-2"
+														id="inlineFormCustomSelectPref"
+														style="border-bottom: 1px solid currentColor;">
+														<span th:text="${user.name}"></span>
+													</div>
+												</div>
+												<div class="row">
+													<label class="" for="inlineFormCustomSelectPref2"><b>Signature:</b></label>
+													<div class="col-md-6 px-1 mb-2"
+														id="inlineFormCustomSelectPref2"
+														style="border-bottom: 1px solid currentColor;">
+														<span><img class="img-fluid"
+															th:src="@{'/signatu/'+${user.imageUrl}}"
+															alt=" Signature image Null"
+															style="width: 80%; height: 40px" /></span>
+													</div>
+												</div>
+												<div class="row">
+													<label class="" for="inlineFormCustomSelectPref2"><b>Date:</b></label>
+													<div class="col-md-6 px-1 mb-2"
+														id="inlineFormCustomSelectPref2"
+														style="border-bottom: 1px solid currentColor;">
+														<span
+															th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span>
+
+													</div>
+													(Filled)
+												</div>
+											</div>
+										</div>
+
+
+
+										<br> <br>
+									</div>
+								</div>
+							</div>
+							<div class="col">
+								<div class="collapse multi-collapse" id="multiCollapseExample2">
+									<div class="card card-body">
+										Next Step
+										<div class="row">
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+												<div class="m-2 text-center">
+													<!-- <label for="fmie" class="col-form-label">: </label> -->
+													<select class="custom-select" required id="approvedby"
+														name="approvedby">
+														<option value="" selected disabled>---Select
+															Advisor's---</option>
+														<option th:each="a : ${advisor}" th:value="${a.id}"
+															th:text="${a.name}"></option>
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<button class="btn btn-block btn-success btn-sm">Filled</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+					</form>
+
+
+
+
+
+
+				</div>
+
+
+
+
+
+                     <div class="jumbotron" th:if="${instaCart6}">
+ 
+                        <div class="row mb-2">
+	              			<div class="col-md-12 ">
+	              			    <h1 class="text-center p-3  text-success" >Cart</h1>
+					
+					<p>You don't have Any Data On this Cart......!!!</p>
+					<p>If You Went To Add Go Back to My Assigned Course and click to feedback.</p>
+					
+	              			</div> 
+					    </div>
+					</div>
+			</div>
+
+
+
+		</div>
+
+
+		<script>
+       function deleteCartsStu(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/orderStu/deleteCartStu/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+
+	</section>
+
+
+</body>
+</html>

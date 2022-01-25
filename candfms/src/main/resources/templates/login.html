@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<link rel="icon" th:href="@{/img/registration.png}" sizes="32x32">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>C|And|F - Login</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<style>
+.line {
+	width: 100px;
+	height: 0;
+	border: 1px solid #C4C4C4;
+	margin: 3px;
+	display: inline-block;
+}
+
+
+#loadingg
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   /*  background:#0d0d0edb; */
+	
+	/* z-index: 99999; */
+}
+
+#lode
+{
+    position: fixed;
+    width: 50%;
+    height: 50%;
+    /* background: url('img/lodin9.gif') no-repeat; */
+	margin-left: 56%;
+    margin-top: 26%;
+	
+} 
+
+#corner
+{
+       
+  position: fixed;
+    width: 50%;
+    height: 50%;
+     
+	margin-left: 0%;
+    margin-top: 0%;
+  
+  
+} 
+	
+</style>
+
+</head>
+
+<body style="background-color: lightgreen;">
+
+
+        <div id="loadingg" > <!-- style="background:#0d0d0e96;" -->
+        <div id="lode">
+<img th:src="@{/img/prelod.gif}" height="50%" width="20%" alt="Looding......." />
+        </div>
+    </div> 
+    
+    <div id="corner" > <!-- style="background:#0d0d0e96;" -->
+       <img th:src="@{/img/reco.png}" height="50%" width="20%" alt="recommended chrome" />
+    </div>       
+
+	
+
+	<div class="container" >
+
+		<!-- Outer Row -->
+		<div class="row justify-content-center">
+<h5> Course Guidebook,Performance Evaluation And Feed Back System</h5>	
+<br />
+
+
+
+<!-- <div align="center">
+		<a th:href="@{/dd/barChart}">Bar-Chart</a><br /> <br /> <a
+			th:href="@{/pieChart}">Pie-Chart</a>
+	</div> -->
+
+
+
+
+<!-- <p>recommended browser is chrome		</p>	 -->                
+            <br />
+	<br />
+			<div class=" col-md-8">
+				<div style="text-align: center">
+					<img th:src="@{/img/bdu.png}" height="120" width="120" style="margin-left: 0px;">
+					<!-- <h3>Bahir Dar Universty </h3>-->
+
+				</div>
+				<div class="cardd ">
+					<div class="card-body p-0">
+						<!-- Nested Row within Card Body -->
+						<div class="row">
+
+							<div class="col-lg-12">
+
+
+								<div class="text-center m-2 ">
+									<div class="line"></div>
+									<div style="display: inline-block;">
+										<h3 class="">Login Form</h3>
+									</div>
+									<div class="line"></div>
+								</div>
+								
+								<div class="text-center ">
+								</div>
+
+								<div class="row mx-auto">
+									<div class="col-lg-5 col-md-5 mx-auto">
+									<div class="text-center">
+                                        <h1 class="h4  my-2" style="  color: white;text-shadow: 2px 2px 4px #000000;"><b>Welcome To FMIE!</b></h1>
+                                    </div>
+										<form class="user" th:action="@{/dologin}" action="#"
+											method="post">
+											<div th:if="${param.error}" class="alert alert-danger">
+												Invalid Username or Password</div>
+											<div th:if="${param.logout}" class="alert alert-success">
+												You have been logged out</div>
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<div class="input-group-text">
+														<i class="fas fa-user"></i>
+													</div>
+												</div>
+												<input type="text" name="username" id="username"
+													class="form-control " aria-describedby="emailHelp"
+													placeholder="Enter User Name .">
+											</div>
+
+
+
+											<div class="input-group mb-3">
+												<div class="input-group-prepend">
+													<div class="input-group-text">
+														<i class="fas fa-key"></i>
+													</div>
+												</div>
+												<input type="password" name="password" id="password"
+													class="form-control " placeholder="Enter Password.">
+											</div>
+											<div class="row mb-3">
+												<div class="col-md-8">
+													<div class="custom-control custom-checkbox mr-sm-2">
+														<input type="checkbox" class="custom-control-input"
+															id="remember-me" name="remember-me"> <label
+															class="custom-control-label"
+															for="remember-me">Remember me</label>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<button type="submit" class="btn btn-info btn-sm"
+														name="submit" value="submit">
+														<i class="fas fa-sign-in-alt"></i> Login
+													</button>
+													<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+												</div>
+
+											</div>
+
+
+
+											<!-- <div class="form-group" style="text-align: center">
+                                           <button type="submit" class="btn btn-info btn-sm" name="submit" value="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
+                                           </div> -->
+
+
+										</form>
+
+									</div>
+
+
+									<!--  <div class="clearfix"></div> -->
+
+
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row text-center">
+							<div class="col-lg-6 col-md-6 mx-auto">
+								<hr />
+								<div class="separator">
+									<p>
+									<abbr title="New This system if">New</abbr> to system? <a data-toggle="modal" data-target="#addNew">
+											Create Account </a>
+									</p>
+
+									<div>
+										<h5>
+											<i class="fa fa-graduation-cap"></i> Instructors,Assistances And So On!
+										</h5>
+										<p>
+											©2021 All Rights Reserved. Bahir Dar Universty.
+											<a data-toggle="modal" data-target="#addNew"> contact </a> 
+											Privacy and Terms, <a data-toggle="modal" data-target="#about"> About </a>
+										</p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+	<div class="modal fade" id="addNew" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">New</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>This system is Course Guidebook,Performance Evaluation Checklist,Feed Back system</p>
+					<h6>New for this system came to Agri NDC- and register account  </h6>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="about" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">About</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>This system is Course Guidebook,Performance Evaluation Checklist,Feed Back system</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

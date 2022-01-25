@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+</head>
+<body>
+    
+
+<section>   
+ 
+
+                
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid"> 		   
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">  	  
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Add And Show Posts</h6>
+                        </div>
+                        <div class="card-body">
+ <!--   start post   -->      
+                            
+                   
+                   
+                   
+                   
+                   
+                   
+                   <form action="#" th:object="${post}" enctype="multipart/form-data" method="POST"
+							th:action="@{/post/process-addpost}" class="mt-2 user">
+							
+							
+							<div class="form-group row">
+								<div class="col-sm-5 mb-3 mb-sm-0">
+								   <div class="input-group ">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user py-0 pr-2"
+												id="inputGroupPrepend2">Title:</span>
+										</div>
+										<input type="text" name="title"  
+										class="form-control form-control-user" id="title"
+										aria-describedby="addressHelp"
+										placeholder="Title Enter here" required />
+									</div>
+								
+
+								</div>
+							
+								<div class="col-sm-7 mb-3 mb-sm-0"> 
+<div class="form-group row">
+<div class="col-sm-12 mb-3 mb-sm-0"> 
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user pr-1"> Description:</span>
+										</div>
+										<textarea id="description" name="description" class="form-control form-control-user"
+											aria-label="With textarea" placeholder="Description Enter here"></textarea>
+									</div> 
+									</div>
+									</div>
+									<div class="form-group row">
+							    	<div class="col-sm-7 mb-3 mb-sm-0"> 
+							         <button class="btn btn-primary btn-user btn-block"><i
+								        class="fas fa-save"></i> Add Now</button> 
+								</div> 
+								</div> 
+									
+								</div>
+							</div> 
+							   
+						</form> 
+						
+				
+				<hr />	
+				NB: for Delete double click any post:
+			<!-- show	 -->		
+						
+						
+					<div class="row text-center">
+			<div  th:each="p : ${allPost}" class="col-xl-4 col-md-6 mb-4 text-center" th:ondblclick="|deletePostss(${p.postid})|">
+					<div class="card border-left-info shadow h-100 py-0">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+<span th:text="${p.title}"></span>
+
+</div>
+									<div class="row no-gutters align-items-center">
+
+										<div class="col">
+
+											<span> 
+												<span th:text="${p.description}"></span>
+
+											</span> 
+
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="card-footer px-2 py-0 m-0">
+						Post Date: <span th:text="${p.postdate}"></span>
+						</div>
+					</div>
+				</div>
+				               <!-- <button type="submit" onclick="return noCheck();"
+									ondblclick="myalert()"
+									class="btn btn-primary btn-sm  text-right" id="editButtonnn">
+									<i class="fas fa-trash"></i> checked delete
+								</button> -->
+								<!-- <a th:ondblclick="|deletePostss(${p.postid})|"
+											class="btn btn-danger btn-sm" id="deleteButtonnn"><i
+												class="fas fa-trash"></i></a> -->
+			</div>	
+						
+						
+						        
+                           
+                            
+                            
+                            
+ <!--    end post      -->                   
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <script>
+       function deletePostss(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/post/delete/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+
+
+		<script>  
+    function noCheck(){  	
+    	if(document.querySelectorAll('input[type="checkbox"]:checked').length==0){
+    		
+    		/* alert("You haven't checked any record");  */
+    		 success_toast()
+    		
+    		return false;
+    	}
+    }
+    
+    </script>
+</section>  
+                
+       
+</body>
+</html>

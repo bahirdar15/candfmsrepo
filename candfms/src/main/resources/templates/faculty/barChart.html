@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+
+
+</head>
+<body>
+    
+
+<section>   
+ 
+
+            
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                
+                
+                
+                
+                
+                <form class="user" th:action="@{/qualiity/qu}" method="post">
+						<input type="hidden" th:value="${ayea}" name="ayear1" /> 
+						<input type="hidden" th:value="${semes}" name="semesterid1" /> 
+						<input type="hidden" th:value="${yea}" name="year1" /> 
+						<input type="hidden" th:value="${bm}" name="bam1" /> 
+						<input type="hidden" th:value="${pro}" name="prog1" /> 
+									 
+										
+										
+										
+										<button   class="btn btn-success btn-sm"><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</button>
+									
+					</form>
+ <style>
+	   
+
+	 #datatable th {
+	 	font-weight: 600;
+	     padding: 0.5em;
+	 }
+	 #datatable td, #datatable th, #datatable caption {
+	     padding: 0.5em;
+	 }
+	 #datatable thead tr, #datatable tr:nth-child(even) {
+	     background: #f8f8f8;
+	 }
+	 #datatable tr:hover {
+	     background: #f1f7ff;
+	 }
+	    .highcharts-axis-labels {
+	    font-weight: 600;
+	    fontSize: 10px;
+	    }
+	    </style>
+	<figure class="highcharts-figure">
+	  <div id="container"></div>
+	  <br />
+	  <p id="p" class="highcharts-description">
+	    Total Feedback Faculty Of Mechanical and Industrial Engineering <br />
+	     Academic Year: <span th:text="${ayea}"></span>
+	     Semester: <span th:each="c : ${semesters}" th:if="${c.id}==${semes}" th:utext="${c.name}"></span>
+	     Year: <span th:if="${yea}==0">All</span><span th:unles="${yea}==0"> <span th:each="c : ${years}" th:if="${c.id}==${yea}"
+						th:utext="${c.name}"></span></span>
+	     Program:  <span th:if="${pro == '1'}">Regular</span><span th:if="${pro == '2'}">Extension</span><span th:if="${pro == '3'}">Summer</span>
+	       <span th:if="${bm == '1'}" style="color: rgb(47, 0, 255);">|Before Mid Exam|</span>
+	       <span th:if="${bm == '2'}" style="color: rgb(47, 0, 255);">|After Mid Exam|</span>
+	  </p>
+
+	  <table class="table table-bordered" id="datatable" width="100%">
+	    <thead>
+	      <tr>
+	        <th style="color:  rgb(47, 0, 255);font-size:14px;">chair</th>
+	        <th>Chapters Covered</th>
+	        <th>Assessments Delivered</th>
+	        <th>Feedback Given Back To Students</th>
+	      </tr>
+	    </thead>
+	     <tbody>
+      <tr>
+        <th>Manufacturing</th>
+        <td>[[${chap1}]]</td>
+        <td>[[${asses1}]]</td>
+        <td>[[${feed1}]]</td>
+      </tr>
+      <tr>
+        <th>Mechanical Design</th>
+        <td>[[${chap2}]]</td>
+        <td>[[${asses2}]]</td>
+        <td>[[${feed2}]]</td>
+      </tr>
+      <tr>
+        <th>Automotive& Electromechanical</th>
+        <td>[[${chap3}]]</td>
+        <td>[[${asses3}]]</td>
+        <td>[[${feed3}]]</td>
+      </tr>
+      <tr>
+        <th>Agricultural Mechanization</th>
+        <td>[[${chap4}]]</td>
+        <td>[[${asses4}]]</td>
+        <td>[[${feed4}]]</td>
+      </tr>
+      <tr>
+        <th>Production Systems</th>
+        <td>[[${chap5}]]</td>
+        <td>[[${asses5}]]</td>
+        <td>[[${feed5}]]</td>
+      </tr>
+      <tr>
+        <th>Industrial Design& Management</th>
+        <td>[[${chap6}]]</td>
+        <td>[[${asses6}]]</td>
+        <td>[[${feed6}]]</td>
+      </tr>
+      <tr>
+        <th>Thermal Engineering</th>
+        <td>[[${chap7}]]</td>
+        <td>[[${asses7}]]</td>
+        <td>[[${feed7}]]</td>
+      </tr>
+    </tbody>
+	  </table>
+	</figure>
+	
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+	<!-- Latest compiled and minified JavaScript -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script th:src="@{/js/highcharts.js}"></script>
+	<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+		<script th:src="@{/js/data.js}"></script>
+		<!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+		<script th:src="@{/js/accessibility.js}"></script>
+	<script th:src="@{/js/exporting.js}"></script>
+	<script th:src="@{/js/offline-exporting.js}"></script>
+	<script th:src="@{/js/export-data.js}"></script>
+	<script th:inline="javascript">
+	
+	
+	   
+	
+	
+	Highcharts.chart('container', {
+		credits: {
+		    enabled: false
+		}, 
+		legend: {
+	        itemStyle: {
+	        	 color: '#FF00FF',
+	            fontWeight: 'bold',
+	            	fontSize: '8px'
+	        }
+	    },
+	    xAxis: {
+	         
+	        labels: {
+	            style: {
+	            	 
+	                	fontSize: '8px',
+	                	rotation:0,
+	                     
+	            }
+	        }
+	    },
+		data: {
+		    table: 'datatable',
+		    	
+		  },
+		  chart: {
+		    type: 'column'
+		  },
+		  title: {
+		    text: document.getElementById("p").textContent,
+		    style: {
+	            color: '#FF00FF',
+	            fontWeight: 'bold',
+	            fontSize: '10px'
+	        } 
+		  },
+		 
+		  yAxis: {
+			  color: '#FF00FF',
+			    min: 0,
+	            max:100,
+	            title: {
+	                text: 'Percent (%)',
+	                	style: {
+	        	            color: '#FF00FF',
+	        	             
+	        	            fontSize: '10px'
+	        	        } 
+		            }
+		  },
+		  tooltip: {
+		        headerFormat: '<span style="color: red,font-size:5px">{series.name}</span><br>',
+		        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of 100%<br/>'
+		    }
+		});
+	      
+
+</script>
+
+
+
+
+
+
+ </div> 
+</section>  
+                
+       
+</body>
+</html>

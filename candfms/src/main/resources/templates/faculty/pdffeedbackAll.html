@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  
+
+<title th:text="${title}">C And F - Home</title>
+<link th:href="@{/css/fmie2.css}" rel="stylesheet"/>
+ <style>
+    div.footer {
+                display: block;
+                text-align: left;           
+                position: running(footer);
+                background-color: powderblue;
+                color: red;
+    
+            }
+    @page {
+    
+               /*  size: A4 portrait;  */
+                 size: A4 landscape; 
+                @bottom-right {                
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+                @bottom-left {                
+                     content: element(footer);                 
+    
+                }
+                counter-increment: page;
+                counter-reset: page 1;
+            }
+    </style>
+    
+</head>
+<body  >
+
+
+ 
+ 
+ 
+  <div style="text-align: center;">
+    <!-- <img src="bdu.png" height="150" > -->
+    <h4  style="text-transform:uppercase;font-weight: bold;margin: 0px;"> 	Bahir Dar Universsity </h4>
+    <p style="text-transform:uppercase;font-weight: bold;"> 	Bahir Dar Institute of Technology (BIT) </p>
+    <p style="text-transform:uppercase;font-weight: bold;"> Office of Quality Assurance& Enhancement </p>
+  </div>
+
+<h4 style="color: rgb(47, 0, 255);"><font size="5px" ><b>Course Following-Up Checklist:-</b></font>To be Compiled by Faculty quality
+						assurance & Enhancement office</h4>
+ <!-- ===========================================finsh  hider =============================================-->
+ 
+ <table style="width:89%;border:none;" class="dataframe table my_table mytab"><tr>
+  <th  style="width:3%;border:none;padding-right: 0px;" >Faculty:</th>
+  <td class=" my_th" style="width:20%;padding: 0px;">Mechanical and Industrial Engineering </td>
+  <th style="width:3%;border:none;padding-right: 0px;" colspan="2">Program:</th>
+  <td  th:if="${pro == '1'}" class=" my_td" style="width:4%;padding: 0px;bottom: 1rem;" >  Regular</td>
+  <td  th:if="${pro == '2'}" class=" my_td" style="width:4%;padding: 0px;bottom: 1rem;" >  Extension</td>
+  <td  th:if="${pro == '3'}" class=" my_td" style="width:4%;padding: 0px;bottom: 1rem;" >  Summer</td>
+  <td th:if="${bm == '1'}" style="width:6%;border:none;padding-right: 0px;color: rgb(47, 0, 255);" >|Before Mid Exam|</td>
+  <td th:if="${bm == '2'}" style="width:6%;border:none;padding-right: 0px;color: rgb(47, 0, 255);" >|After Mid Exam|</td>
+ 
+   
+</tr>  </table>  
+<br>
+<table style="width:45%;border:none;" class="dataframe table my_table mytab"><tr>
+  <th  style="width:17%;border:none;padding-right: 0px;" >Academic Year:</th>
+  <td class=" my_th" style="width:6%;padding: 0px;"> <span th:text="${ayea}"></span></td>
+  <th  style="width:9%;border:none;padding-right: 0px;" >Semester:</th>
+  <td class=" my_th" style="width:6%;padding: 0px;"> <span th:each="c : ${semesters}" th:if="${c.id}==${semes}"
+						th:utext="${c.name}"></span></td>
+  <th  style="width:7%;border:none;padding-right: 0px;" >Year:</th>
+  <td th:if="${yea}==0" class=" my_th" style="width:6%;padding: 0px;">  <span th:text="All"></span></td>
+  <td th:unles="${yea}==0" class=" my_th" style="width:6%;padding: 0px;">  <span th:each="c : ${years}" th:if="${c.id}==${yea}"
+						th:utext="${c.name}"></span></td>
+  
+</tr>  </table>
+<br>
+
+
+
+<br>
+<p >N.B :- * indicates total number of courses delivered under chairs for each batch/year(for 1st, 2nd..).</p>
+
+
+
+<table  width="100%" class="myth" >
+	<tr>      
+	   <th  style="width:55%;"  colspan="2" rowspan="2">Chair</th>
+	  <!--  <th rowspan="2"  style="width:10%;">Course Code</th>  -->
+      <th class="py" colspan="2" style="width:14%;">Total Number Of Chapter</th> 
+      <th class="py" colspan="3" style="width:21%;" >Total Number of Assessments</th>
+	  <th rowspan="2" style="width:10%;">Remark</th>
+  </tr>
+  <tr>
+    <!-- <th style="width:7%;">In The Course</th> -->
+	<th style="width:7%;"> Planned</th>
+	<th style="width:7%">Covered</th>
+      <th style="width:7%;">Planed</th>
+	  <th style="width:7%;">Delivered</th>
+      <th style="width:7%;">FeedBack Given Back To Students</th>
+   
+  </tr>
+	<div th:each="aa : ${allFmieId2}">
+  <tr   th:if="${aa}==1" >	
+		<td style="width:55%;" colspan="2">
+		<strong>Manufacturing Engineering</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==1" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp1}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco1}]]</span></td>
+		<td style="width:7%;"><span>[[${nap1}]]</span></td>
+		<td style="width:7%;"><span>[[${nad1}]]</span></td>
+		<td style="width:7%;"><span>[[${naf1}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+	
+	<tr  th:if="${aa}==2"  >	
+		<td style="width:55%;" colspan="2">
+		<strong>Mechanical Design</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==2" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp2}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco2}]]</span></td>
+		<td style="width:7%;"><span>[[${nap2}]]</span></td>
+		<td style="width:7%;"><span>[[${nad2}]]</span></td>
+		<td style="width:7%;"><span>[[${naf2}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+	<tr   th:if="${aa}==3" >	
+		<td style="width:55%;" colspan="2">
+		<strong>Automotive and Electromechanical Engineering</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==3" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp3}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco3}]]</span></td>
+		<td style="width:7%;"><span>[[${nap3}]]</span></td>
+		<td style="width:7%;"><span>[[${nad3}]]</span></td>
+		<td style="width:7%;"><span>[[${naf3}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+	<tr   th:if="${aa}==4" >	
+		<td style="width:55%;" colspan="2">
+		<strong>Agricultural Mechanization Engineering</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==4" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp4}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco4}]]</span></td>
+		<td style="width:7%;"><span>[[${nap4}]]</span></td>
+		<td style="width:7%;"><span>[[${nad4}]]</span></td>
+		<td style="width:7%;"><span>[[${naf4}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+	<tr   th:if="${aa}==5" >	
+		<td style="width:55%;" colspan="2">
+		<strong>Production Systems Engineering</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==5" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp5}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco5}]]</span></td>
+		<td style="width:7%;"><span>[[${nap5}]]</span></td>
+		<td style="width:7%;"><span>[[${nad5}]]</span></td>
+		<td style="width:7%;"><span>[[${naf5}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+	<tr  th:if="${aa}==6"  >	
+		
+		<td style="width:55%;" colspan="2">
+		<strong>Industrial Design and Management Science</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==6" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp6}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco6}]]</span></td>
+		<td style="width:7%;"><span>[[${nap6}]]</span></td>
+		<td style="width:7%;"><span>[[${nad6}]]</span></td>
+		<td style="width:7%;"><span>[[${naf6}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+	<tr   th:if="${aa}==7" >	
+		
+		<td style="width:55%;" colspan="2">
+		<strong>Thermal Engineering</strong>(<span th:each="f : ${findByRole}" th:if="${f.depar}==7" th:text="${f.name}"></span>) 
+          </td> 
+		<td style="width:7%;"><span>[[${ncp7}]]</span></td>
+		<td style="width:7%;"><span>[[${ncco7}]]</span></td>
+		<td style="width:7%;"><span>[[${nap7}]]</span></td>
+		<td style="width:7%;"><span>[[${nad7}]]</span></td>
+		<td style="width:7%;"><span>[[${naf7}]]</span></td>
+		
+		<td style="width:10%;"><span>-</span></td>			
+	</tr>
+</div>	
+</table>
+
+
+
+ <br>
+ <p><strong>Summary:-</strong> </p>
+ <p>1. About planed and covered chapters in the course.</p>
+ <p>2. About number of Assessments planed, delivered and feedback given back to the students using table,histogram or pie chart.</p>
+ 
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <table style="width:100%;border:none;" class="dataframe table my_table mytab"  ><tr>
+					  <th style="width:18%;border:none;padding-right: 0px;" >2. Faculty Quality officer's name:</th>
+					  <td style="width:23%;padding: 0px;" >
+					 <span th:each="c : ${userAll}" th:if="${c.id}==${distnicQultycompaid}" th:text="${c.name}"></span> 
+					 
+					  </td>
+					  <th style="width:5%;border:none;padding-right: 0px;" >Signature:</th>
+					  <td  style="width:8%;padding: 0px;" >
+					  <span th:each="c : ${userAll}" th:if="${c.id}==${distnicQultycompaid}"><img class="img-fluid" th:src="@{'/signatu/'+${c.imageUrl}}"
+								alt="Signature Null" style="width: 100%; height: 40px" /></span>
+
+</td>
+					  <th style="width:3%;border:none;padding-right: 0px;" >Date:</th>
+					  <td style="width:7%;padding: 0px;" >
+					  <span th:text="${distnicQultycopadate}"></span> 
+					  </td>
+					  <td style="width:5%;border:none;padding-right: 0px;" >(Compiled)</td>
+					</tr>  </table>
+
+
+						<table style="width:100%;border:none;" class="dataframe table my_table mytab"><tr>
+						  <th style="width:13%;border:none;padding-right: 0px;" >3. Faculty Dean's name:</th>
+						   <td style="width:29%;padding: 0px;" >
+						  <span th:each="c : ${userAll}" th:if="${c.id}==${distnicQultyendorsdeanid}" th:text="${c.name}"></span> 
+						   </td>
+						   <th style="width:5%;border:none;padding-right: 0px;" >Signature:</th>
+						   <td style="width:8%;padding: 0px;" >
+						   <span th:each="c : ${userAll}" th:if="${c.id}==${distnicQultyendorsdeanid}"><img class="img-fluid" th:src="@{'/signatu/'+${c.imageUrl}}"
+								alt="Signature Null" style="width: 60%; height: 40px" /></span>
+</td>
+						   <th style="width:3%;border:none;padding-right: 0px;" >Date:</th>
+						   <td style="width:7%;padding: 0px;" >
+						 <span th:text="${distnicQultyendorsedeandate}"></span>
+						   </td>
+						   <td style="width:5%;border:none;padding-right: 0px;" >(Endorsed)</td>
+						</tr>  </table>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footer" >        
+</div>
+
+
+     
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+
+			<!-- Content Row -->
+			<div class="row">
+				
+				<div class="container-fluid mt-1">
+					<div class="col-md-10 offset-md-1">
+						<div th:if="${session.message}" id="hideDiv"
+							th:classappend="${session.message.type}" class="alert "
+							role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+
+						<div class="row">
+
+
+							<h3>
+								<a class="dropdown-item text-left btn-user"
+									th:href="@{/div/showAdmin}"><i
+									class="fas fa-arrow-alt-circle-left "></i> Back</a>
+							</h3>
+
+						</div>
+						<div class="row text-center">
+							<div class="col text-center">
+								<h1>
+									<b class="h3 text-gray-900 mb-4"> Update User Account!</b>
+								</h1>
+							</div>
+						</div>
+
+
+						<form  action="#" th:object="${userdu}"
+							enctype="multipart/form-data" method="POST"
+							th:action="@{/div/processd-updateeAdmin}" class="mt-2 user">
+							<!--Processing id for internal information-->
+							<input type="hidden" th:value="${userdu.id}" name="id" />
+							<input type="hidden" th:value="${userdu.about}" name="about" />
+							<input type="hidden" th:value="${userdu.address}" name="address" />
+							<input type="hidden" th:value="${userdu.email}" name="email" />
+							<input type="hidden" th:value="${userdu.imageUrl}" name="imageUrl" /> 
+							<input type="hidden" th:value="${userdu.phone}" name="phone" />
+                            <input type="hidden" th:value="${userdu.signature}" name="signature" />
+							<!-- Title -->
+							<div class="form-group row">
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									
+									<input type="text" th:value="${userdu.name}" id="name"
+										name="name" placeholder="Enter name here"
+										class="form-control form-control-user" required />
+								</div>
+
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									
+									<input type="text" th:value="${userdu.uname}" id="uname"
+										name="uname" placeholder="Enter user name here"
+										class="form-control form-control-user" required />
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									<input type="password" name="password"
+										class="form-control form-control-user" id="password_field"
+										aria-describedby="emailHelp" placeholder="Enter New or Old Password Here"
+										required />
+								</div>
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									<div class="text-center">
+										               <select class="custom-select " required
+															id="depar" name="depar">
+															<option value="" selected disabled>---CHAIR NAME---</option>
+															<option th:each="f : ${fmies}" th:value="${f.id}"
+																th:selected="${f.id}==${userdu.depar}"
+																th:text="${f.name}"></option>
+														</select>
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="form-group row">
+							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+			                      <select multiple class="form-control custom-select multiple-select" required id="roles"
+										name="roles">
+										 
+										<option th:each="c : ${listRoles}" th:value="${c.id}"
+										th:field="*{roles}"
+											th:text="${c.name}"></option>
+									</select>
+                                                    
+               
+				</div>	
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<p>For Multiple Select <span class="badge badge-pill badge-success">Hold Ctrl + Select </span></p>
+				
+				</div>				
+            </div>	
+            
+            
+            
+				<div>
+				    <button type="submit" class="btn btn-primary">Update</button> 
+			    </div>
+
+
+
+						</form>
+
+					</div>
+				</div>
+
+
+
+				<!-- <script th:src="@{/tinymce/tinymce.min.js}"></script>
+				<script>
+					tinymce.init({
+						selector : 'textarea'
+					});
+				</script> -->
+
+
+
+			</div>
+
+
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+
+</body>
+</html>

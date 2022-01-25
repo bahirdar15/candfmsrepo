@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid ">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			<p class="mb-4"></p>
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+				<div class="card-header py-3">
+				<div class="row">
+				<div class="col-md-6">
+					<!-- <a type="button" class="btn btn-success btn-sm"
+						th:href="@{/performco/show_pc}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a> -->
+						<a   onclick="goBack()" class="dropdown-item text-left btn-user pr-0" ><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</a>
+					</div>	
+					<div class="col-md-6  text-right">
+						<a type="button" class="btn btn-success btn-sm" 
+						th:href="@{'/performco/'+${proformRequ.id}+'/proformRequPdf'}"><i
+						class="fas fa-download"></i> Generate pdf </a>
+						</div>
+				</div>
+				</div>
+
+				<!-- for instructore -->
+				<div class="card-body p-4" th:each="f : ${proformRequ}" th:with="userr= ${f.user}">
+
+
+					<div class="row   h-100 align-items-center">
+						<div class="col-md-12 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Name
+										of Instructor/FMIE to be evaluated</b></label>
+							<div class="col-md-4 mb-1" id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${proformRequ.user.name}"> </span>
+							</div>
+
+						</div>
+					</div>
+					<div class="row   h-100 align-items-center">
+						<div class="col-md-12 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Faculty</b></label>
+							<div class="col-md-8 mb-1" id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">Mechanical and Industrial Engineering</div>
+
+						</div>
+					</div>
+					<div class="row   h-100 align-items-center" >
+						<div class="col-md-12 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Instructor Course Name</b></label>
+							<div class="col-md-4 mb-1" id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								<span >For All Course</span> </div>
+<!-- Only what he taught -->
+						</div>
+					</div>
+
+					<div class="row   h-100 align-items-center" >
+						<div class="col-md-12 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Evaluation Semester</b></label>
+							<div class="col-md-4 mb-1 " id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:utext="${proformRequ.semester.name}"> </span>&nbsp; |<span th:text="${f.ayear}"> </span>|
+								
+							</div>
+
+						</div>
+					</div>
+					<div class="row   my-2 h-100 align-items-center">
+						<div class="col-md-12 text-center">
+							<h5>
+								<b>Evaluation Result </b>
+							</h5>							
+						</div>
+					</div>
+					<div class="row   h-100 align-items-center">
+						<div class="col-md-10 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Evaluated by student</b>:&nbsp;</label>
+							<div class="col-md-1 mb-1 pr-0 pl-2"
+								id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								
+								<span th:text="${StudentAva}"> </span>
+								
+								</div>
+							/50........... <b>Number Of Evaluators Students፡</b> &nbsp;<span th:text="${countEvaluterStudent}"> </span>
+
+						</div>
+					</div>
+					<div class="row   h-100 align-items-center">
+						<div class="col-md-10 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Evaluated by Colleagues</b>:&nbsp;</label>
+							<div class="col-md-1 mb-1 pr-0 pl-2"
+								id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								
+								<span th:text="${collagAva}"> </span>
+								
+								</div>
+							/15........... <b>Number Of Evaluators Colleagues</b>፡ &nbsp;<span th:text="${countEvaluterCo}"> </span>
+
+						</div>
+					</div>
+					<div class="row   h-100 align-items-center">
+						<div class="col-md-10 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Evaluated by Immediate Supervisor</b>:&nbsp;</label>
+							<div class="col-md-1 mb-1 pr-0 pl-2"
+								id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								
+								<span th:text="${SuperAva}"> </span>
+								
+								</div>
+							/35...........<b>Number Of Evaluators Immediate Supervisor</b>፡ &nbsp;<span th:text="${countEvaluterSuper}"> </span>
+
+						</div>
+					</div>
+
+					<div class="row   h-100 align-items-center">
+						<div class="col-md-6 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa"><b>Total Result:</b>&nbsp; </label>
+							<div class="col-md-2 mb-1 pr-0 pl-2"
+								id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">
+								<b><span th:text="${totalall}"> </span></b>
+								</div> /100 
+
+
+						</div>
+					</div>
+
+					<br /> <br />
+					<div class="row   my-2 h-100 align-items-center">
+						<div class="col-md-12 text-center">
+							<h5>
+								<b>Immediate Supervisor name and Signature </b>
+							</h5>
+						</div>
+					</div>
+					<div class="row   my-2 h-100 align-items-center">
+						<label class="" for="inlineFormCustomSelectPref"> <b>Immediate Supervisor name</b>፡</label>
+						<div class="col-md-4 px-1 mb-2" id="inlineFormCustomSelectPref"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:each="c : ${chairHolder}"
+								th:if="${c.id}==${f.approvedby}" th:text="${c.name}"></span>
+						</div>
+					</div>
+					<div class="row   my-2 h-100 align-items-center">
+						<label class="" for="inlineFormCustomSelectPref2"><b>Signature:</b></label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;"
+							th:each="c : ${chairHolder}" th:if="${c.id}==${f.approvedby}">
+							<span><img class="img-fluid"
+								th:src="@{'/signatu/'+${c.imageUrl}}" alt=" Signature Null"
+								style="width: 80%; height: 40px" /></span>
+						</div>
+					</div>
+					<div class="row   my-2 h-100 align-items-center">
+						<label class="" for="inlineFormCustomSelectPref2"><b>Date:</b></label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${f.approveddate}"> </span>
+						</div>
+					</div>
+
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+	</section>
+
+
+</body>
+</html>

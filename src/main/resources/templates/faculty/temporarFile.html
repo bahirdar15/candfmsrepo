@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			<p class="mb-4"></p>
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+				<div class="card-header py-3">
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/performco/show_pcEva}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a>
+				</div>
+
+
+				<!-- start body -->
+				<div class="card-body">
+
+					<form enctype="multipart/form-data" method="POST"
+						th:action="@{/performco/process-EvalutStudent}">
+						<input type="hidden" th:value="${user.id}" name="userid" /> 
+						<!-- <input type="hidden" th:value="${proformRequ.id}" name="proformRequid" /> -->
+
+
+
+
+
+
+						<!-- startsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+						<div class="container-fluid">
+							<div class="row text-center  my-2  h-100 align-items-center">
+								<div class="col-md-12  ">
+									<h5>የመምህራን መገምገሚያ መስፈርት</h5>
+								</div>
+								<div class="col-md-12">
+									<p class="">((በተማሪዎች የሚሞላ)</p>
+								</div>
+							</div>
+							<div class="row   h-100 align-items-center" >
+								<div class="col-md-12 form-inline px-0">
+									<label class="" for="inlineFormCustomSelectPrefa">የተገምጋሚው
+										መምህር ስም</label>
+									<div class="col-md-4 mb-1" id="inlineFormCustomSelectPrefa"
+										style="border-bottom: 1px solid currentColor;">
+										<span th:text="${getUserById.name}"></span>
+									</div>
+
+									<label class="" for="inlineFormCustomSelectPref">የተገምጋሚው
+										መ/ር ኮሌጅ</label>
+									<div class="col-md-3 mb-2 px-2" id="inlineFormCustomSelectPref"
+										style="border-bottom: 1px solid currentColor;">BDU</div>
+
+
+								</div>
+							</div>
+							<div class="row   h-100 align-items-center">
+								<div class="col-md-12 form-inline px-0">
+									<label class="" for="inlineFormCustomSelectPrefa">የተገምጋሚዉ
+										መ/ር የትምህርት ክፍል</label>
+									<div class="col-md-3 mb-1" id="inlineFormCustomSelectPrefa"
+										style="border-bottom: 1px solid currentColor;">
+<span th:text="${getUserById.depar}"></span>
+									</div>
+
+									<label class="" for="inlineFormCustomSelectPref">የኮርሱ
+									በሙሉ</label>
+									<div class="col-md-1 mb-2 px-2" id="inlineFormCustomSelectPref"
+										style="border-bottom: 1px solid currentColor;">
+<span>For All Course</span>
+</div>
+
+									
+</div>
+								</div>
+							</div>
+							<div class="row    h-100 align-items-center">
+								<label class="" for="inlineFormCustomSelectPref">የትምህርት
+									ዘመን</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">
+									<span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+									</div>
+
+								<!-- <label class="" for="inlineFormCustomSelectPref2">ሴሚስተር</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+																	
+									style="border-bottom: 1px solid currentColor;">
+									<span th:text="${proformRequ.coursout.semester.name}"></span>
+									</div> -->
+									
+							<label class="" for="inlineFormCustomSelectPref2">ሴሚስተር</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<div class="m-0 px-0 text-center">
+									<!-- <label for="fmie" class="col-form-label">: </label> -->
+									<select class="browser-default custom-select pr-0 pl-0" required id="semesterid"
+										style="border: none; outline: 0; box-shadow: none;background: none !important;"
+										name="semesterid">
+										<option value="" selected disabled>--Select
+											Semester--</option>
+										<option th:each="f : ${semesters}" th:value="${f.id}"
+											th:utext="${f.name}"></option>
+									</select>
+								</div>
+							</div>
+									
+									
+									
+									
+									
+									
+									
+									
+
+								<label class="" for="inlineFormCustomSelectPref2">ቀን</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span>
+									
+									</div>
+							</div>
+
+							<div class="row ">
+								<b>መግለጫ: </b>
+								<div class="col-md-12">
+									<p class="mb-0">1. እያንዳንዱን የመገምገሚያ ነጥብ በጥንቃቄ አንብብ(ቢ)፤</p>
+								</div>
+								<div class="col-md-12">
+									<p class="mb-0">2. ካነበብከው(ሽው) የመገምገሚያ ነጥብ አኳያ የመምህርህን(ሽን)
+										2.1 የማስተማር ዝግጅት እና ብቃት፣ 2.2 የትምህርት አቀራረብና 2.3 አጠቃላይ ባህርይ
+										በሚዛናዊነት አስቀምጥ(ጪ)፤</p>
+								</div>
+								<div class="col-md-12">
+									<p class="mb-0">3. ካነበብከው(ሽው) የመገምገሚያ ነጥብ አኳያ የመምህሩን(ሯን)
+										የሥራ አፈጻጸም ከበጣም ዝቅተኛ እስከ በጣም ከፍተኛ በቁጥር ተመንዝሮ ከተቀመጠው ውስጥ አንዱን
+										በማክበብ አመልክት(ቺ)፤</p>
+								</div>
+								<div class="col-md-12">
+									<p class="mb-0">4. መምህሩን/ሯን የማይመለከተው/ታት ከሆነ ለዚሁ በተዘጋጀ ቦታ የ
+										√ ምልክት አስቀምጥ(ጪ)፤</p>
+								</div>
+								<div class="col-md-12">
+									<p class="mb-0">5. በወንድ ፆታ የተገለፀው ለሴት ፆታም ያገለግላል።</p>
+								</div>
+
+
+							</div>
+
+
+							<!-- table start -->
+
+
+							<div class="card-body mx-0 px-0">
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bottom"
+										style="border: 1px solid #858796;">
+										<b>ተራ.ቁ</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										<b>የመገምገሚያ መስፈርት </b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border: 1px solid #858796;">
+										<div class="row align-text-center py-0">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+												<p>
+													<b>Scale</b>
+												</p>
+											</div>
+										</div>
+										<div class="row ">
+											<div class="col-md-2  px-0 mx-0"
+												style="border: 1px solid #858796;">
+												<b>በጣም ዝቅተኛ </b>
+											</div>
+											<div class="col-md-2  px-0 mx-0"
+												style="border: 1px solid #858796;">
+												<b>ዝቅተኛ </b>
+											</div>
+											<div class="col-md-2  px-0 mx-0"
+												style="border: 1px solid #858796;">
+												<b>መካከኛ </b>
+											</div>
+											<div class="col-md-2  px-0 mx-0"
+												style="border: 1px solid #858796;">
+												<b>ከፍተኛ </b>
+											</div>
+											<div class="col-md-2  px-0 mx-0"
+												style="border: 1px solid #858796;">
+												<b>በጣም ከፍተኛ </b>
+											</div>
+											<div class="col-md-2  px-0 mx-0"
+												style="border: 1px solid #858796;">
+												<b>አይመለ ከተውም</b>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Core Competency </b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>1</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										የትምህርቱንዓላማ፣ዝርዝርይዘት/ኮርስአውትላይን/በግልፅያሳውቃል፤በጊዜሰሌዳመጥኖ ያዘጋጃል፣
+										ያቀርባል፣ለተማሪው አባዝቶ ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col-md-2" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc1" id="tcc11" value="1">
+													<label for="tcc11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc1" id="tcc12" value="2">
+													<label for="tcc12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc1" id="tcc13" value="3">
+													<label for="tcc13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc1" id="tcc14" value="4">
+													<label for="tcc14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc1" id="tcc15" value="5">
+													<label for="tcc15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc1" id="tcc10" value="0">
+													<label for="tcc10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>2</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										ስለሚያስተምረውትምህርትተገቢዝግጅትአድርጎበትምህርቱዝርዝርይዘትመሠረትያቀርባል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc2" id="tcc21" value="1">
+													<label for="tcc21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc2" id="tcc22" value="2">
+													<label for="tcc22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc2" id="tcc23" value="3">
+													<label for="tcc23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc2" id="tcc24" value="4">
+													<label for="tcc24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc2" id="tcc25" value="5">
+													<label for="tcc25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc2" id="tcc20" value="0">
+													<label for="tcc20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>3</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">ለሚያስተምረው ትምህርት አስፈላጊ
+										ጽሁፎችን አዘጋጅቶ ይመጣል፡፡</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc3" id="tcc31" value="1">
+													<label for="tcc31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc3" id="tcc32" value="2">
+													<label for="tcc32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc3" id="tcc33" value="3">
+													<label for="tcc33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc3" id="tcc34" value="4">
+													<label for="tcc34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc3" id="tcc35" value="5">
+													<label for="tcc35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc3" id="tcc30" value="0">
+													<label for="tcc30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>4</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										ለሚያስተምረውትምህርትጠቃሚየሆኑትንበቤተመፅሐፍትዉስጥያሉማጣቀሻመፃህፍት ዝርዝር (Reference)
+										አዘጋጅቶ ለተማሪዎች ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc4" id="tcc41" value="1">
+													<label for="tcc41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc4" id="tcc42" value="2">
+													<label for="tcc42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc4" id="tcc43" value="3">
+													<label for="tcc43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc4" id="tcc44" value="4">
+													<label for="tcc44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc4" id="tcc45" value="5">
+													<label for="tcc45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc4" id="tcc40" value="0">
+													<label for="tcc40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>5</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										እንደአስፈላጊነቱየተግባርልምምድይሰጣል፣(ዎርክሾፕ፣ላቦራቶሪ፣የመስክጉብኝት፣case study
+										ወዘተ..)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc5" id="tcc51" value="1">
+													<label for="tcc51" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc5" id="tcc52" value="2">
+													<label for="tcc52"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc5" id="tcc53" value="3">
+													<label for="tcc53"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc5" id="tcc54" value="4">
+													<label for="tcc54"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc5" id="tcc55" value="5">
+													<label for="tcc55"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc5" id="tcc50" value="0">
+													<label for="tcc50"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>6</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በሚያስተምረውን ትምህርት ላይ
+										መሰረታዊና በቂ ዕወቀት አለው፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc6" id="tcc61" value="1">
+													<label for="tcc61" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc6" id="tcc62" value="2">
+													<label for="tcc62"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc6" id="tcc63" value="3">
+													<label for="tcc63"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc6" id="tcc64" value="4">
+													<label for="tcc64"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc6" id="tcc65" value="5">
+													<label for="tcc65"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tcc6" id="tcc60" value="0">
+													<label for="tcc60"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<!-- pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Professional Competency </b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>7</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										ትምህርቱንበማስተማሪያቋንቋበመጠቀምተማሪዎችበሚረዱመልኩበግልጽያቀርባል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc1" id="tpc11" value="1">
+													<label for="tpc11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc1" id="tpc12" value="2">
+													<label for="tpc12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc1" id="tpc13" value="3">
+													<label for="tpc13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc1" id="tpc14" value="4">
+													<label for="tpc14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc1" id="tpc15" value="5">
+													<label for="tpc15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc1" id="tpc10" value="0">
+													<label for="tpc10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>8</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">የተለያዩ የትምህርት መርጃ
+										መሣሪያዎችን በመጠቀም ያስተምራል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc2" id="tpc21" value="1">
+													<label for="tpc21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc2" id="tpc22" value="2">
+													<label for="tpc22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc2" id="tpc23" value="3">
+													<label for="tpc23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc2" id="tpc24" value="4">
+													<label for="tpc24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc2" id="tpc25" value="5">
+													<label for="tpc25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc2" id="tpc20" value="0">
+													<label for="tpc20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>9</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">ለትምህርቱ ጠቃሚ የሆኑ
+										መልመጃዎችን ይሰጣል፤ ያርማል/Class work, Homework, queez,…etc፣ ግብረ መልስ
+										ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc3" id="tpc31" value="1">
+													<label for="tpc31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc3" id="tpc32" value="2">
+													<label for="tpc32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc3" id="tpc33" value="3">
+													<label for="tpc33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc3" id="tpc34" value="4">
+													<label for="tpc34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc3" id="tpc35" value="5">
+													<label for="tpc35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc3" id="tpc30" value="0">
+													<label for="tpc30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>10</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በመተባበር መማር
+										(COOPERATIVE LEARNING) አደረጃጀትወይምየቡድን ሰራ በክፍል ውስጥ አሳታፊ የስነ
+										ማስተማር ዘዴ ተጠቅሞ ያስተምራል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc4" id="tpc41" value="1">
+													<label for="tpc41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc4" id="tpc42" value="2">
+													<label for="tpc42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc4" id="tpc43" value="3">
+													<label for="tpc43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc4" id="tpc44" value="4">
+													<label for="tpc44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc4" id="tpc45" value="5">
+													<label for="tpc45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc4" id="tpc40" value="0">
+													<label for="tpc40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>11</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										ተከተታታይምዘናንበትክክልናበአግባቡይተገብራል፣የተከተታይምዘናውጤትንግብረመልስ በአጭር ጊዜ ውስጥ
+										ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc5" id="tpc51" value="1">
+													<label for="tpc51" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc5" id="tpc52" value="2">
+													<label for="tpc52"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc5" id="tpc53" value="3">
+													<label for="tpc53"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc5" id="tpc54" value="4">
+													<label for="tpc54"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc5" id="tpc55" value="5">
+													<label for="tpc55"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc5" id="tpc50" value="0">
+													<label for="tpc50"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>12</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በተከታታይ ምዘና ውጤት መሰረት
+										በትምህርታቸው ዝቅተኛ ውጤት ላመጡ ተማሪዎች ድጋሚ ፈተና ይሰጣል፤</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc6" id="tpc61" value="1">
+													<label for="tpc61" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc6" id="tpc62" value="2">
+													<label for="tpc62"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc6" id="tpc63" value="3">
+													<label for="tpc63"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc6" id="tpc64" value="4">
+													<label for="tpc64"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc6" id="tpc65" value="5">
+													<label for="tpc65"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc6" id="tpc60" value="0">
+													<label for="tpc60"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>13</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">ለሴት ተማሪዎች፣ ከታዳጊ ክልል
+										ለመጡ ተማሪዎች፣ በትምህርታቸው ድጋፍ ለሚሹ ተማሪዎች እና የምዘና ውጤትን መሰረት በማድረግ
+										በውጤታቸው ዝቅ ላሉ ተማሪዎች ቱቶሪያል ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc7" id="tpc71" value="1">
+													<label for="tpc71" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc7" id="tpc72" value="2">
+													<label for="tpc72"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc7" id="tpc73" value="3">
+													<label for="tpc73"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc7" id="tpc74" value="4">
+													<label for="tpc74"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc7" id="tpc75" value="5">
+													<label for="tpc75"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc7" id="tpc70" value="0">
+													<label for="tpc70"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>14</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">የፈተና ጥያቄዎችን ካስተማረው
+										ትምህርት ጋር አዛምዶ ያወጣል፣ ሁሉንም ርዕሶችን ይዳስሳል፣ የተለያዩ የምዘና አይነቶች ያካትታል፣
+										በሚሰጣቸው ፈተናዎች ለሚጠቃለሉ ጥያቄዎች ሚዛናዊ የሆነ ዋጋ ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc8" id="tpc81" value="1">
+													<label for="tpc81" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc8" id="tpc82" value="2">
+													<label for="tpc82"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc8" id="tpc83" value="3">
+													<label for="tpc83"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc8" id="tpc84" value="4">
+													<label for="tpc84"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc8" id="tpc85" value="5">
+													<label for="tpc85"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tpc8" id="tpc80" value="0">
+													<label for="tpc80"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<!-- ppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										style="border: 1px solid #858796;">
+										<b>Ethical Competence</b>
+									</div>
+
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>15</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">ለተማዎች ተገቢውን ክብር ይሰጣል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec1" id="tec11" value="1">
+													<label for="tec11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec1" id="tec12" value="2">
+													<label for="tec12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec1" id="tec13" value="3">
+													<label for="tec13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec1" id="tec14" value="4">
+													<label for="tec14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec1" id="tec15" value="5">
+													<label for="tec15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec1" id="tec10" value="0">
+													<label for="tec10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>16</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በክፍል ውስጥ የተማሪዎችን ጥያቄ
+										ተቀብሎ በአግባቡ ያስተናግዳል፣ በክፍል ውስጥ ተማሪዎች ስለትምህርቱ ሀሳባቸውንና አስተያየታቸውን
+										በነጻነት እንዲገልጹ ይፈቅዳል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec2" id="tec21" value="1">
+													<label for="tec21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec2" id="tec22" value="2">
+													<label for="tec22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec2" id="tec23" value="3">
+													<label for="tec23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec2" id="tec24" value="4">
+													<label for="tec24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec2" id="tec25" value="5">
+													<label for="tec25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec2" id="tec20" value="0">
+													<label for="tec20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>17</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በስነ ስርዓት አክባሪነቱ፣
+										በሚያሳየው ጨዋነቱና እውቀቱን ለማስተላለፍ በሚያሳየው ቅንነትና ተነሳሽነት በአርአያነት ይጠቀሳል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec3" id="tec31" value="1">
+													<label for="tec31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec3" id="tec32" value="2">
+													<label for="tec32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec3" id="tec33" value="3">
+													<label for="tec33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec3" id="tec34" value="4">
+													<label for="tec34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec3" id="tec35" value="5">
+													<label for="tec35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec3" id="tec30" value="0">
+													<label for="tec30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>18</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በዘር ፣በሀይማኖትና በፆታ ልዩነት
+										አይፈጥርም፣ ሁሉንም በእኩል ያያል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec4" id="tec41" value="1">
+													<label for="tec41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec4" id="tec42" value="2">
+													<label for="tec42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec4" id="tec43" value="3">
+													<label for="tec43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec4" id="tec44" value="4">
+													<label for="tec44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec4" id="tec45" value="5">
+													<label for="tec45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="tec4" id="tec40" value="0">
+													<label for="tec40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<!-- ppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Time Management </b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>19</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">በተመደበለት የትምህርት ክፍለ ጊዜ
+										ሰዓት አክብሮ ይገኛል፣ ክፍለ ጊዜውን በአግባቡ ለማስተማር ተግባር ያውላል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm1" id="ttm11" value="1">
+													<label for="ttm11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm1" id="ttm12" value="2">
+													<label for="ttm12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm1" id="ttm13" value="3">
+													<label for="ttm13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm1" id="ttm14" value="4">
+													<label for="ttm14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm1" id="ttm15" value="5">
+													<label for="ttm15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm1" id="ttm10" value="0">
+													<label for="ttm10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>20</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">ተማሪዎችን ለመርዳት የማማከሪያ
+										ሰዓት መድቦ ያሳውቃል፣ በመደበው ሰዓት ተማሪዎች ለሚያቀርቡት የአካዳሚክ ችግሮች መፍትሄ ይፈልጋል፣</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 py-0 my-0">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm2" id="ttm21" value="1">
+													<label for="ttm21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm2" id="ttm22" value="2">
+													<label for="ttm22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm2" id="ttm23" value="3">
+													<label for="ttm23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm2" id="ttm24" value="4">
+													<label for="ttm24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm2" id="ttm25" value="5">
+													<label for="ttm25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi" name="ttm2" id="ttm20" value="0">
+													<label for="ttm20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right"
+										style="border: 1px solid #858796;">
+										<strong>TOTAL :</strong>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border: 1px solid #858796;">
+										<input type="text" name="totaljs" id="totaljs"
+											style="border: none; outline: 0; box-shadow: none;" />
+									</div>
+								</div>
+
+
+
+								<!-- ppppppppppppp -->
+
+
+
+													
+								<b>ስለ መምህሩ አጠቃላይ አስተያዬት</b>
+								<div class="row form-group">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-0 my-0">
+										<p class="mb-0"></p>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user pr-3"> በጥንካሬ የሚገለፁ እና አርአያነት ያላቸው ጎኖች </span>
+											</div>
+											<textarea id="mytext" name="strengths"
+												class="form-control form-control-user"
+												aria-label="With textarea"
+												placeholder="Strengths of the Instructor ?"></textarea>
+										</div>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-0 my-0">
+										<p class="mb-0"></p>
+
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user pr-0">መምህሩ እንዲያሻሽላቸው የሚገቡ
+												</span>
+											</div>
+											<textarea id="mytext" name="improve"
+												class="form-control form-control-user "
+												aria-label="With textarea"
+												placeholder="Suggested points/aspects the instructor should improve "></textarea>
+										</div>
+
+									</div>
+								</div>
+
+
+
+
+
+
+							</div>
+
+
+							<!-- table finsh -->
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- ffffffffffffffffffffffniiiiiiiiiiiiiiiiiiissssssss -->
+						<div class="container text-center">
+							<button type="submit" class="btn btn-outline-success btn-sm">Send</button>
+						</div>
+
+					</form>
+
+
+
+
+
+				</div>
+				<!-- end body -->
+
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+		<script type="text/javascript">
+			$(".radi").click(function() {
+				var totaljs = 0;
+				$(".radi:checked").each(function() {
+					totaljs += +this.value;
+				});
+				$("#totaljs").val(totaljs);
+			});
+		</script>
+
+
+	</section>
+
+
+</body>
+</html>

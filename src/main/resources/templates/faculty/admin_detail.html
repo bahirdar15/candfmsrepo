@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+	<section>
+
+
+
+
+		<div class="card mr-3 ml-3">
+			<div class="card-body">
+				<div class="row">
+
+
+					<h3>
+						<a class="dropdown-item text-left btn-user"
+							th:href="@{/div/showAdmin}"><i
+							class="fas fa-arrow-alt-circle-left "></i> Back</a>
+					</h3>
+
+				</div>
+				<div class="container text-center">
+					<h3>Shown User Detailes</h3>
+					<div th:if="${session.message}" id="hideDiv"
+						th:classappend="${session.message.type}" class="alert "
+						role="alert">
+						<p class="text-center" th:text="${session.message.content}"></p>
+						<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+
+					<h3 class="mt-3">
+						<span>Full Name: </span><b><span th:text="  ${userd.name}"></span></b>
+					</h3>
+
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">#ID</th>
+								<th scope="col">ID <span th:text="${userd.id}"></span></th>
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+                                <th scope="row">User Name</th>
+                                <td><span th:text="${userd.uname}"></span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td><span th:text="${userd.email}"></span></td>
+                            </tr>
+                             <tr>
+                                <th scope="row">Phone</th>
+                                <td><span th:text="${userd.phone}"></span></td>
+                            </tr>
+                           
+                            <tr>
+                                <th scope="row">Address</th>
+                                <td><span th:text="${userd.address}"></span></td>
+                            </tr>
+                             <tr>
+                                <th scope="row">Role</th>
+                                <td><span th:text="${userd.roles}"></span></td>
+                            </tr>
+                             <tr>
+                                <th scope="row">Chair Name</th>
+                                <td> <span th:each="f : ${fmies}"
+										th:if="${f.id}==${userd.depar}" th:text="${f.name}"></span></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Account Status</th>
+                                <td><span th:text="${userd.enabled}"></span></td>
+                            </tr>
+                           
+
+						</tbody>
+
+					</table>
+					<div class="description mt-3">
+						About:&nbsp;<th:block th:text="${userd.about}"></th:block>
+					</div>
+
+					<div class="container mt-3">
+						<button th:onclick="|deleteAdmin(${userd.id})|"
+							class="btn btn-danger btn-sm btn-block">Delete</button>
+
+
+						<!--  As the request is POST, we have to write it in  -->
+
+						<form th:action="@{'/div/update-userd/'+${userd.id}}"
+							method="POST" class="mt-2">
+							<button type="submit" class="btn btn-sm btn-primary btn-block">Update</button>
+						</form>
+
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+	</section>
+
+
+</body>
+</html>

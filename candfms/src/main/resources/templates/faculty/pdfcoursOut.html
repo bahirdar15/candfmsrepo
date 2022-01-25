@@ -1,0 +1,1451 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta
+	content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+	name="viewport">
+<meta content="ie=edge" http-equiv="X-UA-Compatible">
+
+
+<title>C,P And F - PDF</title>
+<link th:href="@{/css/fmie2.css}" rel="stylesheet" />
+<style>
+div.footer {
+	display: block;
+	text-align: left;
+	position: running(footer);
+	background-color: powderblue;
+	color: red;
+}
+
+@page {
+	size: A4 portrait;
+	/*  size: A4 landscape; */
+	@bottom-right
+	{
+	content
+	:
+	"Page "
+	counter(
+	page
+	)
+	" of "
+	counter(
+	pages
+	);
+}
+
+@bottom-left {
+	content: element(footer);
+}
+counter-increment
+:
+ 
+page
+;
+
+                
+counter-reset
+:
+ 
+page
+ 
+1
+;
+
+            
+}
+</style>
+
+</head>
+<body >
+	<div th:with="coursout= ${userCoursout.coursout}">
+		
+
+
+
+
+
+
+
+
+
+				<div class="row text-right" style="text-align: right;width: 100%;">
+				<span style="text-align: right;width: 100%;" th:text="${#dates.format(#dates.createNow(), 'MMM,dd,yyyy HH:mm:ss a')}"></span>
+				
+				</div>
+
+
+<!-- <p th:value="${#dates.format(#dates.createNow(), 'yyyy')}"></p> -->
+			<table style="width: 100%">
+				<!-- <caption>
+					<time th:text="${#dates.dayOfWeekName(myDate)}"></time><h6 th:text="${#dates.format(#dates.createNow(), 'dd/MMM/yyyy HH:mm:ss a')}"></h6>
+				</caption> -->
+				
+				<tr Height=100 style="width: 100%">
+					<th colspan="2"  style="text-align: center;width: 20%;">
+						<img th:src="@{/img/bdu.png}" height="100">
+					</th>
+					<th colspan="6" style="text-align: center;width: 60%">
+						<h4
+							style="text-transform: uppercase; font-weight: bold; margin: 0px;">
+							Bahir Dar Universsity</h4>
+						<p style="text-transform: uppercase; font-weight: bold;margin-left: 0px;">
+							Bahir Dar Institute of Technology (BIT)</p>
+					
+						<p style="text-transform: uppercase; font-weight: bold;margin-left: 0px;">
+							Faculty of Mechanical and Industrial Engineering</p>
+					</th>
+					<th colspan="2"  style="text-align: center;width: 20%;">
+						<img th:src="@{/img/bdu.png}" height="100">
+					</th>
+
+				</tr>
+				</table> 
+				<table style="width: 100%;border-top: none;">
+				<tr>
+					<th colspan="10" style="text-align: center;width: 100%;border-top: none;"><font size="5px"
+						style="color: rgb(0, 0, 255);"> Course Guidebook</font></th>
+
+				</tr>
+				<tr th:with="fmie= ${coursout.fmie}" style="width: 100%">
+					<th colspan="3" style="width: 30%">Course Title:</th>
+					<td colspan="3" style="width: 30%"><span th:text="${coursout.Title}"></span></td>
+					<th colspan="1" style="width: 15%">Chair Name:</th>
+					<td colspan="3" style="width: 25%"><span th:text="${fmie.name}"></span></td>
+				</tr>
+
+				<tr style="width: 100%">
+					<th colspan="3" style="width: 30%">Course Code:</th>
+					<td colspan="7" style="width: 70%"><span th:text="${coursout.ccode}"></span></td>
+				</tr>
+				<tr style="width: 100%">
+					<th colspan="3" style="width: 30%">Module:</th>
+					<td colspan="7" style="width: 70%"><span th:text="${coursout.cmodule}"></span></td>
+				</tr>
+				<tr style="width: 100%">
+					<th colspan="3" style="width: 30%">ECTS Credits:</th>
+					<td colspan="7" style="width: 70%"><span th:text="${coursout.cps}"></span></td>
+				</tr>
+
+
+				<tr style="width: 100%">
+					<th rowspan="2" colspan="3" style="width: 30%">Contact Hours(per week)</th>
+					<th colspan="1" style="width: 10%">Lecture</th>
+					<th colspan="2" style="width: 20%">Tutorial</th>
+					<th colspan="2" style="width: 20%">Practice(Laboratory)</th>
+					<th colspan="2" style="width: 20%">Home Study</th>
+
+				</tr>
+				<tr style="width: 70%">
+
+					<td colspan="1" style="width: 10%"><span th:text="${coursout.clecture}"></span></td>
+					<td colspan="2" style="width: 20%"><span th:text="${coursout.ctutrial}"></span></td>
+					<td colspan="2" style="width: 20%"><span th:text="${coursout.claboratory}"></span></td>
+					<td colspan="2" style="width: 20%"><span th:text="${coursout.cstudy}"></span></td>
+
+				</tr>
+				<tr style="width: 100%">
+					<th colspan="3" style="width: 30%">Pre-requisites</th>
+					<td colspan="7" style="width: 70%"><span th:text="${coursout.preRequi}"></span></td>
+				</tr>
+
+				<tr th:with="groupt= ${coursout.groupt}" style="width: 100%">
+					<th colspan="3" style="width: 30%">Target Group</th>
+					<td colspan="7" style="width: 70%"><span th:text="${groupt.name}"></span></td>
+				</tr>
+				<tr style="width: 100%">
+					<th colspan="3" style="width: 30%">Academic Year</th>
+					<td colspan="7" style="width: 70%"><span th:text="${coursout.aYear}"></span></td>
+				</tr>
+				<tr th:with="semester= ${coursout.semester}">
+					<th colspan="3" style="width: 30%">Semester</th>
+					<td colspan="7" style="width: 70%"><span th:utext="${semester.name}"></span></td>
+				</tr>
+				<tr style="width: 100%">
+					<th colspan="3" style="width: 30%">Instructor's Full Name</th>
+					<td colspan="7" style="width: 70%"><span th:text="${insta.name}"></span></td>
+				</tr>
+
+				<tr style="width: 100%">
+					<th rowspan="2" colspan="3" style="width: 30%">Instructor's Address</th>
+					<th colspan="3" style="width: 30%">Office No:</th>
+					<th colspan="2" style="width: 20%">E-mail:</th>
+					<th colspan="2" style="width: 20%">Phone No:</th>
+
+				</tr>
+				<tr style="width: 100%">
+					<td colspan="3" style="width: 30%"><span th:text="${insta.address}"></span></td>
+					<td colspan="2" style="width: 20%"><span th:text="${insta.email}"></span></td>
+					<td colspan="2" style="width: 20%"><span th:text="${insta.phone}"></span></td>
+				</tr>
+
+			</table>
+			<!-- ===========================================finsh table =============================================-->
+
+
+
+
+
+
+			<br>
+
+
+
+
+
+
+			<h4 th:if="${!coursout.courseobjectone.empty}" style="margin: 0px;">
+				<strong> <img th:src="@{/img/point2.png}" alt="Smiley face"
+					height="15" width="15"> Course objective and Competences
+				</strong>
+			</h4>
+
+			<p th:if="${!coursout.courseobjectone.empty}"  style="padding: 0px; margin: 0px;">Up on the completion of the
+				course students will be able to:</p>
+			<ul th:if="${!coursout.courseobjectone.empty}" style="margin: 0px;">
+				<li th:if="${!coursout.courseobjectone.empty}"><span th:text="${coursout.courseobjectone}"></span></li>
+				<li th:if="${!coursout.courseobjecttwo.empty}"><span th:text="${coursout.courseobjecttwo}"></span></li>				
+				<!-- new add -->
+				<li th:if="${!coursout.courseobjectthree.empty}"><span th:text="${coursout.courseobjectthree}"></span></li>
+				<li th:if="${!coursout.courseobjectfour.empty}"><span th:text="${coursout.courseobjectfour}"></span></li>
+				<li th:if="${!coursout.courseobjectfive.empty}"><span th:text="${coursout.courseobjectfive}"></span></li>
+				<li th:if="${!coursout.courseobjectsix.empty}"><span th:text="${coursout.courseobjectsix}"></span></li>
+				<li th:if="${!coursout.courseobjectseven.empty}"><span th:text="${coursout.courseobjectseven}"></span></li>
+				<li th:if="${!coursout.courseobjecteight.empty}"><span th:text="${coursout.courseobjecteight}"></span></li>
+				<li th:if="${!coursout.courseobjectnine.empty}"><span th:text="${coursout.courseobjectnine}"></span></li>
+				<li th:if="${!coursout.courseobjectten.empty}"><span th:text="${coursout.courseobjectten}"></span></li>
+			</ul>
+			<!-- <p>&nbsp;</p> -->
+
+			<h4 style="margin: 0px;" th:if="${!coursout.comlearn.comlearn1.empty}">
+				<strong><img th:src="@{/img/point2.png}" alt="Smiley face"
+					height="15" width="15"> Competences/Learning Outcome </strong>
+			</h4>
+
+			<ul  style="margin: 0px;" th:if="${!coursout.comlearn.comlearn1.empty}">			
+                <li th:if="${!coursout.comlearn.comlearn1.empty}"><span th:text="${coursout.comlearn.comlearn1}"></span></li>
+				<li th:if="${!coursout.comlearn.comlearn2.empty}"><span th:text="${coursout.comlearn.comlearn2}"></span></li>
+				<li th:if="${!coursout.comlearn.comlearn3.empty}"><span th:text="${coursout.comlearn.comlearn3}"></span></li>
+				<li th:if="${!coursout.comlearn.comlearn4.empty}"><span th:text="${coursout.comlearn.comlearn4}"></span></li>
+				<li th:if="${!coursout.comlearn.comlearn5.empty}"><span th:text="${coursout.comlearn.comlearn5}"></span></li>
+			</ul>
+			
+                <h4 style="margin: 0px;">
+				<strong><img th:src="@{/img/point2.png}" alt="Smiley face"
+					height="15" width="15"> Course Description </strong>
+			</h4>
+
+			<p style="padding: 0px; margin: 0px;">
+				<span th:text="${coursout.cdescription}"></span>
+			</p>
+			
+			<!-- ===========================================finsh  =============================================-->
+
+
+
+
+		
+			<br>
+
+
+			<div th:with="week= ${coursout.week}">
+				<div th:with="last= ${coursout.chapterlast}">
+					<div th:with="af= ${coursout.chapteraf}">
+						<div th:with="bf= ${coursout.chapterbf}">
+
+
+
+						
+				
+
+
+							<h3 style="text-align: center;color: rgb(0, 0, 255);">
+								<strong>Schedule of Lecture Topics, Methodologies,
+									Laboratory and References </strong>
+							</h3>
+
+
+							
+							<table style="width: 100%">
+
+								<tr style="width: 100%">								   
+									    <th   bgcolor="#808080" style="width: 5%; text-align: center;">Week</th>
+									    <th colspan="3" bgcolor="#808080" style="width: 41%; text-align: center;">Lecture Topics</th>
+										
+										<th colspan="2" bgcolor="#808080" style="width: 18%; text-align: center;">Methodologies</th>										
+										<th colspan="2" bgcolor="#808080" style="width: 18%; text-align: center;">Lab Activities</th>										
+										<th colspan="2" bgcolor="#808080" style="width: 18%; text-align: center;">References</th>										
+								</tr>
+								
+								<tr th:if="${!week.weekone.empty}">
+									<th   style="width: 5%; text-align: center;"><span th:text="${week.weekone}"></span></th>
+									<td colspan="3" style="width: 40%;" th:if="${!bf.chapter1.empty}">
+										<h3>
+											<span th:text="${bf.chapter1}"></span>
+										</h3>
+										<p th:if="${!bf.chapter11b.empty}" >
+											<span th:text="${bf.chapter11b}"></span>
+										</p>
+										<p th:if="${!bf.chapter12b.empty}">
+											<span th:text="${bf.chapter12b}"></span>
+										</p>
+										<p th:if="${!bf.chapter13b.empty}">
+											<span th:text="${bf.chapter13b}"></span>
+										</p>
+										<p th:if="${!bf.chapter14b.empty}">
+											<span th:text="${bf.chapter14b}"></span>
+										</p>
+										<p th:if="${!bf.chapter15.empty}">
+											<span th:text="${bf.chapter15}"></span>
+										</p>
+										<p th:if="${!bf.chapter16.empty}">
+											<span th:text="${bf.chapter16}"></span>
+										</p>
+										<p th:if="${!bf.chapter17.empty}">
+											<span th:text="${bf.chapter17}"></span>
+										</p>
+										<p th:if="${!bf.chapter18.empty}">
+											<span th:text="${bf.chapter18}"></span>
+										</p>
+										<p th:if="${!bf.chapter19.empty}">
+											<span th:text="${bf.chapter19}"></span>
+										</p>
+										<p th:if="${!bf.chapter110.empty}">
+											<span th:text="${bf.chapter110}"></span>
+										</p>
+									</td>
+								
+								    <td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+															
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weektwo.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span th:text="${week.weektwo}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!bf.chapter2.empty}">
+										<h3>
+											<span th:text="${bf.chapter2}"></span>
+										</h3>
+										<p th:if="${!bf.chapter21.empty}">
+											<span th:text="${bf.chapter21}"></span>
+										</p>
+										<p th:if="${!bf.chapter22.empty}">
+											<span th:text="${bf.chapter22}"></span>
+										</p>
+										<p th:if="${!bf.chapter23.empty}">
+											<span th:text="${bf.chapter23}"></span>
+										</p>
+										<p th:if="${!bf.chapter24.empty}">
+											<span th:text="${bf.chapter24}"></span>
+										</p>
+										<p th:if="${!bf.chapter25.empty}">
+											<span th:text="${bf.chapter25}"></span>
+										</p>
+										<p th:if="${!bf.chapter26.empty}">
+											<span th:text="${bf.chapter26}"></span>
+										</p>
+										<p th:if="${!bf.chapter27.empty}">
+											<span th:text="${bf.chapter27}"></span>
+										</p>
+										<p th:if="${!bf.chapter28.empty}">
+											<span th:text="${bf.chapter28}"></span>
+										</p>
+										<p th:if="${!bf.chapter29.empty}">
+											<span th:text="${bf.chapter29}"></span>
+										</p>
+										<p th:if="${!bf.chapter210.empty}">
+											<span th:text="${bf.chapter210}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								     <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+</tr>
+
+								<tr th:if="${!week.weekthree.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekthree}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!bf.chapter3.empty}">
+										<h3>
+											<span th:text="${bf.chapter3}"></span>
+										</h3>
+										<p th:if="${!bf.chapter31.empty}">
+											<span th:text="${bf.chapter31}"></span>
+										</p>
+										<p th:if="${!bf.chapter32.empty}">
+											<span th:text="${bf.chapter32}"></span>
+										</p>
+										<p th:if="${!bf.chapter33.empty}">
+											<span th:text="${bf.chapter33}"></span>
+										</p>
+										<p th:if="${!bf.chapter34.empty}">
+											<span th:text="${bf.chapter34}"></span>
+										</p>
+										<p th:if="${!bf.chapter35.empty}">
+											<span th:text="${bf.chapter35}"></span>
+										</p>
+										<p th:if="${!bf.chapter36.empty}">
+											<span th:text="${bf.chapter36}"></span>
+										</p>
+										<p th:if="${!bf.chapter37.empty}">
+											<span th:text="${bf.chapter37}"></span>
+										</p>
+										<p th:if="${!bf.chapter38.empty}">
+											<span th:text="${bf.chapter38}"></span>
+										</p>
+										<p th:if="${!bf.chapter39.empty}">
+											<span th:text="${bf.chapter39}"></span>
+										</p>
+										<p th:if="${!bf.chapter310.empty}">
+											<span th:text="${bf.chapter310}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+</tr>
+								<tr th:if="${!week.weekfour.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekfour}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!bf.chapter4.empty}">
+										<h3>
+											<span th:text="${bf.chapter4}"></span>
+										</h3>
+										<p th:if="${!bf.chapter41.empty}">
+											<span th:text="${bf.chapter41}"></span>
+										</p>
+										<p th:if="${!bf.chapter42.empty}">
+											<span th:text="${bf.chapter42}"></span>
+										</p>
+										<p th:if="${!bf.chapter43.empty}">
+											<span th:text="${bf.chapter43}"></span>
+										</p>
+										<p th:if="${!bf.chapter44.empty}">
+											<span th:text="${bf.chapter44}"></span>
+										</p>
+										<p th:if="${!bf.chapter45.empty}">
+											<span th:text="${bf.chapter45}"></span>
+										</p>
+										<p th:if="${!bf.chapter46.empty}">
+											<span th:text="${bf.chapter46}"></span>
+										</p>
+										<p th:if="${!bf.chapter47.empty}">
+											<span th:text="${bf.chapter47}"></span>
+										</p>
+										<p th:if="${!bf.chapter48.empty}">
+											<span th:text="${bf.chapter48}"></span>
+										</p>
+										<p th:if="${!bf.chapter49.empty}">
+											<span th:text="${bf.chapter49}"></span>
+										</p>
+										<p th:if="${!bf.chapter410.empty}">
+											<span th:text="${bf.chapter410}"></span>
+										</p>
+									</td>
+								
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+</tr>
+								<tr th:if="${!week.weekfive.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekfive}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!bf.chapter5.empty}">
+										<h3>
+											<span th:text="${bf.chapter5}"></span>
+										</h3>
+										<p th:if="${!bf.chapter51.empty}">
+											<span th:text="${bf.chapter51}"></span>
+										</p>
+										<p th:if="${!bf.chapter52.empty}">
+											<span th:text="${bf.chapter52}"></span>
+										</p>
+										<p th:if="${!bf.chapter53.empty}">
+											<span th:text="${bf.chapter53}"></span>
+										</p>
+										<p th:if="${!bf.chapter54.empty}">
+											<span th:text="${bf.chapter54}"></span>
+										</p>
+										<p th:if="${!bf.chapter55.empty}">
+											<span th:text="${bf.chapter55}"></span>
+										</p>
+										<p th:if="${!bf.chapter56.empty}">
+											<span th:text="${bf.chapter56}"></span>
+										</p>
+										<p th:if="${!bf.chapter57.empty}">
+											<span th:text="${bf.chapter57}"></span>
+										</p>
+										<p th:if="${!bf.chapter58.empty}">
+											<span th:text="${bf.chapter58}"></span>
+										</p>
+										<p th:if="${!bf.chapter59.empty}">
+											<span th:text="${bf.chapter59}"></span>
+										</p>
+										<p th:if="${!bf.chapter510.empty}">
+											<span th:text="${bf.chapter510}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weeksix.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weeksix}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!last.chapter6.empty}">
+										<h3>
+											<span th:text="${last.chapter6}"></span>
+										</h3>
+										<p th:if="${!last.chapter61.empty}">
+											<span th:text="${last.chapter61}"></span>
+										</p>
+										<p th:if="${!last.chapter62.empty}">
+											<span th:text="${last.chapter62}"></span>
+										</p>
+										<p th:if="${!last.chapter63.empty}">
+											<span th:text="${last.chapter63}"></span>
+										</p>
+										<p th:if="${!last.chapter64.empty}">
+											<span th:text="${last.chapter64}"></span>
+										</p>
+										<p th:if="${!last.chapter65.empty}">
+											<span th:text="${last.chapter65}"></span>
+										</p>
+										<p th:if="${!last.chapter66.empty}">
+											<span th:text="${last.chapter66}"></span>
+										</p>
+										<p th:if="${!last.chapter67.empty}">
+											<span th:text="${last.chapter67}"></span>
+										</p>
+										<p th:if="${!last.chapter68.empty}">
+											<span th:text="${last.chapter68}"></span>
+										</p>
+										<p th:if="${!last.chapter69.empty}">
+											<span th:text="${last.chapter69}"></span>
+										</p>
+										<p th:if="${!last.chapter610.empty}">
+											<span th:text="${last.chapter610}"></span>
+										</p>
+									</td>
+							
+							<td colspan="2" style="width: 18%;">
+								    <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weekseven.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekseven}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!last.chapter7.empty}">
+										<h3>
+											<span th:text="${last.chapter7}"></span>
+										</h3>
+										<p th:if="${!last.chapter71.empty}">
+											<span th:text="${last.chapter71}"></span>
+										</p>
+										<p th:if="${!last.chapter72.empty}">
+											<span th:text="${last.chapter72}"></span>
+										</p>
+										<p th:if="${!last.chapter73.empty}">
+											<span th:text="${last.chapter73}"></span>
+										</p>
+										<p th:if="${!last.chapter74.empty}">
+											<span th:text="${last.chapter74}"></span>
+										</p>
+										<p th:if="${!last.chapter75.empty}">
+											<span th:text="${last.chapter75}"></span>
+										</p>
+										<p th:if="${!last.chapter76.empty}">
+											<span th:text="${last.chapter76}"></span>
+										</p>
+										<p th:if="${!last.chapter77.empty}">
+											<span th:text="${last.chapter77}"></span>
+										</p>
+										<p th:if="${!last.chapter78.empty}">
+											<span th:text="${last.chapter78}"></span>
+										</p>
+										<p th:if="${!last.chapter79.empty}">
+											<span th:text="${last.chapter79}"></span>
+										</p>
+										<p th:if="${!last.chapter710.empty}">
+											<span th:text="${last.chapter710}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr>
+									<th colspan="10" bgcolor="#808080"
+										style="width: 100%; text-align: center;">Mid Exam</th>
+								</tr>
+
+
+								<tr th:if="${!week.weeknine.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weeknine}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!af.chapter8.empty}">
+										<h3>
+											<span th:text="${af.chapter8}"></span>
+										</h3>
+										<p th:if="${!af.chapter81.empty}">
+											<span th:text="${af.chapter81}"></span>
+										</p>
+										<p th:if="${!af.chapter82.empty}">
+											<span th:text="${af.chapter82}"></span>
+										</p>
+										<p th:if="${!af.chapter83.empty}">
+											<span th:text="${af.chapter83}"></span>
+										</p>
+										<p th:if="${!af.chapter84.empty}">
+											<span th:text="${af.chapter84}"></span>
+										</p>
+										<p th:if="${!af.chapter85.empty}">
+											<span th:text="${af.chapter85}"></span>
+										</p>
+										<p th:if="${!af.chapter86.empty}">
+											<span th:text="${af.chapter86}"></span>
+										</p>
+										<p th:if="${!af.chapter87.empty}">
+											<span th:text="${af.chapter87}"></span>
+										</p>
+										<p th:if="${!af.chapter88.empty}">
+											<span th:text="${af.chapter88}"></span>
+										</p>
+										<p th:if="${!af.chapter89.empty}">
+											<span th:text="${af.chapter89}"></span>
+										</p>
+										<p th:if="${!af.chapter810.empty}">
+											<span th:text="${af.chapter810}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weekten.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekten}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!af.chapter9.empty}">
+										<h3>
+											<span th:text="${af.chapter9}"></span>
+										</h3>
+										<p th:if="${!af.chapter91.empty}">
+											<span th:text="${af.chapter91}"></span>
+										</p>
+										<p th:if="${!af.chapter92.empty}">
+											<span th:text="${af.chapter92}"></span>
+										</p>
+										<p th:if="${!af.chapter93.empty}">
+											<span th:text="${af.chapter93}"></span>
+										</p>
+										<p th:if="${!af.chapter94.empty}">
+											<span th:text="${af.chapter94}"></span>
+										</p>
+										<p th:if="${!af.chapter95.empty}">
+											<span th:text="${af.chapter95}"></span>
+										</p>
+										<p th:if="${!af.chapter96.empty}">
+											<span th:text="${af.chapter96}"></span>
+										</p>
+										<p th:if="${!af.chapter97.empty}">
+											<span th:text="${af.chapter97}"></span>
+										</p>
+										<p th:if="${!af.chapter98.empty}">
+											<span th:text="${af.chapter98}"></span>
+										</p>
+										<p th:if="${!af.chapter99.empty}">
+											<span th:text="${af.chapter99}"></span>
+										</p>
+										<p th:if="${!af.chapter910.empty}">
+											<span th:text="${af.chapter910}"></span>
+										</p>
+									</td>
+							
+							<td colspan="2" style="width: 18%;">
+								     <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weekeleven.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekeleven}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!af.chapter10.empty}">
+										<h3>
+											<span th:text="${af.chapter10}"></span>
+										</h3>
+										<p th:if="${!af.chapter101.empty}">
+											<span th:text="${af.chapter101}"></span>
+										</p>
+										<p th:if="${!af.chapter102.empty}">
+											<span th:text="${af.chapter102}"></span>
+										</p>
+										<p th:if="${!af.chapter103.empty}">
+											<span th:text="${af.chapter103}"></span>
+										</p>
+										<p th:if="${!af.chapter104.empty}">
+											<span th:text="${af.chapter104}"></span>
+										</p>
+										<p th:if="${!af.chapter105.empty}">
+											<span th:text="${af.chapter105}"></span>
+										</p>
+										<p th:if="${!af.chapter106.empty}">
+											<span th:text="${af.chapter106}"></span>
+										</p>
+										<p th:if="${!af.chapter107.empty}">
+											<span th:text="${af.chapter107}"></span>
+										</p>
+										<p th:if="${!af.chapter108.empty}">
+											<span th:text="${af.chapter108}"></span>
+										</p>
+										<p th:if="${!af.chapter109.empty}">
+											<span th:text="${af.chapter109}"></span>
+										</p>
+										<p th:if="${!af.chapter1010.empty}">
+											<span th:text="${af.chapter1010}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weektwelve.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weektwelve}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!af.chapter11.empty}">
+										<h3>
+											<span th:text="${af.chapter11}"></span>
+										</h3>
+										<p th:if="${!af.chapter111.empty}">
+											<span th:text="${af.chapter111}"></span>
+										</p>
+										<p th:if="${!af.chapter112.empty}">
+											<span th:text="${af.chapter112}"></span>
+										</p>
+										<p th:if="${!af.chapter113.empty}">
+											<span th:text="${af.chapter113}"></span>
+										</p>
+										<p th:if="${!af.chapter114.empty}">
+											<span th:text="${af.chapter114}"></span>
+										</p>
+										<p th:if="${!af.chapter115.empty}">
+											<span th:text="${af.chapter115}"></span>
+										</p>
+										<p th:if="${!af.chapter116.empty}">
+											<span th:text="${af.chapter116}"></span>
+										</p>
+										<p th:if="${!af.chapter117.empty}">
+											<span th:text="${af.chapter117}"></span>
+										</p>
+										<p th:if="${!af.chapter118.empty}">
+											<span th:text="${af.chapter118}"></span>
+										</p>
+										<p th:if="${!af.chapter119.empty}">
+											<span th:text="${af.chapter119}"></span>
+										</p>
+										<p th:if="${!af.chapter1110.empty}">
+											<span th:text="${af.chapter1110}"></span>
+										</p>
+									</td>
+								
+								
+								<td colspan="2" style="width: 18%;">
+								    <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								   <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weekthirteen.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekthirteen}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!af.chapter12.empty}">
+										<h3>
+											<span th:text="${af.chapter12}"></span>
+										</h3>
+										<p th:if="${!af.chapter121.empty}">
+											<span th:text="${af.chapter121}"></span>
+										</p>
+										<p th:if="${!af.chapter122.empty}">
+											<span th:text="${af.chapter122}"></span>
+										</p>
+										<p th:if="${!af.chapter123.empty}">
+											<span th:text="${af.chapter123}"></span>
+										</p>
+										<p th:if="${!af.chapter124.empty}">
+											<span th:text="${af.chapter124}"></span>
+										</p>
+										<p th:if="${!af.chapter125.empty}">
+											<span th:text="${af.chapter125}"></span>
+										</p>
+										<p th:if="${!af.chapter126.empty}">
+											<span th:text="${af.chapter126}"></span>
+										</p>
+										<p th:if="${!af.chapter127.empty}">
+											<span th:text="${af.chapter127}"></span>
+										</p>
+										<p th:if="${!af.chapter128.empty}">
+											<span th:text="${af.chapter128}"></span>
+										</p>
+										<p th:if="${!af.chapter129.empty}">
+											<span th:text="${af.chapter129}"></span>
+										</p>
+										<p th:if="${!af.chapter1210.empty}">
+											<span th:text="${af.chapter1210}"></span>
+										</p>
+									</td>
+							
+							<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weekfourteen.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekfourteen}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!last.chapter13.empty}">
+										<h3>
+											<span th:text="${last.chapter13}"></span>
+										</h3>
+										<p th:if="${!last.chapter131.empty}">
+											<span th:text="${last.chapter131}"></span>
+										</p>
+										<p th:if="${!last.chapter132.empty}">
+											<span th:text="${last.chapter132}"></span>
+										</p>
+										<p th:if="${!last.chapter133.empty}">
+											<span th:text="${last.chapter133}"></span>
+										</p>
+										<p th:if="${!last.chapter134.empty}">
+											<span th:text="${last.chapter134}"></span>
+										</p>
+										<p th:if="${!last.chapter135.empty}">
+											<span th:text="${last.chapter135}"></span>
+										</p>
+										<p th:if="${!last.chapter136.empty}">
+											<span th:text="${last.chapter136}"></span>
+										</p>
+										<p th:if="${!last.chapter137.empty}">
+											<span th:text="${last.chapter137}"></span>
+										</p>
+										<p th:if="${!last.chapter138.empty}">
+											<span th:text="${last.chapter138}"></span>
+										</p>
+										<p th:if="${!last.chapter139.empty}">
+											<span th:text="${last.chapter139}"></span>
+										</p>
+										<p th:if="${!last.chapter1310.empty}">
+											<span th:text="${last.chapter1310}"></span>
+										</p>
+									</td>
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr th:if="${!week.weekfifteen.empty}">
+									<th colspan="1" style="width: 5%; text-align: center;"><span
+										th:text="${week.weekfifteen}"></span></th>
+									<td colspan="3" style="width: 41%;" th:if="${!last.chapter14.empty}">
+										<h3>
+											<span th:text="${last.chapter14}"></span>
+										</h3>
+										<p th:if="${!last.chapter141.empty}">
+											<span th:text="${last.chapter141}"></span>
+										</p>
+										<p th:if="${!last.chapter142.empty}">
+											<span th:text="${last.chapter142}"></span>
+										</p>
+										<p th:if="${!last.chapter143.empty}">
+											<span th:text="${last.chapter143}"></span>
+										</p>
+										<p th:if="${!last.chapter144.empty}">
+											<span th:text="${last.chapter144}"></span>
+										</p>
+										<p th:if="${!last.chapter145.empty}">
+											<span th:text="${last.chapter145}"></span>
+										</p>
+										<p th:if="${!last.chapter146.empty}">
+											<span th:text="${last.chapter146}"></span>
+										</p>
+										<p th:if="${!last.chapter147.empty}">
+											<span th:text="${last.chapter147}"></span>
+										</p>
+										<p th:if="${!last.chapter148.empty}">
+											<span th:text="${last.chapter148}"></span>
+										</p>
+										<p th:if="${!last.chapter149.empty}">
+											<span th:text="${last.chapter149}"></span>
+										</p>
+										<p th:if="${!last.chapter1410.empty}">
+											<span th:text="${last.chapter1410}"></span>
+										</p>
+									</td>
+								
+								
+								<td colspan="2" style="width: 18%;">
+								      <p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.methodo.methowe13}"></span> </p>
+								      </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p style="margin-left: 0px;"><span th:text="${coursout.actilab.actlab13}"></span> </p>
+								     </td>
+								    <td colspan="2" style="width: 18%;"> 
+								    <p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p style="margin-left: 0px;"><span th:text="${coursout.tabref.tabref13}"></span> </p>
+								      </td>
+								</tr>
+
+								<tr>
+									<th colspan="10" bgcolor="#808080"
+										style="width: 100%; text-align: center;">Final Exam</th>
+								</tr>
+							</table>
+
+
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<br>
+			
+<h4 style="margin: 0px;">
+				<strong><img th:src="@{/img/point2.png}" alt="Smiley face"
+					height="15" width="15"> Teaching and Learning Methods </strong>
+			</h4>
+
+			<p style="padding: 0px; margin: 0px;">
+				This course will incorporate a combination of
+												lectures, student feedback (discussion), guided in-class
+												discussions, readings, case studies, individual and group
+												exercises. Active participation in all class activities is
+												essential to accomplish the goals of the class.
+			</p>
+
+
+
+			<table style="width: 100%">
+				<tr>
+					<th colspan="12" style="text-align: center;"><font size="5px"
+						style="color: rgb(0, 0, 255);"> Assessment Methods</font></th>
+
+				</tr>
+				<tr>
+  
+
+  
+					<th style="width: 40%; text-align: center;" colspan="4" rowspan="2">Assessment Type:</th>
+					 <th  style="width:20%;text-align: center;" colspan="2" rowspan="2">Week</th>
+					<th style="width: 30%; text-align: center;" colspan="3">Assessment Weight(%)</th>
+					<th style="width: 10%; text-align: center;" colspan="1" rowspan="2">Total</th>
+				</tr>
+				<tr>
+					<th style="width: 10%; text-align: center;" colspan="1">1</th>
+					<th style="width: 10%; text-align: center;" colspan="1">2</th>
+					<th style="width: 10%; text-align: center;" colspan="1">3</th>
+				</tr>
+
+				<tr th:if="${!coursout.assess.asses11.empty} or ${!coursout.assess.asses12.empty} or ${!coursout.assess.asses13.empty}">
+					<th style="width: 40%" colspan="4">Individual Assignment:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe1}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses11 != ''} ? ${coursout.assess.asses11} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses12 != ''} ? ${coursout.assess.asses12} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses13 != ''} ? ${coursout.assess.asses13} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses11 != ''} ? ${coursout.assess.asses11} : '0' )+  (${coursout.assess.asses12 != ''} ? ${coursout.assess.asses12} : '0') + (${coursout.assess.asses13 != ''} ? ${coursout.assess.asses13} : '0')"></span>												
+					</th>
+				</tr>
+
+
+
+				
+
+<tr th:if="${!coursout.assess.asses21.empty} or ${!coursout.assess.asses22.empty} or ${!coursout.assess.asses23.empty}">
+					<th style="width: 40%" colspan="4">Group Assignment:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe2}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses21 != ''} ? ${coursout.assess.asses21} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses22 != ''} ? ${coursout.assess.asses22} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses23 != ''} ? ${coursout.assess.asses23} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses21 != ''} ? ${coursout.assess.asses21} : '0' )+  (${coursout.assess.asses22 != ''} ? ${coursout.assess.asses22} : '0') + (${coursout.assess.asses23 != ''} ? ${coursout.assess.asses23} : '0')"></span>												
+					</th>
+				</tr>
+
+
+<tr th:if="${!coursout.assess.asses31.empty} or ${!coursout.assess.asses32.empty} or ${!coursout.assess.asses33.empty}">
+					<th style="width: 40%" colspan="4">Quiz:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe3}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses31 != ''} ? ${coursout.assess.asses31} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses32 != ''} ? ${coursout.assess.asses32} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses33 != ''} ? ${coursout.assess.asses33} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses31 != ''} ? ${coursout.assess.asses31} : '0' )+  (${coursout.assess.asses32 != ''} ? ${coursout.assess.asses32} : '0') + (${coursout.assess.asses33 != ''} ? ${coursout.assess.asses33} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+				
+				
+
+<tr th:if="${!coursout.assess.asses41.empty} or ${!coursout.assess.asses42.empty} or ${!coursout.assess.asses43.empty}">
+					<th style="width: 40%" colspan="4">Project:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe4}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses41 != ''} ? ${coursout.assess.asses41} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses42 != ''} ? ${coursout.assess.asses42} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses43 != ''} ? ${coursout.assess.asses43} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses41 != ''} ? ${coursout.assess.asses41} : '0' )+  (${coursout.assess.asses42 != ''} ? ${coursout.assess.asses42} : '0') + (${coursout.assess.asses43 != ''} ? ${coursout.assess.asses43} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+				
+
+
+<tr th:if="${!coursout.assess.asses51.empty} or ${!coursout.assess.asses52.empty} or ${!coursout.assess.asses53.empty}">
+					<th style="width: 40%" colspan="4">Project One:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe5}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses51 != ''} ? ${coursout.assess.asses51} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses52 != ''} ? ${coursout.assess.asses52} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses53 != ''} ? ${coursout.assess.asses53} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses51 != ''} ? ${coursout.assess.asses51} : '0' )+  (${coursout.assess.asses52 != ''} ? ${coursout.assess.asses52} : '0') + (${coursout.assess.asses53 != ''} ? ${coursout.assess.asses53} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+				
+
+
+
+<tr th:if="${!coursout.assess.asses61.empty} or ${!coursout.assess.asses62.empty} or ${!coursout.assess.asses63.empty}">
+					<th style="width: 40%" colspan="4">Project Two:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe6}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses61 != ''} ? ${coursout.assess.asses61} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses62 != ''} ? ${coursout.assess.asses62} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses63 != ''} ? ${coursout.assess.asses63} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses61 != ''} ? ${coursout.assess.asses61} : '0' )+  (${coursout.assess.asses62 != ''} ? ${coursout.assess.asses62} : '0') + (${coursout.assess.asses63 != ''} ? ${coursout.assess.asses63} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+
+<tr th:if="${!coursout.assess.asses71.empty} or ${!coursout.assess.asses72.empty} or ${!coursout.assess.asses73.empty}">
+					<th style="width: 40%" colspan="4">Progress:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe7}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses71 != ''} ? ${coursout.assess.asses71} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses72 != ''} ? ${coursout.assess.asses72} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses73 != ''} ? ${coursout.assess.asses73} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses71 != ''} ? ${coursout.assess.asses71} : '0' )+  (${coursout.assess.asses72 != ''} ? ${coursout.assess.asses72} : '0') + (${coursout.assess.asses73 != ''} ? ${coursout.assess.asses73} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+
+
+<tr th:if="${!coursout.assess.asses81.empty} or ${!coursout.assess.asses82.empty} or ${!coursout.assess.asses83.empty}">
+					<th style="width: 40%" colspan="4">Mid Exam:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe8}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses81 != ''} ? ${coursout.assess.asses81} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses82 != ''} ? ${coursout.assess.asses82} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses83 != ''} ? ${coursout.assess.asses83} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses81 != ''} ? ${coursout.assess.asses81} : '0' )+  (${coursout.assess.asses82 != ''} ? ${coursout.assess.asses82} : '0') + (${coursout.assess.asses83 != ''} ? ${coursout.assess.asses83} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+
+
+<tr th:if="${!coursout.assess.asses91.empty} or ${!coursout.assess.asses92.empty} or ${!coursout.assess.asses93.empty}">
+					<th style="width: 40%" colspan="4">Final Exam:</th>
+					<td style="width: 20%; text-align: center;" colspan="2" ><span th:text="${coursout.asweek.asswe9}"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses91 != ''} ? ${coursout.assess.asses91} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses92 != ''} ? ${coursout.assess.asses92} : '-'"></span></td>
+					<td style="width: 10%; text-align: center; padding-bottom: 0px;" colspan="1">
+					       <span th:text="${coursout.assess.asses93 != ''} ? ${coursout.assess.asses93} : '-'"></span></td>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="(${coursout.assess.asses91 != ''} ? ${coursout.assess.asses91} : '0' )+  (${coursout.assess.asses92 != ''} ? ${coursout.assess.asses92} : '0') + (${coursout.assess.asses93 != ''} ? ${coursout.assess.asses93} : '0')"></span>												
+					</th>
+				</tr>
+				
+				
+				<tr>
+					<th style="width: 90%; text-align: right;" colspan="9">Total
+						Mark:</th>
+					<th style="width: 10%; text-align: center;" colspan="1">
+					<span th:text="${coursout.assess.asstotal}"></span>%</th>
+				</tr>
+			</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+			<br>
+
+
+			<h4  style="margin: 0px;">
+				<strong><img th:src="@{/img/point2.png}" alt="Smiley face"
+					height="15" width="15"> Course Policy </strong>
+			</h4>
+
+			<p  style="padding: 0px; margin: 0px;">
+				Minimum of 80% attendance during lecture hours, and
+													100% attendance during practical work and tutorial
+													sessions, except for some unprecedented mishaps. All
+													students are expected to abide by the code of conduct of
+													students on BDU, BiT Legislation.
+			</p>
+
+			
+			<br>
+
+
+			<h4 th:if="${!coursout.book1.empty}"
+				style="margin: 0px;">
+				<strong><img th:src="@{/img/point2.png}" alt="Smiley face"
+					height="15" width="15"> Text Book </strong>
+			</h4>
+
+			<ul style="margin: 0px;" th:if="${!coursout.book1.empty}">
+				<li th:if="${!coursout.book1.empty}"><span
+					th:text="${coursout.book1}"></span></li>
+				<li th:if="${!coursout.book2.empty}"><span
+					th:text="${coursout.book2}"></span></li>
+			</ul>
+			<br>
+
+			<div th:each="c : ${coursout}" th:with="ref= ${c.refer}">
+
+				<h4 style="margin: 0px;">
+					<strong><img th:src="@{/img/point2.png}" alt="Smiley face"
+						height="15" width="15"> Reference book </strong>
+				</h4>
+
+				<ol style="margin: 0px;" th:if="${!ref.refer1.empty}">
+					<li th:if="${!ref.refer1.empty}"><span th:text="${ref.refer1}"></span></li>
+					<li th:if="${!ref.refer2.empty}"><span th:text="${ref.refer2}"></span></li>
+					<li th:if="${!ref.refer3.empty}"><span th:text="${ref.refer3}"></span></li>
+					<li th:if="${!ref.refer4.empty}"><span th:text="${ref.refer4}"></span></li>
+					<li th:if="${!ref.refer5.empty}"><span th:text="${ref.refer5}"></span></li>
+					<li th:if="${!ref.refer6.empty}"><span th:text="${ref.refer6}"></span></li>
+					<li th:if="${!ref.refer7.empty}"><span th:text="${ref.refer7}"></span></li>
+					<li th:if="${!ref.refer8.empty}"><span th:text="${ref.refer8}"></span></li>
+					<li th:if="${!ref.refer9.empty}"><span th:text="${ref.refer9}"></span></li>
+					<li th:if="${!ref.refer10.empty}"><span
+						th:text="${ref.refer10}"></span></li>
+				</ol>
+
+			</div>
+
+
+			
+			<br>
+
+			<fieldset style="text-align: center;border-color: rgb(128, 0, 255);border-style: dotted solid;">
+				<legend>
+					<h4 style="color: rgb(0, 0, 160); font-size: 1.5em;">Approved by:</h4>
+				</legend>
+				<div>
+
+					<table style="width: 100%; border: none;" 
+						class="dataframe table my_table mytab">
+						<tr>
+							<th style="width: 24%; border: none; padding-right: 0px;" >Instructor's Name:</th>
+							<td style="width: 31%; padding: 0px;" ><span th:text="${insta.name}"></span></td>
+							<th style="width: 15%; border: none; padding-right: 0px;" >Signature:</th>
+							<td style="width: 15%; padding: 0px;" >
+							 <img th:src="@{'/signatu/'+${insta.imageUrl}}"
+								alt=" Signature image Null Plase Upload" class="px-2"
+								style="width: 100%; height: 40px" /> 
+								</td>
+							<th style="width: 7%; border: none; padding-right: 0px;" >Date:</th>
+							<td style="width: 8%; padding: 0px;" ><span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span></td>
+						</tr>
+					</table>
+					<br>
+
+					<table style="width: 100%; border: none;"
+						class="dataframe table my_table mytab ">
+						<tr>
+							<th style="width: 28%; border: none; padding-right: 0px;" >Chair Holder's Name:</th>
+							<td style="width: 27%; padding: 0px;" ><span th:text="${userCoursout.user.name}"></span></td>
+							<th style="width: 15%; border: none; padding-right: 0px;" >Signature:</th>
+							<td style="width: 15%; padding: 0px;" ><img
+								th:src="@{'/signatu/'+${userCoursout.user.imageUrl}}"
+								alt=" Signature image Null Plase Upload" class="px-2"
+								style="width: 100% px; height: 30px" /></td>
+							<th style="width: 7%; border: none; padding-right: 0px;" >Date:</th>
+							<td style="width: 8%; padding: 0px;"  ><span th:text="${userCoursout.assigndate}"></span></td>
+						</tr>
+					</table>
+					<br>
+				</div>
+			</fieldset>
+
+			<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	</div>
+
+	<div class="footer"></div>
+</body>
+</html>

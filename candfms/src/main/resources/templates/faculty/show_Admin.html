@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+
+
+
+
+				<div class="card-header py-3">
+
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/div/register}"><i class="fas fa-plus-circle"></i>
+						New Account</a>
+
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table table2 table-bordered" id="dataTable" width="100%" cellspacing="0">
+							<thead>
+								<tr>
+									<!-- <th>ID</th> -->
+									<th>Full Name</th>
+									<th>Chair</th>
+									<th>Role</th>
+									<th>Signature</th>
+									<th>Enable</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="userr : ${userss}">
+									<!-- <td th:text="${userr.id}"></td> -->
+									<td><a href="#" th:href="@{'/div/'+${userr.id}+'/userd'}">
+											<span th:text="${userr.name}"> </span>
+									</a></td>
+									<!-- <td th:text="${userr.uname}"></td> -->
+									<td>
+									    <span th:each="f : ${fmies}"
+										th:if="${f.id}==${userr.depar}" th:text="${f.name}"></span>
+									</td>
+									<td th:text="${userr.roles}"></td>
+									<td>
+										
+										
+
+
+<!-- Split dropright button -->
+<div class="btn-group dropup pice" th:if="${userr.signature}==1">
+  <button type="button" class="btn btn-success btn-sm" id="photoButton2" th:href="@{'/signatu/'+${userr.imageUrl}}" >
+    Show
+  </button>
+  <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropright</span>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <!-- Dropdown menu links -->
+    <h6 class="dropdown-header">Action</h6>
+    <a class="dropdown-item active" type="button" th:onclick="|applicable(${userr.id})|"><i class="fas fa-check-circle"></i>  Accepted</a>
+    <a class="dropdown-item" type="button"  th:onclick="|invalid(${userr.id})|"><i class="fas fa-times-circle"></i>  Denied</a>
+    
+    <a class="dropdown-item" type="button" th:href="@{/faculty/findById/(id=2)}"  id="editfmieButton399" ><i class="fas fa-times-circle"></i>  Detile</a>
+   
+  </div>
+</div>
+
+<div class="btn-group dropup pice" th:if="${userr.signature}==0">
+  <button type="button" class="btn btn-primary btn-sm" id="photoButton2" th:href="@{'/signatu/'+${userr.imageUrl}}" >
+    <i class="fa fa-spinner fa-spin"></i> 
+  </button>
+  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropright</span>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <!-- Dropdown menu links -->
+    <h6 class="dropdown-header">Request Action</h6>
+    <a class="dropdown-item" type="button" th:onclick="|applicable(${userr.id})|"><i class="fas fa-check-circle"></i>  Accepted</a>
+    <a class="dropdown-item " type="button"  th:onclick="|invalid(${userr.id})|"><i class="fas fa-times-circle"></i>  Denied</a>
+   
+  </div>
+</div>
+
+
+<div class="btn-group dropup pice" th:if="${userr.signature}==2">
+  <button type="button" class="btn btn-danger btn-sm" id="photoButton2" th:href="@{'/signatu/'+${userr.imageUrl}}" >
+    Show
+  </button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="sr-only">Toggle Dropright</span>
+  </button>
+  <div class="dropdown-menu dropdown-menu-right">
+    <!-- Dropdown menu links -->
+    <h6 class="dropdown-header">Action</h6>
+    <a class="dropdown-item" type="button" th:onclick="|applicable(${userr.id})|"><i class="fas fa-check-circle"></i>  Accepted</a>
+    <a class="dropdown-item active" type="button"  th:onclick="|invalid(${userr.id})|"><i class="fas fa-times-circle"></i>  Denied</a>
+   
+  </div>
+</div>
+
+<div class="btn-group " th:if="${userr.signature.empty}">
+  <a type="button" class="btn btn-secondary btn-sm"  >
+    Null
+  </a>
+  
+</div>
+
+
+									</td>
+									<td><a th:if="${userr.enabled}==false"
+										th:onclick="|desabledAdmin(${userr.id})|"
+										class="btn btn-danger btn-sm" id="apprButton"
+										data-toggle="tooltip" data-placement="top"
+										title="Now not work"><i class="fas fa-times-circle"></i> <span>
+												Deactivate</span></a> <a th:if="${userr.enabled}==true"
+										th:onclick="|enableAdmin(${userr.id})|"
+										class="btn btn-success btn-sm btn-user" id="apprButton"
+										type="button" data-toggle="tooltip" data-placement="top"
+										title="Now You Can anyting"><i class="fas fa-check-circle"></i> <span> Activate</span> </a></td>
+									<td>
+										<div class="row">
+											<div class="col-md-2 text-right">
+
+
+												<form method="post"
+													th:action="@{'/div/update-userd/'+${userr.id}}"
+													class="mr-2">
+													<button type="submit" class="btn btn-primary btn-sm"
+														id="editButtonadmi">
+														<i class="fas fa-edit"></i>
+													</button>
+												</form>
+											</div>
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+													<a th:href="@{'/div/'+${userr.id}+'/userd'}"
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a> <a href="#"
+														th:onclick="|deleteAddmins(${userr.id})|"
+														class="btn btn-danger btn-sm" id="deleteButtonadmi"><i
+														class="far fa-trash-alt"></i></a>
+														
+														
+
+
+												</div>
+
+											</div>
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+       <div class="modal fade" id="signatureModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Active Signature</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+		
+						<img id="userPhoto2" src="" width="100%" height="100%" alt=" Signature image Null Not Uploaded">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		 <!-- detile Model-->   
+<div class="modal fade" id="editModal99" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel26699" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel26699">Update Fmie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/user/update}" method="put">     
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="idEdit1299"  readonly>
+          </div>
+    
+         
+                     
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $('document').ready(function(){  		  
+	    $('.pice #photoButton2').on('click',function(event) {
+		   event.preventDefault();
+		   var href = $(this).attr('href');
+		   $('#signatureModal #userPhoto2').attr('src', href);
+		  
+		   $('#signatureModal').modal();		
+	 });	    
+	  
+  });
+  </script>
+
+
+
+<script>
+       function applicable(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "applicable This Signature, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/faculty/applicablSign/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+    
+    <script>
+       function invalid(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Invalid This Signature, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/faculty/invalidSig/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+    
+<!-- for detiles -->
+
+<script>
+  $('document').ready(function(){  		  
+	  $('table #editfmieButton399').on('click',function(event){
+			event.preventDefault();			
+			var href = $(this).attr('href');	
+			$.get(href, function(year, status){
+				$('#idEdit1299').val(year.id);
+							
+			});					
+			$('#editModal99').modal();
+		});    
+	  
+  });
+</script>
+
+	</section>
+
+
+</body>
+</html>

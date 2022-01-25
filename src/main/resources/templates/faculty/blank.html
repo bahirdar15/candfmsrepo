@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)" >
+
+<head >
+
+    <meta charset="utf-8">
+    <link rel="icon" th:href="@{/img/registration.png}" sizes="32x32">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title th:text="${title}">C And F - Home</title>
+     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+     
+    <!-- Custom fonts for this template-->
+     <link th:href="@{/vendor/fontawesome-free/css/all.css}" rel="stylesheet" type="text/css">  
+     <link th:href="@{/css/css.css}" rel="stylesheet">
+     <link th:href="@{/css/course.css}" rel="stylesheet">
+     
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">    
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    
+     <link rel="stylesheet" th:href="@{/dateTimepicker/bootstrap-datetimepicker.min.css}">
+      <script th:src="@{/dateTimepicker/moment.min.js}"></script>
+    <!--  <script th:src="@{/vendor/jquery/jquery.min.js}"></script> -->
+     
+     
+     <link th:href="@{/css/toastr.min.css}" rel="stylesheet">
+
+ <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+ <script th:src="@{/js/toastr.min.js}"></script>
+      
+  <!-- pass valu dropdown to text box -->
+<script>
+$(document).ready(function(){
+    $("select.custom-selectch").change(function(){
+        var selectedCountry = $(this).children("option:selected").text();
+		 document.getElementById("chairNameId").value = selectedCountry;     
+    });
+    
+    $("select.custom-selectt").change(function(){
+        var selectedCountry = $(this).children("option:selected").text();
+		 document.getElementById("tgroupId").value = selectedCountry;     
+    });
+    
+    $("select.custom-selects").change(function(){
+        var selectedCountry = $(this).children("option:selected").text();
+		 document.getElementById("cSemesterId").value = selectedCountry;     
+    });
+    
+    
+});
+</script>
+
+ 
+<style>
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #85879680;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #85879680;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: #85879680;
+}
+
+
+
+::-webkit-textarea-placeholder {
+   font-size: 25px;
+   color: red;
+ 
+}
+
+</style>
+
+
+<style>
+.table2 td{
+padding-top: 0.2rem;
+    padding-right: 0.2rem;
+    padding-bottom: 0.2rem;
+    padding-left: 0.75rem;
+     font-size: 14px;
+}
+</style>
+
+<!-- stayle for signigher -->
+<style>
+
+.box {
+  position: relative;
+  background: #ffffff;
+  width: 100%;
+}
+
+.box-header {
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;
+  border-bottom: 1px solid #f4f4f4;
+  margin-bottom: 10px;
+}
+
+.box-tools {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.dropzone-wrapper {
+  border: 2px dashed #91b0b3;
+  color: #92b0b3;
+  position: relative;
+  height: 150px;
+}
+
+.dropzone-desc {
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  width: 40%;
+  top: 50px;
+  font-size: 16px;
+}
+
+.dropzone,
+.dropzone:focus {
+  position: absolute;
+  outline: none !important;
+  width: 100%;
+  height: 150px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.dropzone-wrapper:hover,
+.dropzone-wrapper.dragover {
+  background: #ecf0f5;
+}
+
+.preview-zone {
+  text-align: center;
+}
+
+.preview-zone .box {
+  box-shadow: none;
+  border-radius: 0;
+  margin-bottom: 0;
+}
+
+
+</style>
+      
+      <style>
+#loadingg
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+   /*  background:#0d0d0edb; */
+	
+	z-index: 99999;
+}
+
+#lode
+{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    /* background: url('img/lodin9.gif') no-repeat; */
+	margin-left: 45%;
+    margin-top: 15%;
+	z-index: 99999;
+}  
+	
+	
+	 </style>
+      <link th:href="@{/select/select2.min.css}" rel="stylesheet">
+</head>
+
+<body id="page-top"  >
+
+<!-- Page Loader  onload="myFunction()"-->
+    <!-- <div id="loadingg" style="background:#0d0d0e96;"> 
+        <div id="lode">
+<img th:src="@{/img/prelod.gif}" height="50%" width="20%" alt="Looding......." />
+        </div>
+    </div> -->
+   <!--  #END# Page Loader -->
+    
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav  bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar" >
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" th:href="@{/faculty/index}">
+                <div class="sidebar-brand-icon ">
+                    <!-- <i class="fab fa-codiepie"></i> -->
+                    
+					
+                    <img th:src="@{/img/bdu.png}" height="40" width="40" alt="BDU Icone" />
+                </div>
+                <div class="sidebar-brand-text mx-3 rotate-n-15">  FMIE <sup>1</sup></div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+                     <br />
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/faculty/index}">
+                    <i class="fas fa-fw fa-home "></i>
+                    <span>Home</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Interface
+            </div>
+           
+             <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseAll"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-edit"></i>
+                    <span>FMIE</span>
+                </a>
+                <div id="collapseAll" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">MANAGE FMIE:</h6>
+                       
+                       <a class="collapse-item" th:href="@{/year/yearShow}">Year</a>
+                       <a class="collapse-item" th:href="@{/fmie/fmieShow}">Chair</a>
+                       <a class="collapse-item" th:href="@{/semester/semesterShow}">Semester</a>
+                       <a class="collapse-item" th:href="@{/groupt/grouptShow}">Target Group</a>
+                        
+                        <a class="collapse-item" th:href="@{/post/postShow}">Post</a>
+                        
+                    </div>
+                </div>
+              </li>
+              
+              
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li sec:authorize="hasAuthority('ADMIN')" class="nav-item py=5px">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Account Faculty</span>
+                </a>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Account:</h6>
+                        
+                         <a class="collapse-item" th:href="@{/div/showAdmin}">Account Faculty</a>
+                        
+                        <!-- <a class="collapse-item" th:href="@{/faculty/table}">Table</a>
+                        <a class="collapse-item" th:href="@{/faculty/blank}">blank</a> -->
+                        
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Utilities Collapse Menu sec:authorize="hasAuthority('ADMIN')"-->
+            <li  class="nav-item p-0">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseOutline"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                     &nbsp;<i class="fas fa-clipboard-list "></i> <span> Course Outline</span>
+                </a>
+                <div id="collapseOutline" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Course:</h6>
+                        
+                       <a class="collapse-item" th:href="@{/faculty/show_Cours}">Course GuideBook</a>
+                      <!--  <a sec:authorize="hasAnyAuthority('INSTRUCTOR,CHAIR_HOLDER')" class="collapse-item" th:href="@{/request/show_Request}">Request </a> -->
+                        
+                         <a sec:authorize="hasAnyAuthority('INSTRUCTOR,ASSISTANT')" class="collapse-item" th:href="@{/assign/instaCoursdetailAssigned}">My Assigned Course </a>
+                        
+                    </div>
+                </div>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <li class="nav-item" sec:authorize="hasAnyAuthority('INSTRUCTOR,COURSE_CHAIR,CHAIR_HOLDER')" th:if="${switchFeedback1.idswitcch==1}">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseOutline23"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-edit"></i>
+                    <span>Feedback</span>
+                </a>
+                <div id="collapseOutline23" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Feedback Order:</h6>
+                        
+                       
+                       <a th:if="${switchFeedback1.idswitcch==1} and ${switchFeedback2.idswitcch==1}" 
+                       sec:authorize="hasAuthority('INSTRUCTOR')" class="collapse-item" th:href="@{/order/show_cart}">Cart <span class="badge badge-pill badge-warning align-right py-0">instructor</span></a>
+                       
+                       <a sec:authorize="hasAnyAuthority('INSTRUCTOR')" class="collapse-item" th:href="@{/order/show_myorder1}">As <span class="badge badge-pill badge-warning align-right py-0">instructor</span></a>
+                       <a sec:authorize="hasAnyAuthority('COURSE_CHAIR')" class="collapse-item" th:href="@{/order/show_myorder2}">As <span class="badge badge-pill badge-warning align-right py-0">Course-Chair</span></a>                 
+                       <a sec:authorize="hasAnyAuthority('CHAIR_HOLDER')" class="collapse-item" th:href="@{/order/show_myorder3}">As <span class="badge badge-pill badge-warning align-right py-0">Chair-Holder</span></a>
+                   
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                        <h6 sec:authorize="hasAnyAuthority('INSTRUCTOR,CHAIR_HOLDER')" class="collapse-header">From Assistant Request:</h6>
+                        <a sec:authorize="hasAuthority('INSTRUCTOR')" class="collapse-item" th:href="@{/orderLab/show_myorderLab2}">As <span class="badge badge-pill badge-warning align-right py-0">instructor</span></a>
+                         <a sec:authorize="hasAuthority('CHAIR_HOLDER')" class="collapse-item" th:href="@{/orderLab/show_myorderLab3}">As <span class="badge badge-pill badge-warning align-right py-0">Chair-Holder</span></a>
+                    </div>
+                </div>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <li class="nav-item" sec:authorize="hasAnyAuthority('STUDENT,ADVISOR,APO')" th:if="${switchFeedback1.idswitcch==1}">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseOutline2355"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-edit"></i>
+                    <span>Feedback &nbsp;<span class="badge badge-pill badge-success align-right py-0"> Student </span></span>
+                </a>
+                <div id="collapseOutline2355" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                       <h6 sec:authorize="hasAuthority('STUDENT')"  class="collapse-header">New Feedback:</h6>
+                       <a th:if="${switchFeedback1.idswitcch==1} and ${switchFeedback2.idswitcch==1}" 
+                              sec:authorize="hasAuthority('STUDENT')" class="collapse-item" th:href="@{/orderStu/newfeedback}">Add Feedback</a>
+                       <h6  sec:authorize="hasAuthority('STUDENT')" class="collapse-header">Manage As Student:</h6>
+                       <a th:if="${switchFeedback1.idswitcch==1} and ${switchFeedback2.idswitcch==1}" 
+                       sec:authorize="hasAuthority('STUDENT')" class="collapse-item" th:href="@{/orderStu/show_cartStu}">Cart</a>
+                       
+                       <a sec:authorize="hasAuthority('STUDENT')" class="collapse-item" th:href="@{/orderStu/show_myorderStu1}">My Order</a>
+                       
+                       <h6 sec:authorize="hasAnyAuthority('ADVISOR,APO')" class="collapse-header">Order From Student:</h6>
+                       <a sec:authorize="hasAuthority('ADVISOR')" class="collapse-item" th:href="@{/orderStu/show_myorderStu2}">As <span class="badge badge-pill badge-warning align-right py-0">Advisor</span></a>
+                       <a sec:authorize="hasAuthority('APO')" class="collapse-item" th:href="@{/orderStu/show_myorderStu3}">As <span class="badge badge-pill badge-warning align-right py-0">Apo</span></a>
+                    </div>
+                </div>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+             <!--  lebchaw kelay wesjewalew approved bcha slehone instracteru and cherholder-->
+              <li class="nav-item" sec:authorize="hasAuthority('ASSISTANT')" th:if="${switchFeedback1.idswitcch==1}">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseOutline235500"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-edit"></i>
+                    <span>Feedback &nbsp;<span class="badge badge-pill badge-success align-right py-0"> Assistant </span></span>
+                </a>
+                <div id="collapseOutline235500" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage Feedback:</h6> 
+                       <a th:if="${switchFeedback1.idswitcch==1} and ${switchFeedback2.idswitcch==1}" 
+                            sec:authorize="hasAuthority('ASSISTANT')" class="collapse-item" th:href="@{/orderLab/show_myCartLab}">On Cart</a>
+                       <a sec:authorize="hasAuthority('ASSISTANT')" class="collapse-item" th:href="@{/orderLab/show_myorderLab1}">My Order</a>
+                    </div>
+                </div>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              <!--  role dene rol qulity-->
+              <li class="nav-item" sec:authorize="hasAnyAuthority('QUALITY,DEAN')" 
+              th:if="${switchFeedback1.idswitcch==1}">
+                <a class="nav-link collapsed py-1 px1" href="#" data-toggle="collapse" data-target="#collapseOutline235500"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-edit"></i>
+                    <span>Feedback &nbsp;<span class="badge badge-pill badge-success align-right py-0"> Total </span></span>
+                </a>
+                <div id="collapseOutline235500" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Show Feedback:</h6>          
+                        <a   class="collapse-item" th:href="@{/order/show_myorder4}">Order From <span class="badge badge-pill badge-warning align-right py-0">instructor</span></a>
+                        <a   class="collapse-item" th:href="@{/orderStu/show_myorderStu4}">Order From <span class="badge badge-pill badge-warning align-right py-0">student</span></a>
+                        <a   class="collapse-item" th:href="@{/orderLab/show_myorderLab4}">Order From <span class="badge badge-pill badge-warning align-right py-0">assistant</span></a>
+                        <a   class="collapse-item" th:href="@{/qualiity/qualiity}">Total Feedback</a>
+                    </div>
+                </div>
+              </li>
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+             
+              <li class="nav-item"  sec:authorize="hasAnyAuthority('INSTRUCTOR,ASSISTANT,STUDENT,CHAIR_HOLDER,DEAN')" 
+                th:if="${switchPro1.idswitcch==1}">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseOutline2399"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                   <i class="fas fa-user-edit"></i>
+                    <span>Performance</span>
+                </a>
+                <div id="collapseOutline2399" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Manage PERFORMANCE:</h6>
+                        
+                       
+                       <a   sec:authorize="hasAnyAuthority('INSTRUCTOR,ASSISTANT')" class="collapse-item" th:href="@{/performco/show_pc1}">Result As <span class="badge badge-pill badge-warning align-right py-0">INST</span>||<span class="badge badge-pill badge-warning align-right py-0">ASSI</span></a>                     
+                        <a   sec:authorize="hasAuthority('CHAIR_HOLDER')" class="collapse-item" th:href="@{/performco/show_pc2}">Result As <span class="badge badge-pill badge-warning align-right py-0">Chair-Holder</span></a>
+                         <a   sec:authorize="hasAuthority('DEAN')" class="collapse-item" th:href="@{/performco/show_pc3}">Result As <span class="badge badge-pill badge-warning align-right py-0">Dean</span></a>
+
+                           
+                       <a    th:if="${switchPro1.idswitcch==1} and ${switchPro2.idswitcch==1}"
+                       sec:authorize="hasAnyAuthority('INSTRUCTOR,ASSISTANT')"  class="collapse-item" th:href="@{/performco/show_pcEva1}">Evaluator As <span class="badge badge-pill badge-warning align-right py-0">INST</span>||<span class="badge badge-pill badge-warning align-right py-0">ASSI</span></a>
+                       <a    th:if="${switchPro1.idswitcch==1} and ${switchPro2.idswitcch==1}"
+                       sec:authorize="hasAuthority('CHAIR_HOLDER')"  class="collapse-item" th:href="@{/performco/show_pcEva2}">Evaluator As <span class="badge badge-pill badge-warning align-right py-0">Chair-Holder</span></a>
+                       <a   th:if="${switchPro1.idswitcch==1} and ${switchPro2.idswitcch==1}"
+                        sec:authorize="hasAuthority('STUDENT')"  class="collapse-item" th:href="@{/performco/show_pcEva3}">Evaluator As <span class="badge badge-pill badge-warning align-right py-0">Student</span></a>
+                       
+                       </div>
+                </div>
+              </li>
+              
+              
+            <li class="nav-item" sec:authorize="hasAuthority('CHAIR_HOLDER')">
+                <a class="nav-link collapsed pb-2" href="#" data-toggle="collapse" data-target="#collapseSettingassign"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>Assign</span>
+                </a>
+                <div id="collapseSettingassign" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Assign manage:</h6>
+                        <a class="collapse-item"  th:href="@{/assign/ShowAllCours}">All Course</a>
+                        <a class="collapse-item" th:href="@{/assign/myCart}">Assign On Cart</a>
+                        <a class="collapse-item" th:href="@{/assign/assignShow}">Assigned All Show</a>
+                       
+                    </div>
+                </div>
+            </li>
+             <li class="nav-item"  sec:authorize="hasAuthority('ADMIN')">
+                <a class="nav-link pt-0 py-2" th:href="@{/div/switch}">
+                   <i class="fas fa-toggle-on"></i>
+                    <span>Switch</span></a>
+            </li>
+            
+    <!--   admin feedback    update ==============================   -->
+            
+         <li class="nav-item" sec:authorize="hasAuthority('ADMIN')" th:if="${switchFeedback1.idswitcch==1}">
+                <a class="nav-link collapsed py-2" href="#" data-toggle="collapse" data-target="#collapseOutline235500"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="far fa-edit"></i>
+                    <span>Feedback &nbsp;<span class="badge badge-pill badge-success align-right py-0"> Admin </span></span>
+                </a>
+                <div id="collapseOutline235500" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Update Feedback <br> From Assistant's:</h6> 
+                        <a class="collapse-item" th:href="@{/orderLab/show-orderLabAdmin}">FeedBack Update</a>
+                       
+                    </div>
+                </div>
+              </li>   
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+<!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Account
+            </div>
+
+            
+ <li class="nav-item">
+                <a class="nav-link collapsed pb-2" href="#" data-toggle="collapse" data-target="#collapseSetting"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-cogs"></i>
+                    <span>Settings</span>
+                </a>
+                <div id="collapseSetting" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">edit my profile:</h6>
+                        <a class="collapse-item" th:href="@{/div/profile}">  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile</a>
+                        <a class="collapse-item" th:href="@{/div/settings}"> <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i> Password</a>
+                        <a class="collapse-item" th:href="@{/faculty/add-signature}">  <i class="fas fa-file-signature fa-sm fa-fw mr-2 text-gray-400"></i> Signature</a>
+                       
+                    </div>
+                </div>
+            </li>
+            
+            
+           
+ <!-- th:if="${switchFeedback1.idswitcch==1}" -->
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link pt-0 py-2" th:href="@{/logout}">
+                    <i class="fas fa-fw fa-sign-out-alt"></i>
+                    <span>Logout</span></a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            
+
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar   bg-gradient-dark sidebar sidebar-dark -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow" >
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-secondary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-warning" type="button">
+                                                <i class="fas fa-edite fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                         <!-- Nav Item - Alerts -->
+                       <!--  <li class="nav-item dropdown no-arrow mx-1">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-bell fa-fw"></i>
+                                Counter - Alerts
+                                <span class="badge badge-secondary badge-counter">3+</span>
+                            </a>
+                            Dropdown - Alerts
+                            
+					   </li> -->
+
+                        <!-- Nav Item - Messages -->
+                        
+
+                        
+
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 "><b>Hello <span th:text="${user.name}"></span></b></span>
+                                <img class="img-profile rounded-circle"
+                                    th:src="@{/img/avatar.png}">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" th:href="@{/div/profile}">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" th:href="@{/div/settings}">
+                                    <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i> 
+                                    Password
+                                </a>
+                               
+                                 <a class="dropdown-item" th:href="@{/faculty/add-signature}">
+                                   
+                                     <i class="fas fa-file-signature fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Signature
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" th:href="@{/logout}" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                
+                
+                
+                
+    <!-- start content -->
+    <div class="content mt-0 pr-1 ml-1">
+    
+           <!-- message box -->
+                              <div th:if="${session.message}" id="hideDiv" th:classappend="${session.message.type}" class="alert p-3 mx-2" role="alert">
+								  <p class="text-center" th:text="${session.message.content}"></p>
+								  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							  </div>
+         
+    
+       <div th:replace="${content}"></div>
+    
+    </div>
+    <!-- End contentr -->     
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white" >
+                <div class="container my-auto py-0">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Course Outline,Performance Evaluation & Feed Back System May-2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     <!-- Add new year Model-->    
+    
+  <div class="modal fade" id="addYearModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Year</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/year/addNew}" method="post">
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>      
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- edite/update year Model-->   
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Year</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/year/update}" method="put">     
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="idEdit" name="id" readonly>
+          </div>
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEdit" name="name">
+          </div>                
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- delete year Model-->   
+<div class="modal" id="deleteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this record?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" id="confirmDeleteButton" href="">Yes, Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
+    <!-- Add new group Model-->    
+    
+  <div class="modal fade" id="addGrouptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Group</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/groupt/addNew}" method="post">
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>      
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- edite/update Group Model-->   
+<div class="modal fade" id="editGrouptModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabely" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabely">Update Group</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/groupt/update}" method="put">     
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="idEdity" name="id" readonly>
+          </div>
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEdity" name="name">
+          </div>                
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- delete Group Model-->   
+<div class="modal" id="deleteGrouptModaly" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this record?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" id="confirmDeleteButtony" href="">Yes, Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- Add new semester Model-->    
+    
+  <div class="modal fade" id="addsemesterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelsemester" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabelsemester">New Semester</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/semester/addNew}" method="post">
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>      
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- edite/update semester Model-->   
+<div class="modal fade" id="editsemesterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelsemester" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabelsemester">Update Semester</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/semester/update}" method="put">     
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="idEditsemester" name="id" readonly>
+          </div>
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEditsemester" name="name">
+          </div>                
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- delete semester Model-->   
+<div class="modal" id="deletesemisterModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this record?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" id="confirmDeleteButtonsemester" href="">Yes, Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- Add new user Model-->    
+    
+  <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Year</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/admin/addNewUser}" method="post">
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div> 
+               
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- edite/update Admin Model-->   
+<div class="modal fade" id="editAdminModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel293" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel293">Update User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/admin/update}" method="put">     
+          <div class="form-group">
+            <label for="idEditu" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="idEditu" name="id" readonly>
+          </div>
+        
+          <div class="form-group">
+            <label for="nameEditu" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEditu" name="name">
+          </div>
+           <div class="form-group">
+            <label for="unameEditu" class="col-form-label">User Name:</label>
+            <input type="text" class="form-control" id="unameEditu" name="uname">
+          </div>                
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- delete user Model-->   
+<div class="modal" id="deleteUserModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this record?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" id="confirmDeleteButtonUser" href="">Yes, Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="signatureModal" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Active Signature</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<img id="userPhoto2" src="" width="100%" height="100%">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+
+
+ 
+
+
+
+  
+  
+  
+   <script>
+       function deleteAddmins(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/div/delete/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+   <script>
+       function desabledAdmin(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/div/enabl/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+    <script>
+       function enableAdmin(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/div/desebl/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+  
+  
+  
+     <script>
+       function deleteCours(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/faculty/delete/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+    <script>
+       function apprCours(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/request/apper/"+id;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+    <script>
+       function DeletedFeedback(fid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/faculty/deleteFeed/"+fid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+    <script>
+       function deleteStudentsa(sid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/student/delete/"+sid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+    <script>
+       function DeleteUserCoursoutss(ucid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/request/delete/"+ucid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+     <script>
+       function apprFeed(fid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/faculty/apperFeed/"+fid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>  
+    
+    
+    <script th:src="@{/js/sweetalert.min.js}"></script>
+    
+   
+
+    <!-- Bootstrap core JavaScript-->
+    
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+     <script th:src="@{/js/year.js}"></script>
+     
+    <!-- Page level plugins -->
+    <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+    <!-- Page level custom scripts -->
+    <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+    <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+    
+    
+    
+    <!-- Page level plugins -->
+    <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+    <!-- Page level custom scripts -->
+    <script th:src="@{/js/demo/datatables-demo.js}"></script>
+    
+     <script th:src="@{/dateTimepicker/bootstrap-datetimepicker.min.js}"></script>
+     
+   <!--  <script>
+        $(function () {
+            $.extend(true, $.fn.datetimepicker.defaults, {
+                icons: {
+                    time: 'far fa-clock',
+                    date: 'far fa-calendar',
+                    up: 'fas fa-arrow-up',
+                    down: 'fas fa-arrow-down',
+                    previous: 'fas fa-chevron-left',
+                    next: 'fas fa-chevron-right',
+                    today: 'far fa-calendar-check-o',
+                    clear: 'far fa-trash',
+                    close: 'far fa-times'
+                }
+            });
+        });
+        </script> -->
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker').datetimepicker();
+            });
+            
+            $(function () {
+                var minDate = new Date(2020);
+
+                minDate.setDate(minDate.getDate()-5); // set days - mean previous date from current date + mean future date from current date
+
+                  $('#datetimepicker4').datetimepicker({
+                    format: 'YYYY',
+                    minDate: minDate,
+                    ignoreReadonly: true
+                  });
+              });
+        </script>
+        
+ <!-- hide div after 2 second -->
+<script>
+$(function() {
+	setTimeout(function() { $("#hideDiv").fadeOut(1500); }, 5000)
+
+	})
+</script>   
+
+<script>	
+function goBack() {
+  window.history.back();
+}
+</script> 
+
+ <!-- <script>
+         var preloader1 = document.getElementById('loadingg');
+	localStorage.setItem('use',preloader1);
+  </script> -->
+
+ <script>
+        var preloader = document.getElementById('loadingg');
+       
+       /*  function myFunction(){
+            preloader.style.display = 'none'
+        }
+        
+        function myFunction1(){
+            preloader.style.display = 'none'
+        } */
+        
+       /*  var xx = localStorage.getItem('use'); */
+        
+        
+      /*   window.onload = function() {
+        	preloader.style.display = 'none'
+        	 
+        	}  */
+        	
+        	/*  function myFunction(){
+                preloader.style.display = 'none'
+            } */
+       
+    </script>
+    
+    <!-- <script type="text/javascript">
+  function callPage1(){  
+	alert("hhhhhhhhhhhh");
+	}
+ </script>	 -->
+</body>
+
+</html>

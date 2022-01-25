@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			<p class="mb-4"></p>
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+				
+				  <a sec:authorize="hasAuthority('ADMIN')" type="button" class="btn btn-success btn-sm" th:href="@{/faculty/addCours}" ><i class="fas fa-plus-circle"></i> New Course Guide Book</a>
+ 		             
+					<h6 sec:authorize="hasAnyAuthority('INSTRUCTOR,CHAIR_HOLDER')" class="m-0 font-weight-bold text-primary">Show All Request</h6>
+				</div>
+				<div class="card-body">
+
+
+
+
+
+					<!--   for Lacture sec:authorize="hasAuthority('ADMIN')"-->
+<!-- sec:authorize="hasAnyAuthority('INSTRUCTOR,ADMIN,CHAIR_HOLDER')" -->
+					<div  class="table-responsive" >
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>Title</th>
+									<th>code</th>
+
+									
+									<th>Action</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="c, status : ${coursouts}">
+								<td>[[${status.count}]]</td>
+									<!-- <td th:text="${c.cId}"></td> -->
+									<td><a href="#"
+										th:href="@{'/faculty/'+${c.cId}+'/coursout'}"> <span
+											th:text="${c.Title}"> </span></a></td>
+									<td th:text="${c.ccode}"></td>
+
+									
+									<td>
+
+
+										<div class="row">
+											<div class="col-md-2 text-right">
+
+
+												<form method="post"
+													th:action="@{'/faculty/update-coursout/'+${c.cId}}"
+													class="mr-2" sec:authorize="hasAuthority('ADMIN')">
+													<button type="submit" class="btn btn-primary btn-sm"
+														id="editButtonnn">
+														<i class="fas fa-edit"></i>
+													</button>
+												</form>
+											</div>
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+													<a th:href="@{'/faculty/'+${c.cId}+'/coursout'}" data-toggle="popover" data-placement="left" title="ddetails button" 
+														data-content="if click this button go to details of course guidebook and you can request on the Form of bottom  "
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a> 
+														
+														<a href="#"
+														th:onclick="|deleteCours(${c.cId})|"
+														class="btn btn-danger btn-sm" id="deleteButtonnn"
+														sec:authorize="hasAuthority('ADMIN')"><i
+														class="fas fa-trash"></i></a> 
+														
+														
+														
+														<!-- <a th:href="@{'/orderStu/'+${c.cId}+'/cartStu'}" data-toggle="popover" title="FeedBack bitton" 
+														data-content="FeedBack on this course guidebook." sec:authorize="hasAuthority('STUDENT')"
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 	 -->
+														
+																																						
+												       
+												       
+												       
+												       
+												         
+												</div>
+
+											</div>
+										</div>
+
+
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<!--   for admin -->
+					
+
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'left',
+        trigger: 'hover'
+    });
+});
+</script>
+
+
+
+	</section>
+
+
+</body>
+</html>

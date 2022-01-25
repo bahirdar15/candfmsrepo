@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<link rel="icon" th:href="@{/img/registration.png}" sizes="32x32">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+
+
+
+<!-- Custom fonts for this template-->
+<link th:href="@{/main.css}" rel="stylesheet"/>
+
+
+<title th:text="${title}">C And F - Home</title>
+<link th:href="@{/css/fmie2.css}" rel="stylesheet"/>
+ <style>
+    div.footer {
+                display: block;
+                text-align: left;           
+                position: running(footer);
+                background-color: powderblue;
+                color: red;
+    
+            }
+    @page {
+    
+                size: A4 portrait; 
+               /*  size: A4 landscape; */
+                @bottom-right {                
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+                @bottom-left {                
+                     content: element(footer);                 
+    
+                }
+                counter-increment: page;
+                counter-reset: page 1;
+            }
+    </style>
+    
+     
+    
+</head>
+
+<body>
+	<!-- Page Wrapper -->
+	<div id="wrapper">
+		<div id="content-wrapper" class="d-flex flex-column">
+			<div id="content">
+		
+				
+				<div class="row">
+					<!-- start print page -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<!-- Area Chart -->
+					<div class="col-xl-12 col-lg-10">
+
+
+						<!-- Card Body -->
+						<div class="card-body mx-4">
+
+							<div class="row" style="border: 1px solid #858796;">
+								<div
+									class="col-lg-3 col-md-3 col-sm-3 col-xs-3 px-0 font-weight-bold text-primary">
+									<!-- <img th:src="@{/img/bdu.png}" height="120" width="120" style="margin-left: 0px;"> -->
+									<img th:src="@{/img/bdu.png}" height="120" width="120"
+										style="background-color: rgb(138, 134, 134);">
+								</div>
+								<div
+									class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center font-weight-bold text-primary">
+									<h4 class="mb-0 text-uppercase">Bahir Dar Universsity</h4>
+									<p class="mb-0 text-uppercase">Bahir Dar Institute of
+										Technology (BIT)</p>
+									<p class="text-uppercase">Faculty of Mechanical and
+										Industrial Engineering</p>
+								</div>
+								<div
+									class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-right px-0 font-weight-bold text-primary">
+									<img th:src="@{/img/bdu.png}" height="120" width="120"
+										style="background-color: rgb(138, 134, 134);">
+								</div>
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<div class="row" style="border: 1px solid #858796;">
+								<div
+									class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center font-weight-bold text-primary">
+									<h4>
+										<b> Course Guidebook </b>
+									</h4>
+								</div>
+
+							</div>
+						
+					<!-- 	//////////////////////// -->
+
+
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Course Title</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+
+									<div class="row">
+										<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+											<span th:text="${coursout.Title}"></span>
+										</div>
+										<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border-right: 1px solid #858796; border-left: 1px solid #858796;">
+													<b>Chair Name:</b>
+												</div>
+												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" th:with="fmie= ${coursout.fmie}">
+
+													<span th:text="${fmie.name}"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Course Code</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+									<b th:text="${coursout.ccode}"></b>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Module</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+
+									<span th:text="${coursout.cmodule}"></span>
+								</div>
+							</div>
+
+
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>ECTS Credits</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+
+									<span th:text="${coursout.cps}"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Contact Hours(per week)</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Lecture</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b>Tutorial</b>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<b>Practice(Laboratory)</b>
+										</div>
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Home Study</b>
+										</div>
+
+									</div>
+									<div class="row">
+
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+
+											<span th:text="${coursout.clecture}"></span>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<span th:text="${coursout.ctutrial}"></span>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<span th:text="${coursout.claboratory}"></span>
+										</div>
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<span th:text="${coursout.cstudy}"></span>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Pre-requisites</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+									<span th:text="${coursout.preRequi}"></span>
+								</div>
+							</div>
+							<div class="row" th:with="groupt= ${coursout.groupt}">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Target Group</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4" 
+									style="border: 1px solid #858796;">
+									<span th:text="${groupt.name}"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Academic Year</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+									<span th:text="${coursout.aYear}"></span>
+								</div>
+							</div>
+							<div class="row" th:with="sem= ${coursout.semester}">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+									style="border: 1px solid #858796;">
+									<b>Semester</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+									<span th:text="${sem.name}"></span>
+								</div>
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+							<!-- for instractor and chir holder -->
+
+							<div class="row" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Instructor's Full Name</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+									<span th:text="${user.name}"></span>
+
+								</div>
+							</div>
+
+							<div class="row" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+								<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+									style="border: 1px solid #858796;">
+									<b>Instructor's Address</b>
+								</div>
+								<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+									style="border: 1px solid #858796;">
+
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<b>Office No:</b>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<b>E-mail: </b>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<b>Phone No:</b>
+										</div>
+
+
+									</div>
+									<div class="row">
+
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${user.address}"></span>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${user.email}"></span>
+										</div>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${user.phone}"></span>
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+						
+					<!-- 	//////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<div class="row">
+
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+									style="text-align: justify; padding-left: 300px;">
+
+									<img th:src="@{/img/bullet.png}" alt="Smiley face" height="20"
+										width="20"> <span class="p-2"><b> Course
+											objective and Competences </b></span>
+
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+									<p>Up on the completion of the course students will be able
+										to:</p>
+
+								</div>
+							</div>
+							<div class="row">
+
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+
+									<div class="form-group row">
+										<label for="title"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+											class="fas fa-circle"></i></label>
+										<div class="col-sm-10">
+											<span th:text="${coursout.courseobjectone}"></span>
+										</div>
+										<label for="title"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+											class="fas fa-circle"></i></label>
+										<div class="col-sm-10">
+											<span th:text="${coursout.courseobjecttwo}"></span>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+
+
+
+							<div class="row">
+
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+									style="text-align: justify; padding-left: 300px;">
+
+									<img th:src="@{/img/bullet.png}" alt="Smiley face" height="20"
+										width="20"> <span class="p-2"><b>Course
+											Description</b></span>
+
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+									<b th:text="${coursout.cdescription}"></b>
+
+								</div>
+							</div>
+
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
+
+						<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- assessment     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+
+
+						<!-- assessment     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+						
+
+
+
+
+
+
+
+					<!-- 	//////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- Policy     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+						<div class="card-body mx-4">
+
+							<div class="row">
+
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+									style="text-align: justify; padding-left: 300px;">
+
+									<img th:src="@{/img/bullet.png}" alt="Smiley face" height="20"
+										width="20"> <span class="p-2"><b>Course
+											Policy</b></span>
+
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+									<b th:text="${coursout.cPolicy}"></b>
+								</div>
+							</div>
+
+
+							<div class="row" th:if="${!coursout.book1.empty}">
+
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+									style="text-align: justify; padding-left: 300px;">
+
+									<img th:src="@{/img/bullet.png}" alt="Smiley face" height="20"
+										width="20"> <span class="p-2"><b>Text Book</b></span>
+
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+									<div class="form-group row">
+										<label for="book1" th:if="${!coursout.book1.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">1</i></label>
+										<div class="col-sm-10">
+											<span th:text="${coursout.book1}"></span>
+										</div>
+										<label for="book2" th:if="${!coursout.book2.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">2</label>
+										<div class="col-sm-10">
+											<span th:text="${coursout.book2}"></span>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="row">
+
+
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+									style="text-align: justify; padding-left: 300px;">
+
+									<img th:src="@{/img/bullet.png}" alt="Smiley face" height="20"
+										width="20"> <span class="p-2"><b>Reference
+											Book</b></span>
+
+								</div>
+								<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+									<div class="form-group row" th:each="c : ${coursout}"
+										th:with="ref= ${c.refer}">
+										<label for="refer1" th:if="${!ref.refer1.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">1</i></label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer1}"></span>
+										</div>
+										<label for="refer2" th:if="${!ref.refer2.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">2</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer2}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer3.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer3}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer4.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer4}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer5.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer5}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer6.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer6}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer7.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer7}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer8.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer8}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer9.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer9}"></span>
+										</div>
+										<label for="refer3" th:if="${!ref.refer10.empty}"
+											class="col-sm-2 col-form-label text-right px-0 form-control-sm">3</label>
+										<div class="col-sm-10">
+											<span th:text="${ref.refer10}"></span>
+										</div>
+									</div>
+
+
+								</div>
+							</div>
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						
+					<!-- 	//////////////////////// -->
+
+
+						<!-- Approved By    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+						<div class="card-body mx-4">
+<!-- th:each="i,status : ${instaOrders}" th:with="users= ${i.user}" -->
+							<div class="row   my-2 h-100 align-items-center" >
+								<label class="" for="inlineFormCustomSelectPref">1.
+									Instructor's Name:</label>
+								<div class="col-md-4 px-1 mb-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">
+									<span >uyyuffjf</span>
+								</div>
+								<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+								<div class="col-md-2  px-3  text-success mb-4"
+									id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<!-- <span><img class="img-fluid"
+										th:src="@{'/img/'+${user.imageUrl}}"
+										alt=" Signature image Null Plase Upload"
+										style="width: 80%; height: 40px" /></span> -->
+								</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+								<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<!-- <span th:text="${i.filleddate}"></span> -->
+								</div>
+								(Filled)
+
+							</div>
+
+
+							<div class="row   my-2 h-100 align-items-center" >
+								<label class="" for="inlineFormCustomSelectPref">3.
+									Chair Holder's Name:</label>
+								<div class="col-md-4 px-1 mb-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">2021</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+								<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">first</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+								<div class="col-md-1 px-1 mb-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">6/27/2021</div>
+								(Endorsed)
+							</div>
+
+
+						</div>
+
+
+					<!-- 	//////////////////////// -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<!-- finsh print page -->
+				</div>
+				<!-- finash Content Row -->
+			</div>
+		</div>
+		<!-- End of Content Wrapper -->
+	</div>
+
+
+	
+<div class="footer" >        
+</div>
+</body>
+
+</html>

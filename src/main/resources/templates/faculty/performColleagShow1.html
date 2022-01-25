@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+                                                                               <!--  th:href="@{/performco/newProCoRec}"         @{/request/show_Request}" -->
+				<div class="card-header py-3">
+				<!-- <a sec:authorize="hasAuthority('INSTRUCTOR')" type="button" class="btn btn-success btn-sm" th:href="@{/assign/instaCoursdetailAssigned}" ><i class="fas fa-plus-circle"></i> New Request On Performance</a>
+ 		              -->
+					<p><strong>Note:</strong>N.B :- * minimum Number Of Evaluators Is Count[Student,Instructor,Supervisor(Chair Holder)]: <span class="badge badge-info">|5|5|1|</span>  For Show Results</p>
+				</div>
+				
+				
+				<!-- for instructore -->
+				<div class="card-body" sec:authorize="hasAnyAuthority('INSTRUCTOR,ASSISTANT')">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>No</th>																		
+									<th>Academic Year</th>
+									<th>Semester</th>									
+									
+									<th>Result</th>   <!-- th:if="${proformRequ.status}=='Approved'" --> 
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="f, status : ${proformRequ}">
+								
+								    <td>[[${status.count}]]</td>
+									<!-- <td th:text="${f.id}"></td>	 -->																	
+									<td th:text="${f.ayear}"></td>
+									<td th:utext="${f.semester.name}"></td>
+										
+								 
+									<td>
+										<div class="row"  th:if="${f.sumofcount}==9">
+											<div class="col-md-4  text-left">
+												<div class="btn-group"> 
+														<!-- th:if="${f.countstu}>=5" th:if="${f.countinsta}>=5" th:if="${f.countchair}>=1" -->
+														<a  th:if="${f.sumofcount}==9" 
+														th:href="@{'/performco/'+${f.id}+'/myprofrma'}" data-toggle="popover" title="Result" 
+														data-content="Result Performance."
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 
+														
+														
+												</div>
+											</div>
+										</div>
+										<div class="row" th:unless="${f.sumofcount}==9" >
+											<div class="col-md-12">		
+												<div class="btn-group">
+												      <button type="button" class="btn btn-primary btn-sm">Count</button>
+													  <button type="button" class="btn btn-success btn-sm"><span th:text="${f.countstu}"></span></button>
+													  <button type="button" class="btn btn-warning btn-sm"><span th:text="${f.countinsta}"></span></button>
+													  <button type="button" class="btn btn-info btn-sm"><span th:text="${f.countchair}"></span></button>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				
+				
+				
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+   <script>
+       function approvedRequPerofes(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/performco/approved/"+id;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+    	placement : 'left',
+        trigger: 'hover'
+    });
+});
+</script>
+
+	</section>
+
+
+</body>
+</html>

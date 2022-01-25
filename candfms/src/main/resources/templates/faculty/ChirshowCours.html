@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"> </h1>
+			<p class="mb-4"></p>
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				
+				
+<form action="#"  enctype="multipart/form-data"  
+						method="POST" th:action="@{/assign/AssignMultipleAssignCours}" class="mt-2">				
+								<div class="card-header py-1 text-right">				
+												<button type="submit" onclick="return noCheck();" class="btn btn-primary btn-sm text-right"
+														id="editButtonnn">
+														<i class="fas fa-edit"></i> Assign Checked
+													</button>
+													
+						  
+				</div>
+				<div class="card-body">
+
+
+
+
+
+					<!--   for Lacture sec:authorize="hasAuthority('ROLE_ADMIN')"-->
+<!-- sec:authorize="hasAnyAuthority('ROLE_INSTRUCTOR,ROLE_ADMIN,ROLE_CHAIR_HOLDER')" -->
+
+
+							
+													
+													
+					<div class="table-responsive" >
+						<table class="table table-bordered table-advance table-hover" id="dataTable" >
+							<thead>
+								<tr>
+								  <th>Check</th>
+									<th>No</th>
+									<th>Title</th>
+									<th>code</th>
+
+									
+									<th>Action</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="c, status : ${ChairAllcours}">
+								<td align="center"><input type="checkbox" name="cId" th:value="${c.cId}"/></td>
+									<td>[[${status.count}]]</td>
+									<!-- <th th:text="${c.cId}"></th> -->
+									<td><a href="#"
+										th:href="@{'/faculty/'+${c.cId}+'/coursout'}"> <span
+											th:text="${c.Title}"> </span></a></td>
+									<td th:text="${c.ccode}"></td>
+
+									
+									<td>
+
+
+										<div class="row">
+										
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+													<!-- <a th:href="@{'/faculty/'+${c.cId}+'/coursout'}" data-toggle="popover" data-placement="left" title="ddetails button" 
+														data-content="if click this button go to details of course guidebook and you can request on the Form of bottom  "
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a>  -->
+														
+														<!-- <a href="#"
+														th:onclick="|deleteCours(${c.cId})|"
+														class="btn btn-danger btn-sm" id="deleteButtonnn"
+														sec:authorize="hasAuthority('ROLE_ADMIN')"><i
+														class="fas fa-trash"></i></a>  -->
+														
+														
+														
+														<!-- <a th:href="@{'/orderStu/'+${c.cId}+'/cartStu'}" data-toggle="popover" title="FeedBack bitton" 
+														data-content="FeedBack on this course guidebook." sec:authorize="hasAuthority('ROLE_STUDENT')"
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 	 -->
+														
+														<!-- <a th:href="@{'/orderLab/'+${c.cId}+'/cartLab'}" data-toggle="popover" title="FeedBack bitton" 
+														data-content="FeedBack on this course guidebook." sec:authorize="hasAuthority('ROLE_ASSISTANT')"
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 																								
+												        -->
+												       
+												       <a  th:onclick="|assignOnCart(${c.cId})|" data-toggle="popover" title="Assign bitton" 
+														data-content="Assign on this course guidebook to Insta." sec:authorize="hasAuthority('CHAIR_HOLDER')"
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 																								
+												       
+												       
+												         
+												</div>
+
+											</div>
+										</div>
+
+
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<!--   for admin -->
+	
+
+
+
+				</div>
+				
+								
+</form>
+				
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover({
+        placement : 'left',
+        trigger: 'hover'
+    });
+});
+</script>
+
+     <script>
+       function assignOnCart(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once Assign, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/assign/coursoutAssign/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+<script>  
+    function noCheck(){  	
+    	if(document.querySelectorAll('input[type="checkbox"]:checked').length==0){
+    		
+    		/* alert("You haven't checked any record");  */
+    		 success_toast()
+    		
+    		return false;
+    	}
+    }
+    
+    </script>    
+    
+  		
+<script>
+   function success_toast(){
+	  
+		//   toastr.success("Success message");
+        Command: toastr["error"]("You haven't checked any Course", "Error")
+   }
+   
+   toastr.options = {
+		   "closeButton": true,
+		   "debug": false,
+		   "newestOnTop": true,
+		   "progressBar": true,
+		   "positionClass": "toast-top-center",
+		   "preventDuplicates": true,
+		   "onclick": null,
+		   "showDuration": "300",
+		   "hideDuration": "1000",
+		   "timeOut": "5000",
+		   "extendedTimeOut": "1000",
+		   "showEasing": "swing",
+		   "hideEasing": "linear",
+		   "showMethod": "fadeIn",
+		   "hideMethod": "fadeOut"
+		 }
+</script>	  
+    
+	</section>
+
+
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+		<style>
+.col-md-half { @extend .col-md-1;
+	width: 4.166666667%;
+}
+</style>
+
+
+		<div class="container-fluid px-3 my-0">
+
+
+
+
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/order/show_cart}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a>
+				</div>
+				<div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+					<div class="row text-center  my-2  h-100 align-items-center">
+						<h4>
+							<b>Course Following-Up Checklist:-</b>
+						</h4>
+						<span><p class="pt-2 pr-2">To be filled by the course
+								instructor</p></span>
+					</div>
+
+
+
+
+<p class="pb-0 mb-0 pl-0 ml-0"><strong>Note:</strong>N.B :- * using comma separator |Before Mid Exam,After Mid Exam| Ex:-<span class="badge badge-info"> 5,6 </span>
+						          you are enter one </p>
+					<div class="row text-center   px-0">
+						<div class="col-md-half  px-0 " style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">No</div>
+							</div>
+						</div>
+						<div class="col-md-3 px-0 justify-content-center"
+							style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Course Name</div>
+							</div>
+						</div>
+						<div class="col-md-1 " style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Course Code</div>
+							</div>
+						</div>
+						<div class="col-md-5 ">
+							<div class="row" style="border: 1px solid #858796;">
+								<div class="col-md-6 px-0 "
+									style="text-align: center; border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center">
+										<div class="col-md-12 col-sm-12 ">Total No Of Chapter</div>
+									</div>
+								</div>
+								<div class="col-md-6 px-0 my-2">
+									<div class="row text-center   h-100 align-items-center">
+										<div class="col-md-12 col-sm-12">Total Number of
+											Assessments</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12">In The Course</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Planned</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Covered</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Planed</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Delivered</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">FeedBack Given Back
+											To Students</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-half pt-4" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12"
+									style="transform: rotate(270deg);">Section</div>
+							</div>
+						</div>
+						<div class="col-md-1 pt-4" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Year</div>
+							</div>
+						</div>
+						<div class="col-md-1 pt-4" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+					<form action="#" th:object="${instaCart2}"
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/order/process-updatecart}">
+						<!--  <input type="hidden" th:value="${contact.cId}" name="cId"/> -->
+
+
+
+
+
+
+
+						<!-- dynamic page -->
+						<div class="row text-center   px-0" th:each="i : ${instaCart2}"
+							th:with="coursout= ${i.coursout}">
+							<div class="col-md-half  px-0 "
+								style="text-align: center; border: 1px solid #858796;">
+
+								<input type="hidden" th:value="${i.id}" name="id" /> 
+								<input type="hidden" th:value="${i.fmieid}" name="fmieid" />
+								<input type="hidden" th:value="${i.userid}" name="userid" /> <input
+									type="hidden" th:value="${i.coursoutid}" name="coursoutid" />
+									<input type="hidden" th:value="${i.userCoursoutDetileid}" name="userCoursoutDetileid" />
+									
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">#</div>
+								</div>
+							</div>
+							<div class="col-md-3 px-0 justify-content-center"
+								style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<span th:text="${coursout.title}"></span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1 " style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<b> <span th:text="${coursout.ccode}"></span>
+										</b>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 " style="border: 1px solid #858796;" >
+								<div class="row text-center  h-100 px-0">
+									<div class="col-md-2  px-0 "
+										style="text-align: center; border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<span th:text="${coursout.chapbf}"></span>,<span th:text="${coursout.chapaf}"></span>
+
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												
+<span th:text="${coursout.chapbfmidplan}"></span><b>,</b><span th:text="${coursout.chapafmidplan}"></span>
+											
+
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<input class="form-control text-center" id="ncco"
+													name="ncco" type="number" th:value="${i.ncco}" placeholder="1"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+											
+<span th:text="${coursout.assbfmidplan}"></span><b>,</b><span th:text="${coursout.assafmidplan}"></span>
+																							
+
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<input class="form-control text-center" id="nad" name="nad"
+													type="number" th:value="${i.nad}" placeholder="1"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-2 px-0">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">
+												<input class="form-control text-center" id="naf" name="naf"
+													type="number" th:value="${i.naf}" placeholder="1"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="col-md-half px-0" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<!-- <input class="form-control text-center text-uppercase"
+											id="sect" name="sect" type="text" th:value="${i.sect}" placeholder="A"
+											style="border: none; outline: 0; box-shadow: none;"> -->
+											
+											
+											<select class="browser-default custom-select pr-0 pl-2" 
+												required id="sect" name="sect" style="border: none; outline: 0; box-shadow: none;background: none !important;">
+												<option value="" selected disabled>-A-</option>
+												<option th:selected="${i.sect}==A" th:value="A">A</option>
+												<option th:selected="${i.sect}==B" th:value="B">B</option>
+												<option th:selected="${i.sect}==C" th:value="C">C</option>
+												<option th:selected="${i.sect}==D" th:value="D">D</option>
+												<option th:selected="${i.sect}==E" th:value="E">E</option>
+												<option th:selected="${i.sect}==F" th:value="F">F</option>							
+											</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1  px-0" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 text-center  align-items-center">
+										<!-- <input class="form-control text-center" id="prog" name="prog"
+											type="text" th:value="${i.prog}" placeholder="Regular"
+											style="border: none; outline: 0; box-shadow: none;">
+											 -->
+											
+<select class="browser-default custom-select pr-0 pl-0" required id="yearid"
+										style="border: none; outline: 0; box-shadow: none;background: none !important;text-align: center;"
+										name="yearid">
+										<option value="" selected disabled>-Year-</option>
+										<option th:each="f : ${years}" th:value="${f.id}" style="text-align: center;"
+											th:selected="${i.yearid}==${f.id}" th:utext="${f.name}"></option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-1  px-0" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<input class="form-control text-center" id="rema" name="rema"
+											type="text" th:value="${i.rema}" placeholder="Rema"
+											style="border: none; outline: 0; box-shadow: none;">
+									</div>
+								</div>
+							</div>
+
+
+
+						</div>
+
+
+						<br />
+
+
+
+						<div class="container text-center">
+							<button class="btn btn-outline-success">Save</button>
+						</div>
+						<!-- <div class="container text-center">							
+						 <button class="btn btn-outline-success">Filled</button>						
+						</div> -->
+
+					</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

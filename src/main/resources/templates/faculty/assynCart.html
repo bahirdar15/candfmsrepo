@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+
+
+
+
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4 mt-2">
+				<form action="#" enctype="multipart/form-data" method="POST"
+					th:action="@{/assign/deleteMultipleAssignCours}" class="">
+
+
+					<div class="card-header py-3">
+						<div class="row"  th:if="${assigner}">
+							<div class="col-md-6">
+								<h6 class="m-0 font-weight-bold text-primary">
+									<a type="button" class="btn btn-success btn-sm"
+										th:href="@{/assign/ShowAllCours}"><i
+										class="fas fa-plus-circle"></i> Add Another</a>
+								</h6>
+							</div>
+							<div class="col-md-6 text-right">
+
+
+								<button type="submit" onclick="return noCheck();"
+									ondblclick="myalert()"
+									class="btn btn-primary btn-sm  text-right" id="editButtonnn">
+									<i class="fas fa-trash"></i> checked delete
+								</button>
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+					<div class="card-body">
+						<div class="table-responsive" >
+						<table class="table table-bordered table-advance table-hover" id="dataTable" >
+								<thead>
+									<tr>
+										<th><i class="icon_table"></i>Check</th>
+										<th><i class="icon_table"></i>No</th>
+										<!-- <th><i class="icon_table"></i>Course ID:</th> -->
+										<th><i class="icon_table"></i>Course Title:</th>
+										<th><i class="icon_cogs"></i>Course Code:</th>
+										<th><i class="icon_cogs"></i>Year:</th>
+										<th><i class="icon_cogs"></i>Semester:</th>
+										<th><i class="icon_cogs"></i>Action:</th>
+									</tr>
+								</thead>
+								<tbody>
+
+									<tr th:each="c,status : ${assigner}">
+										<td align="center"><input type="checkbox" name="cidd"
+											th:value="${c.id}" /></td>
+										<td>[[${status.count}]]</td>
+
+										<!-- <td th:text="${c.coursout.cId}"></td> -->
+										<td th:text="${c.coursout.title}"></td>
+<td th:text="${c.coursout.ccode}"></td>
+										<td th:utext="${c.coursout.year.name}"></td>
+										<td th:utext="${c.coursout.semester.name}"></td>
+										
+										<td><a th:onclick="|deleteAssignCours(${c.id})|"
+											class="btn btn-danger btn-sm" id="deleteButtonnn"><i
+												class="fas fa-trash"></i></a></td>
+									</tr>
+								</tbody>
+
+							</table>
+
+
+						</div>
+					</div>
+
+				</form>
+			</div>
+
+		</div>
+
+
+		<div class="container-fluid"  th:if="${assigner}">
+			<form enctype="multipart/form-data" method="POST"
+				th:action="@{/assign/process-assign}" class="mt-2">
+				<!-- <input type="hidden" th:value="${user.id}" name="userid" /> -->
+
+
+				<div class="row">
+					<div class="col-10 col-md-10">
+
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text text-justify" for="chnId">Instructor</label>
+							</div>
+							<select class="custom-select   text-capitalize"
+								required id="instaId" name="instaId">
+								<option value="" selected disabled>---Select
+									Instructor---</option>
+								<option th:each="i : ${roleBothInsAndAssi}" th:value="${i.id}"
+									 >[[${i.name}]] [[${i.roles}]]</option>
+							</select>
+							<div class="input-group-append">
+								<button class="btn btn-primary btn-sm">
+									Assign Now <i class="fas fa-share"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+       function deleteAssignCours(cid){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/assign/deleteAssignCours/"+cid;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+
+
+		<script>  
+    function noCheck(){  	
+    	if(document.querySelectorAll('input[type="checkbox"]:checked').length==0){
+    		
+    		/* alert("You haven't checked any record");  */
+    		 success_toast()
+    		
+    		return false;
+    	}
+    }
+    
+    </script>
+
+
+		<script>
+   function success_toast(){
+	  
+		//   toastr.success("Success message");
+        Command: toastr["error"]("You haven't checked any Course", "Error")
+   }
+   
+   toastr.options = {
+		   "closeButton": true,
+		   "debug": false,
+		   "newestOnTop": true,
+		   "progressBar": true,
+		   "positionClass": "toast-top-center",
+		   "preventDuplicates": true,
+		   "onclick": null,
+		   "showDuration": "300",
+		   "hideDuration": "1000",
+		   "timeOut": "5000",
+		   "extendedTimeOut": "1000",
+		   "showEasing": "swing",
+		   "hideEasing": "linear",
+		   "showMethod": "fadeIn",
+		   "hideMethod": "fadeOut"
+		 }
+</script>
+	</section>
+
+
+</body>
+</html>

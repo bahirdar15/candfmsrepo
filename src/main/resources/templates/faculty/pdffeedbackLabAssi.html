@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  
+
+<title th:text="${title}">C And F - Home</title>
+<link th:href="@{/css/fmie2.css}" rel="stylesheet" />
+ <style>
+    div.footer {
+                display: block;
+                text-align: left;           
+                position: running(footer);
+                background-color: powderblue;
+                color: red;
+    
+            }
+    @page {
+    
+                /* size: A4 portrait;  */
+                size: A4 landscape;
+                @bottom-right {                
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+                @bottom-left {                
+                     content: element(footer);                 
+    
+                }
+                counter-increment: page;
+                counter-reset: page 1;
+            }
+    </style>
+    
+</head>
+<body>
+ 
+  <div style="text-align: center;">
+    <!-- <img src="bdu.png" height="150" > -->
+    <h4  style="text-transform:uppercase;font-weight: bold;margin: 0px;"> 	Bahir Dar Universsity </h4>
+    <p style="text-transform:uppercase;font-weight: bold;"> 	Bahir Dar Institute of Technology (BIT) </p>
+    <p style="text-transform:uppercase;font-weight: bold;"> Office of Quality Assurance& Enhancement </p>
+  </div>
+
+<h4 style="color: rgb(47, 0, 255);"><font size="5px" ><b>Course Following-Up Checklist:-</b></font>To be filled by Technical/Lab Assistant</h4>
+ <!-- ===========================================finsh  hider =============================================-->
+ 
+ <table style="width:92%;border:none;" class="dataframe table my_table mytab"><tr>
+  <th  style="width:3%;border:none;padding-right: 0px;" >Faculty:</th>
+  <td class=" my_th" style="width:20%;padding: 0px;">Mechanical and Industrial Engineering </td>
+  <th style="width:6%;border:none;padding-right: 0px;" colspan="2">Before Mid Exam:</th>
+  <td class=" my_td" style="width:2%;padding: 0px;bottom: 1rem;" > 
+<img th:src="@{/img/check2.png}" alt="" height="25px"  th:if="${instaOrders.bam == '1'}">     
+
+</td>
+  <th style="width:6%;border:none;padding-right: 0px;" >After Mid Exam:</th>
+  <td  class=" my_td" style="width:2%;padding: 0px;"> 
+
+<img th:src="@{/img/check2.png}" alt="" height="25px" th:if="${instaOrders.bam == '2'}" >  
+</td>
+</tr>  </table>
+<br />
+<table style="width:69%;border:none;" class="dataframe table my_table mytab"><tr>
+  <th  style="width:11%;border:none;padding-right: 0px;" >Academic Year:</th>
+  <td class=" my_th" style="width:4%;padding: 0px;"> <span th:text="${instaOrders.ayear}"></span></td>
+  <th  style="width:6%;border:none;padding-right: 0px;" >Semester:</th>
+  <td class=" my_th" style="width:7%;padding: 0px;">  <span th:text="${instaOrders.semester.name}"></span> </td>
+  <th  style="width:5%;border:none;padding-right: 0px;" >Year:</th>
+  <td class=" my_th" style="width:7%;padding: 0px;">  <span th:utext="${instaOrders.year.name}"></span></td>
+  <th  style="width:6%;border:none;padding-right: 0px;" >Section:</th>
+  <td class=" my_th" style="width:5%;padding: 0px;">  <span th:text="${instaOrders.section}"></span></td>
+  <th  style="width:6%;border:none;padding-right: 0px;" >Group:</th>
+  <td class=" my_th" style="width:3%;padding: 0px;">  <span th:text="${instaOrders.grou}"></span></td>
+  
+</tr>  </table>
+
+
+<table style="width:100%;border:none;" class="dataframe table my_table mytab"><tr>
+  <th  style="width:9%;border:none;padding-right: 0px;" >Course name:</th>
+  <td class=" my_th" style="width:28%;padding: 0px;"> <span th:text="${instaOrders.coursout.title}"></span></td>
+  <th  style="width:9%;border:none;padding-right: 0px;" >Course Code:</th>
+  <td class=" my_th" style="width:5%;padding: 0px;">  <span th:text="${instaOrders.coursout.ccode}"></span></td>
+  
+  <th style="width:5%;border:none;padding-right: 0px;" colspan="2">Regular:</th>
+  <td class=" my_td" style="width:3%;padding: 0px;bottom: 1rem;" > 
+   <img th:src="@{/img/check2.png}" alt="" height="25px"  th:if="${instaOrders.prog == '1'}">  
+  </td>
+  <th style="width:4%;border:none;padding-right: 0px;" >Extension:</th>
+  <td  class=" my_td" style="width:3%;padding: 0px;"> 
+   <img th:src="@{/img/check2.png}" alt="" height="25px"  th:if="${instaOrders.prog == '2'}">  
+  </td>
+  <th style="width:4%;border:none;padding-right: 0px;" >Summer:</th>
+  <td  class=" my_td" style="width:3%;padding: 0px;"> 
+   <img th:src="@{/img/check2.png}" alt="" height="25px"  th:if="${instaOrders.prog == '3'}">  
+  </td>
+</tr>  </table>
+
+
+<br><br><br>
+
+
+
+<table  width="100%" class="myth" >
+	<tr>  
+      <th style="width:15px;" rowspan="2">Weeks</th>
+	   <th  style="width:25px;"   rowspan="2" colspan="2">Lab/Test/Session Name</th>  
+      <th class="py" colspan="3" style="width:45px;"><font size="4px" ><b>Signature(every session)</b></font></th>	   
+      <th rowspan="2" style="width:15px;">Remark</th>
+  </tr>
+  <tr>
+    <th style="width:15px;" >Instructor</th>
+	<th style="width:15px;" > Technical/Lab Assistant</th>
+	<th style="width:15px;" >Student/Section Representative's</th> 
+  </tr>
+  <tr  th:each="i,status : ${orderDetailes}">	
+		<td text-center style="width:15px;"><span th:text="${i.week}"></span></td>
+		<td style="width:25px;" colspan="2"> <span th:text="${i.lname}"></span></td>
+		     <th style="width:15px;">
+              <img th:src="@{/img/Chek.png}" alt="" height="24px"  th:if="${i.instrac}=='p'">  
+  <img th:src="@{/img/xx.png}" alt="" height="20px"  th:if="${i.instrac}== null">
+		    </th>	
+		<th style="width:15px;">
+ <img th:src="@{/img/Chek.png}" alt="" height="24px"  th:if="${i.assista}=='p'">  
+  <img th:src="@{/img/xx.png}" alt="" height="20px"  th:if="${i.assista}== null">  
+											
+</th>
+		<th style="width:15px;">
+<img th:src="@{/img/Chek.png}" alt="" height="24px"  th:if="${i.student}=='p'">  
+  <img th:src="@{/img/xx.png}" alt="" height="20px"  th:if="${i.student}== null">
+</th>
+		<td style="width:15px;"><span th:text="${i.rema}"></span></td>
+	</tr>
+</table>
+
+
+
+ <br>
+ <br>
+ <br>
+ <br>
+
+<br>
+
+  <div>
+<!--   
+<table style="width:85%;border:none;" class="dataframe table my_table"><tr>
+     <th style="width:20%;border:none;padding-right: 0px;" rowspan="2">1. Technical Assistant's Name:</th>
+     <td style="width:20%;padding: 0px;" rowspan="3">trtrtyytyt yhhf ggfgf</td>
+     <th style="width:10%;border:none;padding-right: 0px;" colspan="2">Signature:</th>
+     <td  style="width:15%;padding: 0px;" rowspan="2"><img src="signature2.png" height="30"></td>
+     <th style="width:5%;border:none;padding-right: 0px;" rowspan="1">Date:</th>
+     <td style="width:6%;padding: 0px;" rowspan="2">7/25/2021</td>
+     <th style="width:4%;border:none;padding-right: 0px;" rowspan="1"> (Filled)</th>
+</tr>  </table>
+
+
+<table style="width:90%;border:none;" class="dataframe table my_table"><tr>
+  <th style="width:15%;border:none;padding-right: 0px;" rowspan="2">2. Instructor's Name:</th>
+  <td style="width:25%;padding: 0px;" rowspan="3">trtrtyytyt yhhf ggfgf</td>
+  <th style="width:10%;border:none;padding-right: 0px;" colspan="2">Signature:</th>
+  <td  style="width:15%;padding: 0px;" rowspan="2"><img src="signature2.png" height="30"></td>
+  <th style="width:5%;border:none;padding-right: 0px;" rowspan="1">Date:</th>
+  <td style="width:6%;padding: 0px;" rowspan="2">7/25/2021</td>
+  <th style="width:4%;border:none;padding-right: 0px;" rowspan="1"> (Approved)</th>
+</tr>  </table>
+
+
+<table style="width:85%;border:none;" class="dataframe table my_table"><tr>
+  <th style="width:18%;border:none;padding-right: 0px;" rowspan="2">3. Chair Holder's Name:</th>
+   <td style="width:25%;padding: 0px;" rowspan="3">trtrtyytyt yhhf ggfgf</td>
+   <th style="width:10%;border:none;padding-right: 0px;" colspan="2">Signature:</th>
+   <td style="width:15%;padding: 0px;" rowspan="2"><img src="signature2.png" height="30" ></td>
+   <th style="width:5%;border:none;padding-right: 0px;" rowspan="1">Date:</th>
+   <td style="width:6%;padding: 0px;" rowspan="2">7/25/2021</td>
+   <th style="width:4%;border:none;padding-right: 0px;" rowspan="1">(Endorsed)</th>
+</tr>  </table> 
+ -->
+
+
+
+
+
+
+
+<table style="width: 100%; border: none;" th:each="i,status : ${instaOrders}" th:with="users= ${i.user}"
+						class="dataframe table my_table mytab">
+						<tr>
+							<th style="width: 15%; border: none; padding-right: 0px;" >1. Technical Assistant's Name:</th>
+							<td style="width: 18%; padding: 0px;" ><span th:text="${users.name}"></span></td>
+							<th style="width: 5%; border: none; padding-right: 0px;" >Signature:</th>
+							<td style="width: 15%; padding: 0px;" >
+							 <span><img class="img-fluid"
+								th:src="@{'/signatu/'+${users.imageUrl}}"
+								alt="Signature image Null" style="width: 60%; height: 40px" /></span>
+								</td>
+							<th style="width: 4%; border: none; padding-right: 0px;" >Date:</th>
+							<td style="width: 6%; padding: 0px;" ><span th:text="${instaOrders.filleddate}"></span></td>
+						</tr>
+					</table>
+
+					<table style="width:100%;border:none;" class="dataframe table my_table mytab" th:each="i,status : ${instaOrders}"><tr>
+					  <th style="width:11%;border:none;padding-right: 0px;" >2. Instructor's Name:</th>
+					  <td style="width:22%;padding: 0px;" >
+					 <span th:text="${approve.name}"></span>
+					  </td>
+					  <th style="width:5%;border:none;padding-right: 0px;" >Signature:</th>
+					  <td  style="width:15%;padding: 0px;" >
+					  <span><img class="img-fluid"
+													th:src="@{'/signatu/'+${approve.imageUrl}}"
+													alt="Signature image Null" style="width: 60%; height: 40px" /></span>
+					  </td>
+					  <th style="width:4%;border:none;padding-right: 0px;" >Date:</th>
+					  <td style="width:6%;padding: 0px;" >
+					  <span th:text="${i.approveddate}"></span>
+					  </td>
+					</tr>  </table>
+
+
+						<table style="width:100%;border:none;" class="dataframe table my_table mytab" th:each="i,status : ${instaOrders}"><tr>
+						  <th style="width:12%;border:none;padding-right: 0px;" >3. Chair Holder's Name:</th>
+						   <td style="width:21%;padding: 0px;" >
+						   <span th:text="${endor.name}"></span>
+						   </td>
+						   <th style="width:5%;border:none;padding-right: 0px;" >Signature:</th>
+						   <td style="width:15%;padding: 0px;" >
+						   <span><img class="img-fluid"
+														th:src="@{'/signatu/'+${endor.imageUrl}}"
+														alt="Signature image Null" style="width: 60%; height: 40px" /></span>
+						   </td>
+						   <th style="width:4%;border:none;padding-right: 0px;" >Date:</th>
+						   <td style="width:6%;padding: 0px;" >
+						  <span th:text="${i.endorseddate}"></span>
+						   </td>
+						</tr>  </table> 
+<br>     
+  </div>
+
+<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="footer" >        
+</div>
+</body>
+</html>

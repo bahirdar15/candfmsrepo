@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})"
+	th:fragment="layout(content2)">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+
+		<div class="container-fluid px-3 my-0">
+
+
+
+			<div class="card shadow mb-2">
+				<div class="card-header py-2">
+
+					<form class="user" th:action="@{/qualiity/qu}" method="post">
+						<div class="row  my-2 h-100 align-items-center">
+							<div class="col-md-7 form-inline px-0">
+								<label class="" for="inlineFormCustomSelectPref">Academic Year:</label>
+								<div class="col-md-3 mb-2 px-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<div class="m-0 px-0 text-center">
+										<!-- <label for="fmie" class="col-form-label">: </label> -->
+										<select class="custom-selects pl-0" required id="ayear1"
+											style="border: none; outline: 0; box-shadow: none; background: none !important;"
+											name="ayear1">
+											<option value="" selected disabled>--Select--</option>
+											<option th:each="f : ${allAyear}" th:value="${f}"
+												th:text="${f}"></option>
+										</select>
+									</div>
+								</div>
+								
+
+								<label class="" for="inlineFormCustomSelectPref2">Semester:</label>
+								<div class="col-md-2 mb-2 px-1" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<div class="m-0 px-0 text-center">
+										<!-- <label for="fmie" class="col-form-label">: </label> -->
+										<select class="custom-selects pl-0" required id="semesterid1"
+											style="border: none; outline: 0; box-shadow: none; background: none !important;"
+											name="semesterid1">
+											<option value="" selected disabled>-Select-</option>
+											<option th:each="f : ${semesters}" th:value="${f.id}"
+												th:utext="${f.name}"></option>
+										</select>
+									</div>
+
+								</div>
+								<label class="" for="year2">Year:</label>
+								<div class="col-md-2 mb-2 px-1" id="year2"
+									style="border-bottom: 1px solid currentColor;">
+									<div class="m-0 px-0 text-center">
+										<!-- <label for="fmie" class="col-form-label">: </label> -->
+										<select class="custom-selects pl-0" required id="year1"
+											style="border: none; outline: 0; box-shadow: none; background: none !important;"
+											name="year1">
+											<option value="" selected disabled>-Select-</option>
+											<option th:each="f : ${years}" th:value="${f.id}"
+												th:utext="${f.name}"></option>
+												<option th:value="0" th:text="All">All</option>
+										</select>
+									</div>
+								</div>
+
+
+
+
+							</div>
+							<div class="col-md-3 px-0">
+								<div class="radio-pillbox">
+									<radiogroup>
+									<div class="col-md-1 px-0"
+										style="border: 1px solid currentColor; border-style: dotted;">
+										<input type="radio" name="bam1" id="easy1" value="1"
+											class="first" required> <label for="easy1"
+											class="radio-label"></label>
+									</div>
+									<label for="easy1" class="radio-label"> &nbsp;
+										&nbsp;Before Mid: </label>
+									<div class="col-md-1 px-0"
+										style="border: 1px solid currentColor; border-style: dotted;">
+										<input type="radio" name="bam1" id="tricky2" value="2"
+											class="first" required> <label for="tricky2"
+											class="radio-label"></label>
+									</div>
+									<label for="tricky2" class="radio-label"> &nbsp;
+										&nbsp;After Mid: </label> </radiogroup>
+								</div>
+							</div>
+
+
+
+							<div class="col-md-2">
+
+								<div class="input-group  ">
+
+									<select class="custom-select form-select-sm  text-capitalize"
+										required id="prog1" name="prog1">
+										<option value="" selected disabled>Program</option>
+										<option value="1">Regular</option>
+										<option value="2">Extension</option>
+										<option value="3">Summer</option>
+									</select>
+									<div class="input-group-append">
+										<button class="btn btn-primary btn-sm">
+											<i class="fas fa-share"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+
+
+
+
+						</div>
+
+
+
+
+					</form>
+				</div>
+				<div class="card-body">
+
+
+
+
+					<!-- <div class="row">
+						<div class="col-md-4  text-left">
+							<div class="btn-group">
+								<a th:href="@{'/qualiity/jo/3'}" class="btn btn-success btn-sm"
+									id="detailsButton"><i class="fas fa-file-alt"></i>
+									mmmmmmmmmmm</a>
+							</div>
+
+						</div>
+					</div> -->
+
+
+
+
+
+
+
+
+
+
+				
+
+					<div th:replace="${content2}"></div>
+
+
+
+
+
+
+
+				</div>
+
+			</div>
+		</div>
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

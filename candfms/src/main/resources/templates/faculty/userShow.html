@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+</head>
+<body>
+    
+
+<section>   
+ 
+
+                
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- meessage -->
+                              <div th:if="${session.message}" id="hideDiv" th:classappend="${session.message.type}" class="alert " role="alert">
+								  <p class="text-center" th:text="${session.message.content}"></p>
+								  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							  </div>
+							  
+							  
+							  
+							  
+							  
+							  
+<a type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addUserModal" ><i class="fas fa-plus-circle"></i> New User</a>
+      
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 mt-2">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Of Least</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="dataTable" class="table table-striped table-advance table-hover">
+                <thead>
+                  <tr>
+                    <th><i class="icon_table"></i>id</th>
+                    <th><i class="icon_table"></i>Name</th>
+                     <th><i class="icon_table"></i> User Name</th>
+                    <th><i class="icon_table"></i> Role</th>
+                    <th><i class="icon_cogs"></i>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="a:${admins}">
+                    <td th:text="${a.id}"></td>
+                    <td th:text="${a.name}"></td>
+                     <td th:text="${a.uname}"></td>
+                     <td th:text="${a.role}"></td>
+                    
+                    <td>
+                  <div class="btn-group">
+                    <a th:href="@{/admin/findById/(id=${a.id})}" class="btn btn-primary btn-sm" id="editAdminButton"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-info btn-sm" id="detailsButton"><i class="fas fa-file-alt"></i></a>            
+                    <a th:href="@{/admin/delete/(id=${a.id})}" class="btn btn-danger btn-sm" id="deleteadminButton"><i class="fas fa-trash"></i></a>
+                    </div> 
+                    </td>
+                  </tr>
+        </tbody>
+        
+       </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+                
+                
+                
+                
+
+</section>  
+                
+       
+</body>
+</html>

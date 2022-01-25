@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+</head>
+<body>
+    
+
+<section>   
+ 
+
+                
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Data Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.</p>
+								   <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+									  <p class="text-center" th:text="${session.message.content}"></p>
+									  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								  </div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                    
+                              
+							  
+							  
+							  
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Show All Data</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                                <th>#ID</th>
+									            <th>Title</th>
+									            <th>code</th>
+									            <th>statust</th>
+									            <th>description</th>
+									            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                        <tr th:each="c : ${coursouts}">
+                                            <td th:text="${c.cId}"></td>
+                                            <td>
+                                          
+                                            <a href="#" th:href="@{'/faculty/'+${c.cId}+'/coursout'}">
+							                  <span th:text="${c.Title}"> </span></a>
+                                            
+                                            </td>
+                                            <td th:text="${c.code}"></td>
+                                            <td>
+                                             
+                                                 <a  th:if="${c.statust}=='Pending'" th:onclick="|apprCours(${c.cId})|" class="btn btn-danger btn-sm" id="apprButton" sec:authorize="hasAuthority('ROLE_ADMIN')" 
+                                                 data-toggle="tooltip" data-placement="top" title="Now Request To admin Processing(Reviewing and Decisioning)"><i class="fa fa-spinner fa-spin"></i> Pending....</a> 
+												 
+												 <a  th:if="${c.statust}=='Pending'"  class="btn btn-danger btn-sm" id="apprButton" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')" type="button" disabled
+												 data-toggle="tooltip" data-placement="top" title="Now Request To admin Processing(Reviewing and Decisioning)"><i class="fa fa-spinner fa-spin"></i> Pending....</a> 
+												 
+												 <a  th:if="${c.statust}=='Approved'"  class="btn btn-success btn-sm" id="apprButton" type="button" disabled 
+												 data-toggle="tooltip" data-placement="top" title="Now You Can print" ><i class="fas fa-check-circle"></i> <span th:text="${c.statust}">  </span> </a> 
+						
+                                            
+                                            
+                                            </td>
+                                            <td th:utext="${c.description}"></td>
+                                            <td>   
+                                                                                     
+                                                
+												<!-- <form method="post" th:action="@{'/faculty/update-coursout/'+${c.cId}}" class="mt-2">
+												     <button type="submit" class="btn btn-primary" id="editButton"><i class="fas fa-edit"></i></button>											
+												</form> 
+												<div class="btn-group"> 
+												<a th:href="@{'/faculty/'+${c.cId}+'/coursout'}" class="btn btn-success" id="detailsButton"><i class="fas fa-file-alt"></i></a>            
+											    <a href="#" th:onclick="|deleteCours(${c.cId})|" class="btn btn-danger" id="deleteButton"><i class="far fa-trash-alt"></i></a> 
+											    <a href="#" th:onclick="|apprCours(${c.cId})|" class="btn btn-danger" id="apprButton"><i class="far fa-edit"></i></a> 
+												 </div> -->
+											
+												<div class="row">
+                                                    <div class="col-md-2 text-right">
+                                                                                       
+                                                
+												<form th:if="${c.statust}=='Pending'" method="post" th:action="@{'/faculty/update-coursout/'+${c.cId}}" class="mr-2" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+												     <button type="submit" class="btn btn-primary btn-sm" id="editButton"><i class="fas fa-edit"></i></button>											
+												</form> 
+												</div>
+												<div class="col-md-4  text-left">
+												<div class="btn-group"> 
+												<a th:href="@{'/faculty/'+${c.cId}+'/coursout'}" class="btn btn-success btn-sm" id="detailsButton" ><i class="fas fa-file-alt"></i></a>            
+											    <a href="#" th:if="${c.statust}=='Pending'" th:onclick="|deleteCours(${c.cId})|" class="btn btn-danger btn-sm" id="deleteButton" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"><i class="fas fa-trash"></i></a> 
+											    
+												 <a href="#" th:if="${c.statust}=='Approved'" class="btn btn-danger btn-sm" id="print"><i class="fas fa-print"></i></a> 
+												 
+												 </div>
+											
+												  </div>
+                                                </div>  
+                                                
+                                                
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+                
+                
+                
+                
+
+</section>  
+                
+       
+</body>
+</html>

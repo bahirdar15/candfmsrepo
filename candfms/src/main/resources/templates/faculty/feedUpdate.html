@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+</head>
+<body>
+    
+
+                
+              <section>    
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+            <h1 class="text-center">Updata Course Outline</h1>
+            <div class="container-fluid mt-1">
+                 <div class="col-md-10 offset-md-1">
+			                 <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+								  <p class="text-center" th:text="${session.message.content}"></p>
+								  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							  </div>
+			                <div class="container text-center">
+			                    <img style="width:80px;" th:src="@{/img/registration.png}" alt="" />
+			                   
+			                </div>
+                     <form action="#"
+                          th:object="${feedback}"
+                          enctype="multipart/form-data"
+                          method="POST"
+                          th:action="@{/faculty/process-updateFeed}"
+                          class="mt-2">
+                        <!--Processing id for internal information-->
+                        <input type="hidden" th:value="${feedback.fId}" name="fId"/>
+                        
+                     <!-- Title -->
+                         <div class="input-group">
+                              <div class="input-group-prepend">
+                                  <div class="input-group-text">
+                                    <i class="fa fa-plus"></i>
+                                  </div>
+                              </div>
+                              <input type="text" th:value="${feedback.nameoffeed}" id="nameoffeed" name="nameoffeed" placeholder="Enter cours title here"  class="form-control" required/>
+                         </div>
+                      
+                       <!--Contact Description-->
+                        <div class="form-group mt-3">
+                            <textarea th:utext="${feedback.description}" name="description" id="mytextarea" class="form-control" placeholder="Enter contact description" rows="10" ></textarea>
+                        </div>
+                        
+     <div class="form-group mt-3">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="iass1" name="iass" class="custom-control-input" th:value="1" th:checked = "${feedback.iass == 1} "  th:field="${feedback.iass}">
+                <label class="custom-control-label" for="iass1">Option1</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="iass2" name="iass" class="custom-control-input" th:value="2" th:checked = "${feedback.iass == 2} "  th:field="${feedback.iass}">
+                <label class="custom-control-label" for="iass2">Option2</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="iass3" name="iass" class="custom-control-input" th:value="3" th:checked = "${feedback.iass == 3} "  th:field="${feedback.iass}">
+                <label class="custom-control-label" for="iass3">Option3</label>
+            </div>
+        </div>  
+                     
+                     
+                         <div class="container text-center">
+                            <button class="btn btn-outline-primary">Save Contact</button>
+                         </div>
+                     
+                     
+                     </form>
+                 
+                 </div>
+            </div>
+        
+	
+	
+	<script th:src="@{/tinymce/tinymce.min.js}"></script>	
+    <script>tinymce.init({ selector:'textarea'});</script>	
+    
+    
+                        
+                    </div>
+
+
+                </div>
+                <!-- /.container-fluid -->
+              </section>  
+                
+       
+</body>
+</html>

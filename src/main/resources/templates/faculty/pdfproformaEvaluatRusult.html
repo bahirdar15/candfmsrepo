@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+  
+
+<title th:text="${title}">C And F - Result</title>
+<link th:href="@{/css/fmie2.css}" rel="stylesheet"/>
+ <style>
+    div.footer {
+                display: block;
+                text-align: left;           
+                position: running(footer);
+                background-color: powderblue;
+                color: red;
+    
+            }
+    @page {
+    
+                size: A4 portrait; 
+               /*  size: A4 landscape; */
+                @bottom-right {                
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+                @bottom-left {                
+                     content: element(footer);                 
+    
+                }
+                counter-increment: page;
+                counter-reset: page 1;
+            }
+    </style>
+    
+</head>
+<body style="font-family: Noto Naskh Arabic">
+ <div  th:each="f : ${proformRequ}" th:with="userr= ${f.user}">
+ <div >
+ 
+ 
+  <div style="text-align: center;">
+    <img th:src="@{/img/bdu.png}" height="150" >
+    <h4  style="text-transform:uppercase;font-weight: bold;margin: 0px;"> 	Bahir Dar University </h4>
+    <p style="text-transform:uppercase;font-weight: bold;"> 	Bahir Dar Institute of Technology (BIT) </p>
+    <p style="text-transform:uppercase;font-weight: bold;"> 	Faculty of Mechanical and Industrial Engineering </p>
+  </div>
+
+<h4 style="text-align: center;"><font size="5px" style="color: rgb(0, 0, 160);"> INSTRUCTORS’ PERFORMANCE EVALUATION RESULT</font></h4>
+ <!-- ===========================================finsh  hider =============================================-->
+ 
+
+
+
+
+
+<br>
+
+
+
+
+
+
+  <h4 style="padding-left: 100px;margin: 0px;"><strong >	<img th:src="@{/img/point.png}" alt="Smiley face"
+    height="15" width="15"> 
+    INSTRUCTORS DETAILS</strong></h4>
+  <br>
+
+    <table style="width:80%;border:none;" class="dataframe table my_table"><tr>
+      <th style="width:44%;border:none;padding-right: 0px;" rowspan="2">Name of Instructor/FMIE To Be Evaluated:</th>
+       <td style="width:36%;padding: 0px;" ><span th:text="${proformRequ.user.name}"> </span></td>    
+ </tr>  </table> 
+
+ <table style="width:80%;border:none;" class="dataframe table my_table"><tr>
+  <th style="width:9%;border:none;padding-right: 0px;" rowspan="2">Faculty: </th>
+  <td style="width:71%;padding: 0px;" > Mechanical and Industrial Engineering</td>    
+</tr>  </table> 
+
+<table style="width:80%;border:none;" class="dataframe table my_table" ><tr>
+  <th style="width:28%;border:none;padding-right: 0px;" rowspan="2">Instructor Course Name</th>
+   <td style="width:62%;padding: 0px;" ><span >For All Course</span> </td>    
+</tr>  </table> 
+
+<table style="width:80%;border:none;" class="dataframe table my_table"><tr>
+  <th style="width:18%;border:none;padding-right: 0px;" rowspan="2">Evaluation Year:</th>
+   <td style="width:62%;padding: 0px;" ><span th:text="${f.ayear}"> </span> </td>    
+</tr>  </table> 
+
+<table style="width:80%;border:none;" class="dataframe table my_table" ><tr>
+  <th style="width:22%;border:none;padding-right: 0px;" rowspan="2">Evaluation Semester:</th>
+   <td style="width:58%;padding: 0px;" ><span th:utext="${proformRequ.semester.name}"> </span> </td>    
+</tr>  </table> 
+ <br>     
+<br><br><br>
+
+
+
+<table style="width:100%">
+<tr>
+  <th colspan="9"   style="text-align: center;"> <font size="5px" style="color: rgb(0, 0, 160);"> Evaluation Result</font></th>
+ 
+ </tr>
+ 
+
+ <tr>
+  <th  style="width:40%;text-align: center;" colspan="4" >Evaluators Designation:</th>
+  <th  style="width:30%;text-align: center;" colspan="3" >Number Of Evaluators:</th>
+  <th  style="width:15%;text-align: center;" colspan="2" >Total</th>
+ </tr>
+
+ <tr>
+  <td  style="width:40%" colspan="4" >Evaluated by student:</td>
+  <td  style="width:30%" colspan="3" ><span th:text="${countEvaluterStudent}"> </span></td>
+  <td  style="width:15%;text-align: center;" colspan="2" ><b><span th:text="${StudentAva}"> </span></b>/50</td>
+ </tr>
+ <tr>
+  <td  style="width:40%" colspan="4" >Evaluated by Colleagues:</td>
+  <td  style="width:30%" colspan="3" ><span th:text="${countEvaluterCo}"> </span></td>
+  <td  style="width:15%;text-align: center;" colspan="2" ><b><span th:text="${collagAva}"> </span></b>/15</td>
+ </tr>
+ <tr>
+  <td  style="width:40%" colspan="4" >Evaluated by Immediate Supervisor:</td>
+  <td  style="width:30%" colspan="3" ><span th:text="${countEvaluterSuper}"> </span></td>
+  <td  style="width:15%;text-align: center;" colspan="2" ><b><span th:text="${SuperAva}"> </span></b>/35</td>
+ </tr>
+
+ 
+ <tr>
+  <th  style="width:40%; text-align: right;" colspan="7" >Total Result:</th>
+  <td  style="width:15%;text-align: center;" colspan="2" ><b><span th:text="${totalall}"> </span></b>/100</td>
+ </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+
+
+      <br>
+
+      <fieldset style="text-align: center;border-color: rgb(128, 0, 255);border-style: dotted solid;">
+        <legend><h4 style="color: rgb(0, 0, 160); font-size: 1.5em;">Immediate Supervisor Name and Signature:</h4></legend>
+        <div>
+       
+      <br>
+
+      <table style="width:100%;border:none;" class="dataframe table my_table mytab"><tr>
+        <th style="width:8%;border:none;padding-right: 0px;" >Name:</th>
+         <td style="width:33%;padding: 0px;" ><span th:each="c : ${chairHolder}" th:if="${c.id}==${f.approvedby}" th:text="${c.name}"></span></td>
+         <th style="width:12%;border:none;padding-right: 0px;" >Signature:</th>
+         <td style="width:15%;padding: 0px;"  th:each="c : ${chairHolder}" th:if="${c.id}==${f.approvedby}">
+         <img th:src="@{'/signatu/'+${c.imageUrl}}" height="40" ></td>
+         <th style="width:7%;border:none;padding-right: 0px;" >Date:</th>
+         <td style="width:9%;padding: 0px;" ><span th:text="${f.approveddate}"> </span></td>
+   </tr>  </table> 
+   <br>     
+        </div>
+      </fieldset>
+
+<br>
+
+
+
+
+
+
+
+</div>
+ </div>
+<div class="footer" >        
+</div>
+</body>
+</html>

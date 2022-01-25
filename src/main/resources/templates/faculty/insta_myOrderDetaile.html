@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+		<style>
+.col-md-half { @extend .col-md-1;
+	width: 4.166666667%;
+}
+</style>
+
+
+		<div class="container-fluid px-3 my-0">
+
+
+
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+
+					<!-- <a type="button" class="btn btn-success btn-sm"
+						th:href="@{/order/show_myorder}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a> -->
+						
+						<a  onclick="goBack()" class="dropdown-item text-left btn-user pr-0" ><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</a>
+
+
+				</div>
+				<div class="card-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<div class="row text-center  my-2  h-100 align-items-center">
+						<h4>
+							<b>Course Following-Up Checklist:-</b>
+						</h4>
+						<span><p class="pt-2 pr-2">To be filled by the course
+								instructor</p></span>
+					</div>
+					<div class="row  my-2 h-100 align-items-center">
+						<div class="col-md-7 form-inline px-0">
+							<label class="" for="inlineFormCustomSelectPrefa">Faculty:</label>
+							<div class="col-md-8 mb-1" id="inlineFormCustomSelectPrefa"
+								style="border-bottom: 1px solid currentColor;">Mechanical And Industrial Engineering</div>
+						</div>
+						<div class="col-md-5 px-0">
+							<div class="radio-pillbox">
+								<radiogroup>
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="bam" id="easy1" value="1"
+										class="first" th:checked="${instaOrders.bam == 1} "
+										th:field="${instaOrders.bam}"> <label for="easy1"
+										class="radio-label"></label>
+								</div>
+								<label for="easy1" class="radio-label"> &nbsp;
+									&nbsp;Before Mid Exam: </label>
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="bam" id="tricky2" value="2"
+										class="first" th:checked="${instaOrders.bam == 2} "
+										th:field="${instaOrders.bam}"> <label for="tricky2"
+										class="radio-label"></label>
+								</div>
+								<label for="tricky2" class="radio-label"> &nbsp;
+									&nbsp;After Mid Exam: </label> </radiogroup>
+							</div>
+
+
+
+
+
+
+						</div>
+					</div>
+					<div class="row   my-2 h-100 align-items-center">
+						<label class="" for="inlineFormCustomSelectPref">Academic
+							Year:</label>
+						<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${instaOrders.ayear}"></span>
+						</div>
+
+						<label class="" for="inlineFormCustomSelectPref2">Semester:</label>
+						<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;"
+							th:each="i,status : ${instaOrders}"
+							th:with="semester= ${i.semester}">
+
+							<span th:utext="${semester.name}"></span>
+
+						</div>
+
+
+					</div>
+                    <div class="row my-2">
+						<div class="radio-pillbox">
+							<radiogroup> <b><h5>Program</h5></b> &nbsp;
+							&nbsp;&nbsp; &nbsp;
+							<div class="col-md-1 px-0"
+								style="border: 1px solid currentColor; border-style: dotted;">
+								<input type="radio" name="prog" id="easy" value="1"
+									th:checked="${instaOrders.prog == 1} "
+									th:field="${instaOrders.prog}" class="first"> <label
+									for="easy" class="radio-label"></label>
+							</div>
+							<label for="easy" class="radio-label"> &nbsp;
+								&nbsp;Regular: </label>
+
+							<div class="col-md-1 px-0"
+								style="border: 1px solid currentColor; border-style: dotted;">
+								<input type="radio" name="prog" id="tricky"
+									th:checked="${instaOrders.prog == 2} "
+									th:field="${instaOrders.prog}" value="2" class="first">
+								<label for="tricky" class="radio-label"></label>
+							</div>
+							<label for="tricky" class="radio-label"> &nbsp;
+								&nbsp;Extension: </label>
+
+							<div class="col-md-1 px-0"
+								style="border: 1px solid currentColor; border-style: dotted;">
+								<input type="radio" name="prog" id="sum" value="3"
+									th:checked="${instaOrders.prog == 3} "
+									th:field="${instaOrders.prog}" class="first"> <label
+									for="sum" class="radio-label"></label>
+							</div>
+							<label for="sum" class="radio-label"> &nbsp;
+								&nbsp;Summer: </label> </radiogroup>
+						</div>
+					</div>
+
+
+					<br>
+					<div class="row text-center   px-0">
+						<div class="col-md-half  px-0 " style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">No</div>
+							</div>
+						</div>
+						<div class="col-md-3 px-0 justify-content-center"
+							style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Course Name</div>
+							</div>
+						</div>
+						<div class="col-md-1 " style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Course Code</div>
+							</div>
+						</div>
+						<div class="col-md-5 ">
+							<div class="row" style="border: 1px solid #858796;">
+								<div class="col-md-6 px-0 "
+									style="text-align: center; border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center">
+										<div class="col-md-12 col-sm-12 ">Total No Of Chapter</div>
+									</div>
+								</div>
+								<div class="col-md-6 px-0 my-2">
+									<div class="row text-center   h-100 align-items-center">
+										<div class="col-md-12 col-sm-12">Total Number of
+											Assessments</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12">In The Course</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Planned</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Covered</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Planed</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">Delivered</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0" style="border: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">FeedBack Given Back To
+											Students</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-half pt-4" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12"
+									style="transform: rotate(270deg);">Secti</div>
+							</div>
+						</div>
+						<div class="col-md-1 pt-4 px-0" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Year</div>
+							</div>
+						</div>
+						<div class="col-md-1 pt-4" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<!-- dynamic page -->
+					<div class="row text-center   px-0"
+						th:each="i,status : ${orderDetailes}"
+						th:with="coursout= ${i.coursout}">
+						<div class="col-md-half  px-0 "
+							style="text-align: center; border: 1px solid #858796;">
+
+
+
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">[[${status.count}]]</div>
+							</div>
+						</div>
+						<div class="col-md-3 px-0 justify-content-center"
+							style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center px-0">
+								<div class="col-md-12 col-sm-12 ">
+
+
+
+									<span th:text="${coursout.title}"></span>
+
+
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1 " style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">
+									<b> <span th:text="${coursout.ccode}"></span>
+
+
+									</b>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-5 " style="border: 1px solid #858796;" >
+							<div class="row text-center  h-100 px-0">
+								<div class="col-md-2  px-0 "
+									style="text-align: center; border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">
+
+											<span th:text="${i.ncc}"></span>
+												
+
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0"
+									style="border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">
+
+											<span th:text="${i.ncp}"></span>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0"
+									style="border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">
+											<span th:text="${i.ncco}"></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0"
+									style="border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">
+
+											<span th:text="${i.nap}"></span>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0"
+									style="border-right: 1px solid #858796;">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">
+											<span th:text="${i.nad}"></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2 px-0">
+									<div class="row text-center   h-100 align-items-center ">
+										<div class="col-md-12 col-sm-12 ">
+											<span th:text="${i.naf}"></span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="col-md-half px-0" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 text-uppercase">
+									<span th:text="${i.sect}"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1  px-0" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">
+									<!-- <span th:if="${i.prog}=='1'">Regular</span> <span
+										th:if="${i.prog}=='2'">Extension</span> <span
+										th:if="${i.prog}=='3'">Summer</span> -->
+										<span  th:utext="${i.year.name}"></span> 
+								</div>
+							</div>
+						</div>
+						<div class="col-md-1  px-0" style="border: 1px solid #858796;">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">
+									<span th:text="${i.rema}"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<br> <br>
+					<div class="row   my-2 h-100 align-items-center"
+						th:each="i,status : ${instaOrders}" th:with="users= ${i.user}">
+						<label class="" for="inlineFormCustomSelectPref">1.
+							Instructor's Name:</label>
+						<div class="col-md-4 px-1 mb-2" id="inlineFormCustomSelectPref"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${users.name}"></span>
+						</div>
+						<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+						<div class="col-md-2  px-3  text-success mb-4"
+							id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span><img class="img-fluid"
+								th:src="@{'/signatu/'+${users.imageUrl}}"
+								alt="Signature image Null" style="width: 60%; height: 40px" /></span>
+						</div>
+
+						<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${i.filleddate}"></span>
+						</div>
+						(Filled)
+
+					</div>
+
+
+
+					<div class="row   my-2 h-100 align-items-center" th:each="i,status : ${instaOrders}" th:with="users= ${i.user}"
+						th:if="${instaOrders.status}=='Approved' or ${instaOrders.status}=='Endorsed'"
+						sec:authorize="hasAnyAuthority('CHAIR_HOLDER,COURSE_CHAIR,QUALITY,DEAN')">
+						<label class="" for="inlineFormCustomSelectPref">2. Course
+							Chair's Name:</label>
+						<div class="col-md-3 px-1 mb-2" id="inlineFormCustomSelectPref"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${approve.name}"></span>
+							</div>
+
+						<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span><img class="img-fluid"
+								th:src="@{'/signatu/'+${approve.imageUrl}}"
+								alt="Signature image Null" style="width: 60%; height: 40px" /></span>
+							</div>
+
+						<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${i.approveddate}"></span>
+							</div>
+						(Approved)
+					</div>
+
+					<div class="row   my-2 h-100 align-items-center" 
+					th:if="${instaOrders.status}=='Endorsed'"
+					th:each="i,status : ${instaOrders}" th:with="users= ${i.user}"
+						sec:authorize="hasAnyAuthority('CHAIR_HOLDER,QUALITY,DEAN')">
+						<label class="" for="inlineFormCustomSelectPref">3. Chair
+							Holder's Name:</label>
+						<div class="col-md-3 px-1 mb-2" id="inlineFormCustomSelectPref"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${endor.name}"></span>
+							</div>
+
+						<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span><img class="img-fluid"
+								th:src="@{'/signatu/'+${endor.imageUrl}}"
+								alt="Signature image Null" style="width: 60%; height: 40px" /></span>
+							</div>
+
+						<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+						<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+							style="border-bottom: 1px solid currentColor;">
+							<span th:text="${i.endorseddate}"></span>
+							</div>
+						(Endorsed)
+					</div>
+
+
+
+
+					<form action="#" th:object="${instaOrders}"  th:if="${instaOrders.status}=='Filled'"
+						sec:authorize="hasAuthority('COURSE_CHAIR')"
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/order/process-approvedPost}">
+						<input type="hidden" th:value="${instaOrders.id}" name="id" /> 
+						<input type="hidden" th:value="${instaOrders.approvedby}" name="approvedby" /> 
+						<input type="hidden" th:value="${instaOrders.prog}" name="prog" /> 
+							<input type="hidden"
+							th:value="${instaOrders.userid}" name="userid" /> <input
+							type="hidden" th:value="${instaOrders.bam}" name="bam" /> <input
+							type="hidden" th:value="${instaOrders.ayear}" name="ayear" /> <input
+							type="hidden" th:value="${instaOrders.filleddate}"
+							name="filleddate" /> <input type="hidden"
+							th:value="${instaOrders.semesterid}" name="semesterid" />
+
+
+
+
+						<div class="row">
+							<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+								<div class="m-2 text-center">
+									<!-- <label for="fmie" class="col-form-label">: </label> -->
+									<select class="custom-select" required id="endorsedby"
+										name="endorsedby">
+										<option value="" selected disabled>---Select Chair
+											Holder's Name---</option>
+										<option th:each="c : ${roleBothInsAndAssi3}" th:value="${c.id}"
+											th:text="${c.name}"></option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="container text-center">
+							<button type="submit" class="btn btn-outline-success btn-sm">Approved</button>
+						</div>
+
+					</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				</div>
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+		<!--  model delete             -->
+
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

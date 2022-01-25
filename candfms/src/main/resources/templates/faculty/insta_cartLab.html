@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+		<style>
+.col-md-half { @extend .col-md-1;
+	width: 4.166666667%;
+}
+</style>
+
+
+
+		<div class="container-fluid px-3 my-0">
+
+
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/faculty/show_Cours}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a>
+				</div>
+				<div class="card-body">
+
+
+
+
+
+
+
+
+					<form action="#" th:object="${coursouted}"
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/orderLab/process-cartLab}">
+
+
+
+
+						<div class="row text-center  my-2  h-100 align-items-center">
+							<h4>
+								<b>Work Shop/Lab Course Following-Up Checklist:-</b>
+							</h4>
+							<span><p class="pt-2 pr-2">To be filled by
+									Technical/Lab Assistant</p></span>
+						</div>
+						<div class="row  my-2 h-100 align-items-center">
+							<div class="col-md-7 form-inline px-0">
+								<label class="" for="inlineFormCustomSelectPrefa">Faculty:</label>
+								<div class="col-md-8 mb-1" id="inlineFormCustomSelectPrefa"
+									style="border-bottom: 1px solid currentColor;">FMIE</div>
+							</div>
+							<div class="col-md-5 px-0">
+								<div class="radio-pillbox">
+									<radiogroup>
+									<div class="col-md-1 px-0"
+										style="border: 1px solid currentColor; border-style: dotted;">
+										<input type="radio" name="bam" id="easy1" required value="1"
+											class="first"> <label for="easy1" class="radio-label"></label>
+									</div>
+									<label for="easy1" class="radio-label"> &nbsp;
+										&nbsp;Before Mid Exam: </label>
+									<div class="col-md-1 px-0"
+										style="border: 1px solid currentColor; border-style: dotted;">
+										<input type="radio" name="bam" id="tricky2" value="2"
+											class="first"> <label for="tricky2"
+											class="radio-label"></label>
+									</div>
+									<label for="tricky2" class="radio-label"> &nbsp;
+										&nbsp;After Mid Exam: </label> </radiogroup>
+								</div>
+							</div>
+						</div>
+						<div class="row   my-2 h-100 align-items-center">
+							<label class="" for="inlineFormCustomSelectPref">Academic
+								Year:</label>
+							<div class="col-md-1 mb-1 px-1" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+								<!-- <input class="form-control text-center "
+									id="ayear" name="ayear" type="text" 
+									th:value="${#dates.format(#dates.createNow(), 'yyyy')}" disabled
+									style="border: none; outline: 0; box-shadow: none;">
+								<span></span> -->
+							</div>
+							<input type="hidden"
+								th:value="${#dates.format(#dates.createNow(), 'yyyy')}"
+								name="ayear" /> <label class=""
+								for="inlineFormCustomSelectPref2">Semester:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<select class="browser-default custom-select px-0 " required
+									id="semesterid"
+									style="border: none; outline: 0; box-shadow: none; background: none !important;"
+									name="semesterid">
+									<option value="" selected disabled>--Select Semester--</option>
+									<option th:each="f : ${semesters}" th:value="${f.id}"
+										th:utext="${f.name}"></option>
+								</select>
+							</div>
+
+							<label class="px-2" for="inlineFormCustomSelectPref3">&nbsp;Year:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref3"
+								style="border-bottom: 1px solid currentColor;">
+								<select class="browser-default custom-select pl-0" required
+									id="yearid"
+									style="border: none; outline: 0; box-shadow: none; background: none !important;"
+									name="yearid">
+									<option value="" selected disabled>--Select Year--</option>
+									<option th:each="f : ${years}" th:value="${f.id}"
+										th:utext="${f.name}"></option>
+								</select>
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref4">Section:</label>
+							<div class="col-md-1 mb-2 px-2" id="inlineFormCustomSelectPref4"
+								style="border-bottom: 1px solid currentColor;">
+
+								<!-- <input class="form-control text-center text-uppercase"
+									id="section" name="section" type="text" placeholder="A"
+									required style="border: none; outline: 0; box-shadow: none;"> -->
+
+								<select class="browser-default custom-select pr-0 pl-2" required
+									id="section" name="section"
+									style="border: none; outline: 0; box-shadow: none; background: none !important;">
+									<option value="" selected disabled>--A--</option>
+									<option th:value="A">A</option>
+									<option th:value="B">B</option>
+									<option th:value="C">C</option>
+									<option th:value="D">D</option>
+									<option th:value="E">E</option>
+									<option th:value="F">F</option>
+								</select>
+
+							</div>
+							<label class="" for="inlineFormCustomSelectPref">Group:</label>
+							<div class="col-md-1 mb-2 px-2" id="inlineFormCustomSelectPref5"
+								style="border-bottom: 1px solid currentColor;">
+								<!-- <input class="form-control text-center text-uppercase" id="grou"
+									name="grou" type="text" placeholder="A" required
+									style="border: none; outline: 0; box-shadow: none;"> -->
+
+								<select class="browser-default custom-select pr-0 pl-2" required
+									id="grou" name="grou"
+									style="border: none; outline: 0; box-shadow: none; background: none !important;">
+									<option value="" selected disabled>--1--</option>
+									<option th:value="1">1</option>
+									<option th:value="2">2</option>
+									<option th:value="3">3</option>
+									<option th:value="4">4</option>
+									<option th:value="5">5</option>
+									<option th:value="6">6</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row my-2">
+							<div class="radio-pillbox">
+								<radiogroup> <b><h5>Program</h5></b> &nbsp;
+								&nbsp;&nbsp; &nbsp;
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="prog" id="easy" value="1" required
+										class="first"> <label for="easy" class="radio-label"></label>
+								</div>
+								<label for="easy" class="radio-label"> &nbsp;
+									&nbsp;Regular: </label>
+
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="prog" id="tricky" value="2"
+										class="first"> <label for="tricky" class="radio-label"></label>
+								</div>
+								<label for="tricky" class="radio-label"> &nbsp;
+									&nbsp;Extension: </label>
+
+								<div class="col-md-1 px-0"
+									style="border: 1px solid currentColor; border-style: dotted;">
+									<input type="radio" name="prog" id="sum" value="3"
+										class="first"> <label for="sum" class="radio-label"></label>
+								</div>
+								<label for="sum" class="radio-label"> &nbsp;
+									&nbsp;Summer: </label> </radiogroup>
+							</div>
+						</div>
+
+
+
+
+
+
+						<div class="row   my-2 h-100 align-items-center"
+							th:each="i : ${coursouted}">
+
+							<input type="hidden" th:value="${user.id}" name="userid" /> <input
+								type="hidden" th:value="${i.cId}" name="coursoutid" /> <label
+								class="" for="inlineFormCustomSelectPref">Course name:</label>
+							<div class="col-md-5 mb-2 px-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${i.title}"></span>
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Course
+								Code:</label>
+							<div class="col-md-3 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<b> <span th:text="${i.ccode}"></span>
+							</div>
+
+						</div>
+						<br>
+						<div class="row text-center   px-0">
+							<div class="col-md-1  px-0 " style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">Weeks</div>
+								</div>
+							</div>
+							<div class="col-md-5 px-0 justify-content-center"
+								style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">Lab/Test/Session Name</div>
+								</div>
+							</div>
+
+							<div class="col-md-5 ">
+								<div class="row p-3" style="border: 1px solid #858796;">
+
+									<div class="col-md-12 col-sm-12">Signature(every session)</div>
+
+
+								</div>
+								<div class="row">
+									<div class="col-md-4 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12">Instructor</div>
+										</div>
+									</div>
+									<div class="col-md-4 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">Technical/Lab
+												Assistant</div>
+										</div>
+									</div>
+									<div class="col-md-4 px-0" style="border: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">Student/Section
+												Representative's</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="col-md-1 pt-4" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">Remark</div>
+								</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+						<div class="row text-center   px-0">
+							<div class="col-md-1  px-0 "
+								style="text-align: center; border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<input class="form-control text-center" id="week" name="week"
+											type="number" placeholder="1" required
+											style="border: none; outline: 0; box-shadow: none;">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 px-0 justify-content-center"
+								style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<input class="form-control text-center" id="lname"
+											name="lname" required type="text" placeholder="lab name"
+											style="border: none; outline: 0; box-shadow: none;">
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-5 " style="border: 1px solid #858796;">
+								<div class="row text-center  h-100 px-0">
+									<div class="col-md-4  px-0 "
+										style="text-align: center; border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">1</div>
+										</div>
+									</div>
+									<div class="col-md-4 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">2</div>
+										</div>
+									</div>
+									<div class="col-md-4 px-0"
+										style="border-right: 1px solid #858796;">
+										<div class="row text-center   h-100 align-items-center ">
+											<div class="col-md-12 col-sm-12 ">3</div>
+										</div>
+									</div>
+
+								</div>
+
+
+							</div>
+							<div class="col-md-1 px-0" style="border: 1px solid #858796;">
+								<div class="row text-center   h-100 align-items-center ">
+									<div class="col-md-12 col-sm-12 ">
+										<input class="form-control text-center" id="rema" name="rema"
+											type="text" placeholder="Rema"
+											style="border: none; outline: 0; box-shadow: none;">
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<div class="container text-center">
+							<button class="btn btn-outline-success">Save</button>
+						</div>
+
+
+					</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+				</div>
+
+
+
+
+
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

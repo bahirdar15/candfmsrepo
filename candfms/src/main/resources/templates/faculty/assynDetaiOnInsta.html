@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4 mt-2">
+				<div class="card-header py-3">
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/assign/assignShow}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a>
+
+				</div>
+				<div class="card-body">
+					<div class="table-responsive ">
+
+
+
+
+
+
+
+
+
+						<table id="dataTable"
+							class="table table-striped table-advance table-hover">
+							<thead>
+								<tr>
+									<!-- <th><i class="icon_table"></i>Id</th> -->
+									<th><i class="icon_table"></i>No</th>
+									<!--  <th><i class="icon_table"></i>UcAssign ID:</th>
+                    <th><i class="icon_table"></i>Course ID:</th>
+                     -->
+									<th><i class="icon_table"></i>Course Title:</th>
+									<th><i class="icon_cogs"></i>Course Code:</th>
+									<th><i class="icon_cogs"></i>Year:</th>
+									<th><i class="icon_cogs"></i>Semester:</th>
+									<th><i class="icon_cogs"></i>Action:</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr th:each="c,status : ${assigninstaDetil}">
+								<!-- <td th:text="${c.id}"></td>    -->
+									<td>[[${status.count}]]</td>
+									<!-- <td th:text="${c.userCoursoutAssignid}"></td>           
+                      <td th:text="${c.coursout.cId}"></td> -->
+									<td th:text="${c.coursout.title}"></td>
+
+
+									<td><a href="#"
+										th:href="@{'/faculty/'+${c.coursout.cId}+'/coursout'}"> <span
+											th:text="${c.coursout.ccode}"> </span></a></td>
+									<td th:utext="${c.coursout.year.name}"></td>
+									<td th:utext="${c.coursout.semester.name}"></td>
+
+
+									<td>
+									<a th:href="@{'/order/'+${c.id}+'/cart'}"   th:if="${switchFeedback1.idswitcch==1} and ${switchFeedback2.idswitcch==1}"
+														data-toggle="popover" title="FeedBack bitton" 
+														data-content="FeedBack on this course guidebook." sec:authorize="hasAuthority('INSTRUCTOR')"
+														class="btn btn-primary btn-sm btn-circle" id="cartButton"><i class="fas fa-file-import"></i></a> 
+														
+									<a th:href="@{'/orderLab/'+${c.coursout.cId}+'/cartLab'}" data-toggle="popover" title="FeedBack bitton" 
+									  th:if="${switchFeedback1.idswitcch==1} and ${switchFeedback2.idswitcch==1}"
+														data-content="FeedBack on this course guidebook." sec:authorize="hasAuthority('ASSISTANT')"
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 
+														
+														
+									<!-- <a th:if="${c.statust}=='1'"
+										sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"
+										class="btn btn-info btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now Request To Course Chair's Processing(Reviewing and Decisioning)"><i
+											class="fa fa-spinner fa-spin"></i> Pending...</a>  -->
+											
+											<!-- <a
+										th:if="${c.statust}=='2'" class="btn btn-success btn-sm"
+										id="apprButton" type="button" disabled data-toggle="tooltip"
+										data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)">
+											Approved</a> -->
+										<!-- 	th:href="@{'/performco/'+${c.id}+'/newProCoRecForAssigind'}" -->
+											
+											
+											<!-- <a  th:onclick="|newProformaEvalution(${c.id})|"
+											  th:if="${c.statust}=='2'"
+														data-toggle="popover" title="REQUEST PERFORMANCE EVALUATION" 
+														data-content="PERFORMANCE EVALUATION on this course guidebook." 
+														class="btn btn-primary btn-sm" id="cartButtonnnn"><i class="fas fa-file-import"></i></a>  -->
+											
+											
+											
+											 <!-- <a th:if="${c.statust}=='3'"
+										class="btn btn-danger btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)">
+											Denied</a> -->
+											
+											 <a th:href="@{'/assign/'+${c.id}+'/courspdf'}"
+										th:if="${c.statust}=='0'" data-toggle="popover"
+										data-placement="left" title="Pdf"
+										sec:authorize="hasAuthority('INSTRUCTOR')"
+										data-content="if click this button go to pdf of course guidebook "
+										class="btn btn btn-success btn-sm btn-circle" id="detailsButton"><i
+											class="fas fa-download "></i></a>
+											
+											<!-- <a th:href="@{'/assign/'+${c.id}+'/checkcourspdf'}"
+										th:if="${c.statust}=='2'" data-toggle="popover"
+										data-placement="left" title="Pdf"
+										sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"
+										data-content="if click this button go to pdf of course guidebook "
+										class="btn btn-primary btn-sm btn-circle" id="detailsButton"><i
+											class="fas fa-times-circle"></i></a> -->
+
+
+										
+										<!-- 
+										<a
+										th:if="${c.statust}=='0'" class="btn btn-primary btn-sm"
+										th:onclick="|assignRequesting(${c.id})|" type="button"   data-toggle="Accepted"
+										data-placement="click for Accepted"
+										title="Now Request To admin Processing(Reviewing and Decisioning)">
+											Request</a>
+			-->							
+										</td>
+ 
+
+
+
+
+
+								</tr>
+							</tbody>
+
+						</table>
+
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<script>
+       function assignRequesting(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once Accepted, you will not be able to recover or back!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/assign/assignRequesting/"+id;
+    		   } else {
+    		     swal("Your Cours is not Requesting...!");
+    		   }
+    		 });
+       }
+ </script>
+
+		<!-- <script>
+       function invalid(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once Denied , you will not be able to recover or back!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/assign/denied/"+id;
+    		   } else {
+    		     swal("Your Cours is not Denied...!");
+    		   }
+    		 });
+       }
+ </script> -->
+
+<script>
+
+       function newProformaEvalution(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once Request , For REQUEST PERFORMANCE EVALUATION you will not be able back!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/performco/"+id+"/newProCoRecForAssigind";
+    		   } else {
+    		     swal("Your Cours is not Denied...!");
+    		   }
+    		 });
+       }
+ </script>
+
+	</section>
+
+
+</body>
+</html>

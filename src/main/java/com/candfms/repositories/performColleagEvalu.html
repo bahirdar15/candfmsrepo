@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			<p class="mb-4"></p>
+			<div th:if="${session.message}"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+				<div class="card-header py-3">
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/performco/show_pcEva}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a>
+				</div>
+
+
+				<!-- start body -->
+				<div class="card-body">
+
+					<form enctype="multipart/form-data" method="POST"
+						th:action="@{/performco/process-EvalutColla}">
+						<input type="hidden" th:value="${user.id}" name="userid" /> <input
+							type="hidden" th:value="${proformRequ.id}" name="proformRequid" />
+
+
+
+
+						<div class="container-fluid">
+							<div class="row text-center  my-2  h-100 align-items-center">
+								<div class="col-md-12  ">
+									<h5>INSTRUCTOR'S PERFORMANCE EVALUATION CHECKLIST</h5>
+								</div>
+								<div class="col-md-12">
+									<p class="">(To be completed by Colleagues)</p>
+								</div>
+							</div>
+							<div class="row   h-100 align-items-center"
+								th:each="f : ${proformRequ}" th:with="usee= ${f.user}">
+								<div class="col-md-12 form-inline px-0">
+									<label class="" for="inlineFormCustomSelectPrefa">Name
+										of Instructor/Colleague to be evaluated </label>
+									<div class="col-md-6 mb-1" id="inlineFormCustomSelectPrefa"
+										style="border-bottom: 1px solid currentColor;">
+										<span th:text="${usee.name}"></span>
+									</div>
+								</div>
+							</div>
+							<div class="row    h-100 align-items-center">
+								<label class="" for="inlineFormCustomSelectPref">College</label>
+								<div class="col-md-4 mb-2 px-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">FMIE</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Department:</label>
+								<div class="col-md-4 mb-2 px-2"
+									id="inlineFormCustomSelectPref2 " th:each="f : ${proformRequ}"
+									th:with="fmie= ${f.fmie}"
+									style="border-bottom: 1px solid currentColor;">
+
+									<span th:text="${fmie.name}"></span>
+
+								</div>
+
+
+							</div>
+							<div class="row    h-100 align-items-center">
+								<label class="" for="inlineFormCustomSelectPref">Academic
+									Year</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">
+									<span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+								</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Semester:</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+									th:each="f : ${proformRequ}" th:with="semester= ${f.semester}"
+									style="border-bottom: 1px solid currentColor;">
+									<span th:text="${semester.name}"></span>
+								</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Date</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<span
+										th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span>
+								</div>
+							</div>
+
+							<div class="row ">
+								<p>
+									<b>Instruction:</b> Indicate the performance of your colleague
+									by circling one of the options against each statement.<br>
+									<span class="pl-4">&nbsp; 1= very low (VL) 2=Low (L) 3=
+										Average (A) 4= High (H); 5= Very High (VH) 'Not Applicable'</span>
+								</p>
+							</div>
+
+
+							<!-- table start -->
+
+
+							<div class="card-body mx-0 px-0">
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bottom"
+										style="border: 1px solid #858796;">
+										<b>No</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										<b>Evaluation Criteria</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border: 1px solid #858796;">
+										<div class="row align-text-center py-0">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+												<p>
+													<b>Scale</b>
+												</p>
+											</div>
+										</div>
+										<div class="row ">
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>VL</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>L</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>A</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>H</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>VH</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>NA</b>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Core Competency: Subject matter</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>1</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Contribution in
+										preparing and searching for teaching materials</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs1" id="ccs11" value="1"
+														required> <label for="ccs11" class="radio-label"></label>
+													</input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs1" id="ccs12" value="2"
+														required> <label for="ccs12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs1" id="ccs13" value="3">
+													<label for="ccs13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs1" id="ccs14" value="4">
+													<label for="ccs14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs1" id="ccs15" value="5">
+													<label for="ccs15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs1" id="ccs10" value="0">
+													<label for="ccs10"></label> </input>
+												</div>
+
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>2</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Continuous update of
+										the subject matter</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs2" id="ccs21" value="1">
+													<label for="ccs21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs2" id="ccs22" value="2">
+													<label for="ccs22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs2" id="ccs23" value="3">
+													<label for="ccs23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs2" id="ccs24" value="4">
+													<label for="ccs24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs2" id="ccs25" value="5">
+													<label for="ccs25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs2" id="ccs20" value="0">
+													<label for="ccs20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>3</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Delivering seminars
+										that are relevant to his teaching subject</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs3" id="ccs31" value="1">
+													<label for="ccs31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs3" id="ccs32" value="2">
+													<label for="ccs32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs3" id="ccs33" value="3">
+													<label for="ccs33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs3" id="ccs34" value="4">
+													<label for="ccs34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs3" id="ccs35" value="5">
+													<label for="ccs35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs3" id="ccs30" value="0">
+													<label for="ccs30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>4</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Level of his/her
+										subject matter knowledge and skill</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs4" id="ccs41" value="1">
+													<label for="ccs41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs4" id="ccs42" value="2">
+													<label for="ccs42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs4" id="ccs43" value="3">
+													<label for="ccs43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs4" id="ccs44" value="4">
+													<label for="ccs44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs4" id="ccs45" value="5">
+													<label for="ccs45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccs4" id="ccs40" value="0">
+													<label for="ccs40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
+								<div class="row">
+
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										style="border: 1px solid #858796;">
+										<b>Core Competency: Research and Community Services</b>
+									</div>
+
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>5</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Willingness and level
+										of engagement in community service and volunteer activities</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr1" id="ccr11" value="1">
+													<label for="ccr11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr1" id="ccr12" value="2">
+													<label for="ccr12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr1" id="ccr13" value="3">
+													<label for="ccr13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr1" id="ccr14" value="4">
+													<label for="ccr14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr1" id="ccr15" value="5">
+													<label for="ccr15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr1" id="ccr10" value="0">
+													<label for="ccr10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>6</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Participation on
+										seminars/workshops at department/ faculty/ institution level
+										during the year</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr2" id="ccr21" value="1">
+													<label for="ccr21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr2" id="ccr22" value="2">
+													<label for="ccr22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr2" id="ccr23" value="3">
+													<label for="ccr23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr2" id="ccr24" value="4">
+													<label for="ccr24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr2" id="ccr25" value="5">
+													<label for="ccr25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr2" id="ccr20" value="0">
+													<label for="ccr20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>7</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Identifying priority
+										areas in one’s discipline and pursuing research in that area
+										and Willingness to help colleagues in identifying areas of
+										research and proposal development</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr3" id="ccr31" value="1">
+													<label for="ccr31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr3" id="ccr32" value="2">
+													<label for="ccr32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr3" id="ccr33" value="3">
+													<label for="ccr33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr3" id="ccr34" value="4">
+													<label for="ccr34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr3" id="ccr35" value="5">
+													<label for="ccr35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ccr3" id="ccr30" value="0">
+													<label for="ccr30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Professional Competency</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>8</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Guidance and
+										counseling role to students</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc1" id="cpc11" value="1">
+													<label for="cpc11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc1" id="cpc12" value="2">
+													<label for="cpc12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc1" id="cpc13" value="3">
+													<label for="cpc13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc1" id="cpc14" value="4">
+													<label for="cpc14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc1" id="cpc15" value="5">
+													<label for="cpc15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc1" id="cpc10" value="0">
+													<label for="cpc10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>9</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Contributing
+										constructive ideas and activities that improve the teaching
+										learning process</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc2" id="cpc21" value="1">
+													<label for="cpc21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc2" id="cpc22" value="2">
+													<label for="cpc22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc2" id="cpc23" value="3">
+													<label for="cpc23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc2" id="cpc24" value="4">
+													<label for="cpc24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc2" id="cpc25" value="5">
+													<label for="cpc25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc2" id="cpc20" value="0">
+													<label for="cpc20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>10</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Participation in
+										problem identification and solving at
+										department/college/institution</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc3" id="cpc31" value="1">
+													<label for="cpc31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc3" id="cpc32" value="2">
+													<label for="cpc32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc3" id="cpc33" value="3">
+													<label for="cpc33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc3" id="cpc34" value="4">
+													<label for="cpc34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc3" id="cpc35" value="5">
+													<label for="cpc35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc3" id="cpc30" value="0">
+													<label for="cpc30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>11</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Participation in
+										Comprehensive Continuous Professional Development / CCPD, HDP,
+										ELIP</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc4" id="cpc41" value="1">
+													<label for="cpc41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc4" id="cpc42" value="2">
+													<label for="cpc42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc4" id="cpc43" value="3">
+													<label for="cpc43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc4" id="cpc44" value="4">
+													<label for="cpc44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc4" id="cpc45" value="5">
+													<label for="cpc45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc4" id="cpc40" value="0">
+													<label for="cpc40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>12</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Willingness to
+										actively participate in cooperative learning and team-teaching
+										activities and preparedness to implement change tools</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc5" id="cpc51" value="1">
+													<label for="cpc51" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc5" id="cpc52" value="2">
+													<label for="cpc52"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc5" id="cpc53" value="3">
+													<label for="cpc53"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc5" id="cpc54" value="4">
+													<label for="cpc54"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc5" id="cpc55" value="5">
+													<label for="cpc55"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cpc5" id="cpc50" value="0">
+													<label for="cpc50"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<!-- ppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										style="border: 1px solid #858796;">
+										<b>Ethical Competency</b>
+									</div>
+
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>13</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Willingness to
+										participate and level of commitment in committee works</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec1" id="cec11" value="1">
+													<label for="cec11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec1" id="cec12" value="2">
+													<label for="cec12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec1" id="cec13" value="3">
+													<label for="cec13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec1" id="cec14" value="4">
+													<label for="cec14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec1" id="cec15" value="5">
+													<label for="cec15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec1" id="cec10" value="0">
+													<label for="cec10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>14</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Willingness to share
+										university resources with other colleagues</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec2" id="cec21" value="1">
+													<label for="cec21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec2" id="cec22" value="2">
+													<label for="cec22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec2" id="cec23" value="3">
+													<label for="cec23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec2" id="cec24" value="4">
+													<label for="cec24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec2" id="cec25" value="5">
+													<label for="cec25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec2" id="cec20" value="0">
+													<label for="cec20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>15</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Showing cordiality to
+										others, respecting ideas of others</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec3" id="cec31" value="1">
+													<label for="cec31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec3" id="cec32" value="2">
+													<label for="cec32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec3" id="cec33" value="3">
+													<label for="cec33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec3" id="cec34" value="4">
+													<label for="cec34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec3" id="cec35" value="5">
+													<label for="cec35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec3" id="cec30" value="0">
+													<label for="cec30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>16</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Having positive
+										attitude to work with others (team spirit)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec4" id="cec41" value="1">
+													<label for="cec41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec4" id="cec42" value="2">
+													<label for="cec42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec4" id="cec43" value="3">
+													<label for="cec43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec4" id="cec44" value="4">
+													<label for="cec44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec4" id="cec45" value="5">
+													<label for="cec45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec4" id="cec40" value="0">
+													<label for="cec40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>17</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Level of respect to
+										rules, regulations and guidelines of the institution</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec5" id="cec51" value="1">
+													<label for="cec51" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec5" id="cec52" value="2">
+													<label for="cec52"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec5" id="cec53" value="3">
+													<label for="cec53"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec5" id="cec54" value="4">
+													<label for="cec54"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec5" id="cec55" value="5">
+													<label for="cec55"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec5" id="cec50" value="0">
+													<label for="cec50"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>18</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">His/her discipline
+										(dressing, addictions, personality etc…)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec6" id="cec61" value="1">
+													<label for="cec61" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec6" id="cec62" value="2">
+													<label for="cec62"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec6" id="cec63" value="3">
+													<label for="cec63"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec6" id="cec64" value="4">
+													<label for="cec64"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec6" id="cec65" value="5">
+													<label for="cec65"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="cec6" id="cec60" value="0">
+													<label for="cec60"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<!-- ppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Time Management</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>19</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Time management in
+										department Affairs and in teaching learning activities</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm1" id="ctm11" value="1">
+													<label for="ctm11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm1" id="ctm12" value="2">
+													<label for="ctm12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm1" id="ctm13" value="3">
+													<label for="ctm13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm1" id="ctm14" value="4">
+													<label for="ctm14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm1" id="ctm15" value="5">
+													<label for="ctm15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm1" id="ctm10" value="0">
+													<label for="ctm10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>20</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Time utilization for
+										consultation hours</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 py-0 my-0">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm2" id="ctm21" value="1">
+													<label for="ctm21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm2" id="ctm22" value="2">
+													<label for="ctm22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm2" id="ctm23" value="3">
+													<label for="ctm23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm2" id="ctm24" value="4">
+													<label for="ctm24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm2" id="ctm25"  value="5">
+													<label for="ctm25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio"  class="radi" name="ctm2" id="ctm20"  value="0">
+													<label for="ctm20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right"
+										style="border: 1px solid #858796;">
+										<strong>TOTAL :</strong>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="border: 1px solid #858796;">
+										<input type="text" name="totaljs" id="totaljs" style="border: none; outline: 0; box-shadow: none;"/>
+
+									</div>
+
+								</div>
+
+
+
+								<!-- ppppppppppppp -->
+
+
+
+
+								<b>General Comments about the Instructor</b>
+								<div class="row form-group">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-0 my-0">
+										<p class="mb-0"></p>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user pr-3">Strengths
+													of the Instructor? </span>
+											</div>
+											<textarea id="mytext" name="strengths"
+												class="form-control form-control-user"
+												aria-label="With textarea"
+												placeholder="Strengths of the Instructor ?"></textarea>
+										</div>
+									</div>
+								</div>
+							
+								<div class="row form-group">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-0 my-0">
+										<p class="mb-0"></p>
+
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user pr-0">Suggested
+													points/aspects the <br /> instructor should improve
+												</span>
+											</div>
+											<textarea id="mytext" name="improve"
+												class="form-control form-control-user "
+												aria-label="With textarea"
+												placeholder="Suggested points/aspects the instructor should improve "></textarea>
+										</div>
+
+									</div>
+								</div>
+
+
+
+
+
+
+							</div>
+
+
+							<!-- table finsh -->
+
+						</div>
+
+
+						<div class="container text-center">
+							<button type="submit" class="btn btn-outline-success btn-sm">Send</button>
+						</div>
+
+					</form>
+
+
+
+
+
+				</div>
+				<!-- end body -->
+
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+<script type="text/javascript">
+$(".radi").click(function() {
+  var totaljs = 0;
+  $(".radi:checked").each(function() { totaljs += +this.value; });
+  $("#totaljs").val(totaljs);
+});
+</script>
+
+
+	</section>
+
+
+</body>
+</html>

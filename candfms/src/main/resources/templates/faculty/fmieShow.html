@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+</head>
+<body>
+    
+
+<section>   
+ 
+
+                
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- meessage -->
+                              <div th:if="${session.message}" id="hideDiv" th:classappend="${session.message.type}" class="alert " role="alert">
+								  <p class="text-center" th:text="${session.message.content}"></p>
+								  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							  </div>
+							  
+							  
+							  
+							  
+	<!-- 						  
+							  
+<a type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addFmieModal" ><i class="fas fa-plus-circle"></i> New Fmie</a>
+       -->
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 mt-2">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary"> List Of Chair</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="dataTable" class="table table-striped table-advance table-hover">
+                <thead>
+                  <tr>
+                    <th><i class="icon_table"></i>id</th>
+                    <th><i class="icon_table"></i>Name</th>
+                    
+                   <!--  <th><i class="icon_cogs"></i>Actions</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="f:${fmies}">
+                    <td th:text="${f.id}"></td>
+                    <td th:text="${f.name}"></td>
+                    
+                    <!-- <td>
+                    <div class="btn-group">
+                    <a th:href="@{/fmie/findById/(id=${f.id})}" class="btn btn-primary btn-sm" id="editfmieButton2"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-info btn-sm" id="detailsButton"><i class="fas fa-file-alt"></i></a>            
+                    <a th:href="@{/fmie/delete/(id=${f.id})}" class="btn btn-danger btn-sm" id="deletefmieButton"><i class="fas fa-trash"></i></a>
+                    </div>
+                    </td> -->
+                  </tr>
+        </tbody>
+        
+       </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Add new fmie Model-->    
+    
+  <div class="modal fade" id="addFmieModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Chair</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/fmie/addNew}" method="post">
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="recipient-name" name="name">
+          </div>      
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- edite/update fmie Model-->   
+<div class="modal fade" id="editFmieModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel266" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel266">Update Fmie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form th:action="@{/fmie/update}" method="put">     
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="idEdit12" name="id" readonly>
+          </div>
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label>
+            <input type="text" class="form-control" id="nameEdit12" name="name">
+          </div>                
+        
+          <div class="form-group">
+          <button type="submit" class="btn btn-primary">Submit</button>        
+        </div>             
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <!-- delete fmie Model-->   
+<div class="modal" id="deleteFmieModal1" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Delete</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this record?</p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" id="confirmDeleteButton1" href="">Yes, Delete</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  
+ 
+
+
+  <script>
+
+  $('document').ready(function(){
+  	
+	  $('table #editfmieButton2').on('click',function(event){
+			event.preventDefault();			
+			var href = $(this).attr('href');	
+			$.get(href, function(fmie, status){
+				$('#idEdit12').val(fmie.id);
+				$('#nameEdit12').val(fmie.name);			
+			});					
+			$('#editFmieModal12').modal();
+			
+			
+		});
+		
+		$('table #deletefmieButton').on('click', function(event){
+			event.preventDefault();		
+			var href= $(this).attr('href');		
+			$('#confirmDeleteButton1').attr('href', href);		
+			$('#deleteFmieModal1').modal();
+		});
+  	
+  	
+
+  });
+  </script>
+  
+</section>  
+                
+       
+</body>
+</html>

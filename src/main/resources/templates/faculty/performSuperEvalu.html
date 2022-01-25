@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			<p class="mb-4"></p>
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+				<div class="card-header py-3">
+					<!-- <a type="button" class="btn btn-success btn-sm"
+						th:href="@{/performco/show_pcEva3}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a> -->
+						
+						<a  onclick="goBack()" class="dropdown-item text-left btn-user pr-0" ><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</a>
+				</div>
+
+
+				<!-- start body -->
+				<div class="card-body">
+
+					<form enctype="multipart/form-data" method="POST"
+						th:action="@{/performco/process-EvalutSuper}">
+						<input type="hidden" th:value="${user.id}" name="userid" /> 
+						<input type="hidden" th:value="${getUserById.id}" name="instauserid" /> 
+
+
+
+
+
+
+
+
+
+
+
+						<!-- startsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+						<div class="container-fluid">
+							<div class="row text-center  my-2  h-100 align-items-center">
+								<div class="col-md-12  ">
+									<h5>INSTRUCTORS PERFORMANCE EVALUATION CHECKLIST</h5>
+								</div>
+								<div class="col-md-12">
+									<p class="">(TO BE COMPLETED BY IMMEDIATE SUPERVISOR)</p>
+								</div>
+							</div>
+							<div class="row   h-100 align-items-center" >
+								<!-- <div class="col-md-12 form-inline px-0"> -->
+									<label class="" for="inlineFormCustomSelectPrefa">Name
+										of Instructor </label>
+									<div class="col-md-3 mb-1" id="inlineFormCustomSelectPrefa"
+										style="border-bottom: 1px solid currentColor;">
+										<span th:text="${getUserById.name}"></span>
+									</div>
+								
+							
+								<label class="" for="inlineFormCustomSelectPref">Faculty</label>
+								<div class="col-md-1 mb-2 px-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">FMIE</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Department:</label>
+								<div class="col-md-3 mb-2 px-2"
+									id="inlineFormCustomSelectPref2 "
+									
+									style="border-bottom: 1px solid currentColor;">
+									<span th:each="c : ${fmies}" th:if="${c.id}==${getUserById.depar}" th:text="${c.name}"></span> 
+								</div>
+
+
+							</div>
+							<div class="row    h-100 align-items-center">
+								<label class="" for="inlineFormCustomSelectPref">Academic
+									Year</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+									style="border-bottom: 1px solid currentColor;">
+									<span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+								</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Semester:</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2" style="border-bottom: 1px solid currentColor;">
+								<div class="m-0 px-0 text-center">
+                                     <select class="browser-default custom-select pr-0 pl-0" required id="semesterid"
+										style="border: none; outline: 0; box-shadow: none;background: none !important;"
+										name="semesterid">
+										<option value="" selected disabled>--Select
+											Semester--</option>
+										<option th:each="f : ${semesters}" th:value="${f.id}"
+											th:utext="${f.name}"></option>
+									</select>
+								</div>
+							</div>
+
+								<label class="" for="inlineFormCustomSelectPref2">Date</label>
+								<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+									style="border-bottom: 1px solid currentColor;">
+									<span
+										th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span>
+								</div>
+							</div>
+
+							<div class="row ">
+								<p>
+									<b>Instruction:</b> Indicate the performance of your colleague
+									by circling one of the options against each statement.<br>
+									<span class="pl-4">&nbsp; 1= very low (VL) 2=Low (L) 3=
+										Average (A) 4= High (H); 5= Very High (VH) 'Not Applicable'</span>
+								</p>
+							</div>
+
+
+							<!-- table start -->
+
+
+							<div class="card-body mx-0 px-0">
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bottom"
+										style="border: 1px solid #858796;">
+										<b>No</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">
+										<b>A. Evaluation Criteria</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border: 1px solid #858796;">
+										<div class="row align-text-center py-0">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+												<p>
+													<b>Scale</b>
+												</p>
+											</div>
+										</div>
+										<div class="row ">
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>VL</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>L</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>A</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>H</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>VH</b>
+											</div>
+											<div class="col text-center"
+												style="border: 1px solid #858796;">
+												<b>NA</b>
+											</div>
+
+										</div>
+									</div>
+
+								</div>
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Core Competency</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>1</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Efforts of
+										self-development in his/her specialization</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc1" id="scc11" value="20">
+													<label for="scc11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc1" id="scc12" value="40">
+													<label for="scc12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc1" id="scc13" value="60">
+													<label for="scc13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc1" id="scc14" value="80">
+													<label for="scc14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc1" id="scc15" value="100">
+													<label for="scc15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc1" id="scc10" value="0"  required>
+													<label for="scc10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>2</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Adequacy of subject
+										matter knowledge</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc2" id="scc21" value="20">
+													<label for="scc21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc2" id="scc22" value="40">
+													<label for="scc22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc2" id="scc23" value="60">
+													<label for="scc23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc2" id="scc24" value="80">
+													<label for="scc24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc2" id="scc25" value="100">
+													<label for="scc25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc2" id="scc20" value="0"  required>
+													<label for="scc20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>3</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Professional Skill
+										/Teaching Methodology</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc3" id="scc31" value="20">
+													<label for="scc31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc3" id="scc32" value="40">
+													<label for="scc32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc3" id="scc33" value="60">
+													<label for="scc33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc3" id="scc34" value="80">
+													<label for="scc34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc3" id="scc35" value="100">
+													<label for="scc35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc3" id="scc30" value="0"  required>
+													<label for="scc30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>4</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Willingness to accept
+										additional teaching assignments when compelling situation
+										arises in the departmen</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc4" id="scc41" value="20">
+													<label for="scc41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc4" id="scc42" value="40">
+													<label for="scc42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc4" id="scc43" value="60">
+													<label for="scc43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc4" id="scc44" value="80">
+													<label for="scc44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc4" id="scc45" value="100">
+													<label for="scc45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc4" id="scc40" value="0"  required>
+													<label for="scc40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>5</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Effectiveness as a
+										mentor in cooperative learning, internship etc..</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc5" id="scc51" value="20">
+													<label for="scc51" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc5" id="scc52" value="40">
+													<label for="scc52"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc5" id="scc53" value="60">
+													<label for="scc53"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc5" id="scc54" value="80">
+													<label for="scc54"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc5" id="scc55" value="100">
+													<label for="scc55"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc5" id="scc50" value="0"  required>
+													<label for="scc50"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>6</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Active participation
+										in improvement of teaching-learning process, seminars.
+										workshop, symposia and reviewing of teaching materials
+										(curriculum)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc6" id="scc61" value="20">
+													<label for="scc61" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc6" id="scc62" value="40">
+													<label for="scc62"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc6" id="scc63" value="60">
+													<label for="scc63"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc6" id="scc64" value="80">
+													<label for="scc64"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc6" id="scc65" value="100">
+													<label for="scc65"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc6" id="scc60" value="0"  required>
+													<label for="scc60"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>7</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">participation in
+										community service affairs and volunteer activities and
+										willingness to participate in activities other than regular
+										teaching (mentorship)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc7" id="scc71" value="20">
+													<label for="scc71" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc7" id="scc72" value="40">
+													<label for="scc72"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc7" id="scc73" value="60">
+													<label for="scc73"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc7" id="scc74" value="80">
+													<label for="scc74"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc7" id="scc75" value="100">
+													<label for="scc75"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc7" id="scc70" value="0"  required>
+													<label for="scc70"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>8</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Identifying priority
+										areas in one’s discipline and pursuing research in that area</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc8" id="scc81" value="20">
+													<label for="scc81" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc8" id="scc82" value="40">
+													<label for="scc82"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc8" id="scc83" value="60">
+													<label for="scc83"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc8" id="scc84" value="80">
+													<label for="scc84"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc8" id="scc85" value="100">
+													<label for="scc85"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc8" id="scc80" value="0"  required>
+													<label for="scc80"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>9</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Participation in
+										research project and project proposal development</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc9" id="scc91" value="20">
+													<label for="scc91" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc9" id="scc92" value="40">
+													<label for="scc92"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc9" id="scc93" value="60">
+													<label for="scc93"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc9" id="scc94" value="80">
+													<label for="scc94"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc9" id="scc95" value="100">
+													<label for="scc95"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc9" id="scc90" value="0"  required>
+													<label for="scc90"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>10</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Performance as an
+										academic advisor</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc10" id="scc101" value="20">
+													<label for="scc101" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc10" id="scc102" value="40">
+													<label for="scc102"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc10" id="scc103" value="60">
+													<label for="scc103"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc10" id="scc104" value="80">
+													<label for="scc104"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="scc10" id="scc105" value="100">
+													<label for="scc105"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="scc10" id="scc100" value="0"  required>
+													<label for="scc100"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- pppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Professional Competence</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>11</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Participation in
+										problem identification and solving at
+										department/college/institution</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc1" id="spc11" value="20">
+													<label for="spc11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc1" id="spc12" value="40">
+													<label for="spc12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc1" id="spc13" value="60">
+													<label for="spc13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc1" id="spc14" value="80">
+													<label for="spc14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc1" id="spc15" value="100">
+													<label for="spc15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="spc1" id="spc10" value="0"  required>
+													<label for="spc10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>12</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Participation in
+										Comprehensive Continuous Professional Development /CCPD, HDP,
+										ELIP</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc2" id="spc21" value="20">
+													<label for="spc21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc2" id="spc22" value="40">
+													<label for="spc22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc2" id="spc23" value="60">
+													<label for="spc23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc2" id="spc24" value="80">
+													<label for="spc24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc2" id="spc25" value="100">
+													<label for="spc25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="spc2" id="spc20" value="0"  required>
+													<label for="spc20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>13</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Continuous assessment
+										implementation</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc3" id="spc31" value="20">
+													<label for="spc31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc3" id="spc32" value="40">
+													<label for="spc32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc3" id="spc33" value="60">
+													<label for="spc33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc3" id="spc34" value="80">
+													<label for="spc34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc3" id="spc35" value="100">
+													<label for="spc35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="spc3" id="spc30" value="0"  required>
+													<label for="spc30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>14</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Providing and
+										reporting tutorial activities designed for the students</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc4" id="spc41" value="20">
+													<label for="spc41" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc4" id="spc42" value="40">
+													<label for="spc42"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc4" id="spc43" value="60">
+													<label for="spc43"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc4" id="spc44" value="80">
+													<label for="spc44"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="spc4" id="spc45" value="100">
+													<label for="spc45"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="spc4" id="spc40" value="0"  required>
+													<label for="spc40"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+								<!-- ppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+										style="border: 1px solid #858796;">
+										<b>Time Management</b>
+									</div>
+
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>15</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Executing assigned
+										classes/invigilation on time.</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm1" id="stm11" value="20">
+													<label for="stm11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm1" id="stm12" value="40">
+													<label for="stm12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm1" id="stm13" value="60">
+													<label for="stm13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm1" id="stm14" value="80">
+													<label for="stm14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm1" id="stm15" value="100">
+													<label for="stm15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="stm1" id="stm10" value="0"  required>
+													<label for="stm10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>16</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Notifying and
+										implementing consultation timely and Giving timely feedback to
+										students</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm2" id="stm21" value="20">
+													<label for="stm21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm2" id="stm22" value="40">
+													<label for="stm22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm2" id="stm23" value="60">
+													<label for="stm23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm2" id="stm24" value="80">
+													<label for="stm24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm2" id="stm25" value="100">
+													<label for="stm25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="stm2" id="stm20" value="0"  required>
+													<label for="stm20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>17</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Meeting deadlines (in
+										reporting, SIMS result feeding, submission of grade/
+										documents...etc…)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm3" id="stm31" value="20">
+													<label for="stm31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm3" id="stm32" value="40">
+													<label for="stm32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm3" id="stm33" value="60">
+													<label for="stm33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm3" id="stm34" value="80">
+													<label for="stm34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="stm3" id="stm35" value="100">
+													<label for="stm35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="stm3" id="stm30" value="0"  required>
+													<label for="stm30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<!-- ppppppppppppp -->
+
+								<!-- ppppppppppppppppppppppp -->
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+										style="border-left: 1px solid #858796;">
+										<b>Ethical Competence</b>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border-right: 1px solid #858796;">
+										<div class="row">
+
+											<div class="col text-center">1</div>
+											<div class="col text-center">2</div>
+											<div class="col text-center">3</div>
+											<div class="col text-center">4</div>
+											<div class="col text-center">5</div>
+											<div class="col text-center">NA</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>18</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Showing concern for
+										the use of resources of the department and the University</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec1" id="sec11" value="20">
+													<label for="sec11" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec1" id="sec12" value="40">
+													<label for="sec12"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec1" id="sec13" value="60">
+													<label for="sec13"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec1" id="sec14" value="80">
+													<label for="sec14"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec1" id="sec15" value="100">
+													<label for="sec15"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="sec1" id="sec10" value="0"  required>
+													<label for="sec10"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>19</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">Willingness and
+										participation in committee works at department /University
+										level and Having positive attitude to work with others, team
+										spiri</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec2" id="sec21" value="20">
+													<label for="sec21" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec2" id="sec22" value="40">
+													<label for="sec22"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec2" id="sec23" value="60">
+													<label for="sec23"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec2" id="sec24" value="80">
+													<label for="sec24"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec2" id="sec25" value="100">
+													<label for="sec25"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="sec2" id="sec20" value="0"  required>
+													<label for="sec20"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+									<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+										style="border: 1px solid #858796;">
+										<b>20</b>
+									</div>
+									<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7"
+										style="border: 1px solid #858796;">His/her professional
+										ethics and being a role model (dressing, hair style,
+										personality, addiction…)</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 py-0 my-0">
+										<div class="row">
+											<div class="radio-pillbox">
+												<radiogroup>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec3" id="sec31" value="20">
+													<label for="sec31" class="radio-label"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec3" id="sec32" value="40">
+													<label for="sec32"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec3" id="sec33" value="60">
+													<label for="sec33"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec3" id="sec34" value="80">
+													<label for="sec34"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi  app" name="sec3" id="sec35" value="100">
+													<label for="sec35"></label> </input>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+													<input type="radio" class="radi na" name="sec3" id="sec30" value="0"  required>
+													<label for="sec30"></label> </input>
+												</div>
+												</radiogroup>
+											</div>
+										</div>
+									</div>
+
+								</div>
+
+
+								<div class="row">
+
+									<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-right"
+										style="border: 1px solid #858796;">
+										<strong>TOTAL :</strong>
+									</div>
+									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+										style="border: 1px solid #858796;">
+										<input type="text" name="total" id="totaljs"
+											style="border: none; outline: 0; box-shadow: none;" />
+
+									</div>
+
+								</div>
+
+
+
+								<!-- ppppppppppppp -->
+
+
+
+								<b>General Comments about the Instructor</b>
+								<div class="row form-group">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-0 my-0">
+										<p class="mb-0"></p>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user pr-3">Strengths
+													of the Instructor? </span>
+											</div>
+											<textarea id="mytext" name="strengths"
+												class="form-control form-control-user"
+												aria-label="With textarea"
+												placeholder="Strengths of the Instructor ?"></textarea>
+										</div>
+									</div>
+								</div>
+
+								<div class="row form-group">
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 py-0 my-0">
+										<p class="mb-0"></p>
+
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user pr-0">Suggested
+													points/aspects the <br /> instructor should improve
+												</span>
+											</div>
+											<textarea id="mytext" name="improve"
+												class="form-control form-control-user "
+												aria-label="With textarea"
+												placeholder="Suggested points/aspects the instructor should improve "></textarea>
+										</div>
+
+									</div>
+								</div>
+
+
+
+
+
+
+
+							</div>
+
+
+							<!-- table finsh -->
+
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						<!-- ppppppppppppppppppppppp -->
+
+						<div class="container text-center mx-auto">
+						<div class="row text-center mx-auto">
+						<div class="col-md-6 text-center mx-auto">
+						
+							<button type="submit" onclick="return noCheck();" class="btn btn-outline-success btn-block">Send</button>
+						</div>
+                        </div>
+						</div>
+
+					</form>
+
+
+
+
+
+				</div>
+				<!-- end body -->
+
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+		<!-- <script type="text/javascript">
+			$(".radi").click(function() {
+				var totaljs = 0;
+				$(".radi:checked").each(function() {
+					totaljs += +this.value;
+				});
+				$("#totaljs").val(totaljs);
+			});
+		</script> -->
+
+
+		<script type="text/javascript">
+			$(".radi").click(function() {
+				var totaljs = 0;
+				
+				 var yes = $('.na:checked').length
+			   	 var no = $('.app:checked').length
+				 
+				 $('.yes_results').text(yes)
+				 $('.no_results').text(no)
+				$(".radi:checked").each(function() {
+					
+					totaljs += +this.value;
+				});
+				 
+				 var n = (totaljs/no).toFixed(2);
+				$("#totaljs").val(n);
+			});
+		</script>
+
+<script>  
+    function noCheck(){  	
+    	if($('.app:checked').length==0){
+    		
+    		/* alert("You haven't checked any record");  */
+    		 success_toast()
+    		
+    		return false;
+    	}
+    }
+    
+    </script>
+
+
+		<script>
+   function success_toast(){
+	  
+		//   toastr.success("Success message");
+        Command: toastr["error"]("እባከወን ሁሉንም የማይመለከተው ከሆነ ባክ ብለው ይውጡ። ", "ስህተት")
+   }
+   
+   toastr.options = {
+		   "closeButton": true,
+		   "debug": false,
+		   "newestOnTop": true,
+		   "progressBar": true,
+		   "positionClass": "toast-top-center",
+		   "preventDuplicates": true,
+		   "onclick": null,
+		   "showDuration": "300",
+		   "hideDuration": "1000",
+		   "timeOut": "5000",
+		   "extendedTimeOut": "1000",
+		   "showEasing": "swing",
+		   "hideEasing": "linear",
+		   "showMethod": "fadeIn",
+		   "hideMethod": "fadeOut"
+		 }
+</script>
+	</section>
+
+
+</body>
+</html>

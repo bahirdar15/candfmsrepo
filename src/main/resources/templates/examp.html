@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<link rel="icon" th:href="@{/img/registration.png}" sizes="32x32">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>C|And|F - example</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+<style>
+.line {
+	width: 100px;
+	height: 0;
+	border: 1px solid #C4C4C4;
+	margin: 3px;
+	display: inline-block;
+}
+</style>
+<link th:href="@{/css/css.css}" rel="stylesheet">
+     <link th:href="@{/css/course.css}" rel="stylesheet">
+     
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+    
+    <link th:href="@{/vendor/datatables/dataTables.bootstrap4.min.css}" rel="stylesheet">
+    
+     <link rel="stylesheet" th:href="@{/dateTimepicker/bootstrap-datetimepicker.min.css}">
+      <script th:src="@{/dateTimepicker/moment.min.js}"></script>
+     
+      <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+      
+</head>
+
+<body>
+
+	<div class="container" >
+<div class="container col-lg-12" >
+
+     <div class="col-lg-12">
+
+ <form class="form-horizontal" id="frmStudent" name ="frmStudent">
+  
+ 
+  			<h4>ADD lab</h4>
+            <div class="form-group form-group-lg">
+                <label class="col-sm-4 control-label">week :</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="week" name="week"/>
+                </div>
+            </div>
+            
+            <div class="form-group form-group-lg">
+                <label class="col-sm-4 control-label">lab name :</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="lname" name="lname"/>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-12">
+                    <button type="button" id="bth-search"
+                            class="btn btn-primary btn-lg" onclick="addStudent()">Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+
+</div>
+  
+      			
+        
+
+
+    </div>
+
+	</div>
+<script>
+var isNew = true;
+var studid = null;
+
+function addStudent(){
+	
+	if($("#frmStudent").valid()) {
+		var url = "";
+		var data= "";
+		var methed;
+		
+			
+			
+			
+			if(isNew == true){
+				url = '/saveUser';
+				data=$("#frmStudent").serialize();
+				methed = 'post';
+			}
+		
+		
+	}
+}
+</script>
+	
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+
+<script th:src="@{/js/user.js}"></script>
+
+<script th:src="@{/js/sweetalert.min.js}"></script>
+    
+   
+
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+     <script th:src="@{/js/year.js}"></script>
+     
+    <!-- Page level plugins -->
+    <script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+    <!-- Page level custom scripts -->
+    <script th:src="@{/js/demo/chart-area-demo.js}"></script>
+    <script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+    
+    
+    
+    <!-- Page level plugins -->
+    <script th:src="@{/vendor/datatables/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables/dataTables.bootstrap4.min.js}"></script>
+    <!-- Page level custom scripts -->
+    <script th:src="@{/js/demo/datatables-demo.js}"></script>
+    
+     <script th:src="@{/dateTimepicker/bootstrap-datetimepicker.min.js}"></script>
+</body>
+
+</html>

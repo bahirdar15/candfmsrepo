@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+				<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+			</div>
+			<div class="row mb-2">
+				<div class="col-md-12 text-center">
+					<h5>
+						Welcome: Your Role Is (<b> <span th:text="${user.role}"></span></b>)
+					</h5>
+				</div>
+			</div>
+
+			<!-- Content Row -->
+			<div class="row">
+
+				<div class="container">
+					<div class="row">
+						<div class="col-12  text-center">
+							<h1>Report Using DateTime</h1>
+
+
+
+							<div class="row ">
+								<div class="col-md-4 ">
+									<div class="form-group">
+										<lable>From</lable>
+										<div class="input-group date" id="datetimepicker">
+											<input type="text" class="form-control">
+											<div class="input-group-addon input-group-prepend">
+												<span class="input-group-text"><i
+													class="fas fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="form-group">
+										<lable>To</lable>
+										<div class="input-group date" id="datetimepicker">
+											<input type="text" class="form-control">
+											<div class="input-group-addon input-group-prepend">
+												<span class="input-group-text"><i
+													class="fas fa-calendar"></i></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<span> <span
+								th:text="${#dates.format(#dates.createNow(), 'hh:mm a')}"></span>
+							</span> <br /> <span
+								th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"></span>
+
+						</div>
+					</div>
+				</div>
+
+
+
+			</div>
+
+
+		</div>
+
+
+
+
+
+
+
+		<!-- /.container-fluid -->
+	</section>
+
+
+</body>
+</html>

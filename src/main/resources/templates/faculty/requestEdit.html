@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800">
+                                             <a class="dropdown-item text-left btn-user"
+											th:href="@{/request/show_Request}"><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</a>
+</h1>
+			
+
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Show update request</h6>
+				</div>
+				<div class="card-body">
+
+
+
+                             <form   th:object="${userCoursout}"  
+						                 enctype="multipart/form-data" method="POST"
+						                 th:action="@{/request/process-userCoursout}" class="mt-2">																	
+									      
+									       <input type="hidden" th:value="${userCoursout.id}" name="id" />
+									       <input type="hidden" th:value="${userCoursout.userid}" name="userid" />
+									       <input type="hidden" th:value="${userCoursout.coursoutid}" name="coursoutid" />									       
+									
+									
+									
+									
+									
+									
+										<div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Chapters Your Planned:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group  ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="chapbfmidplan">BEFORE MID</label>
+													</div>
+													<input name="chapbfmidplan" id="chapbfmidplan" required
+													 th:value="${userCoursout.chapbfmidplan}"
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="8" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="chapafmidplan">AFTER MID</label>
+													</div>
+													<input name="chapafmidplan" id="chapafmidplan" required
+													 th:value="${userCoursout.chapafmidplan}"
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="7" />
+												</div>
+											</div>
+										</div>
+
+
+										<div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Assessments Your Planned:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="assbfmidplan">BEFORE MID</label>
+													</div>
+													<input name="assbfmidplan" id="assbfmidplan" required
+													 th:value="${userCoursout.assbfmidplan}"
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="4" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="assafmidplan">AFTER MID</label>
+													</div>
+													<input name="assafmidplan" id="assafmidplan" required
+													        th:value="${userCoursout.assafmidplan}"
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="3" />
+												</div>
+											</div>
+										</div>
+									
+									
+									
+									
+									
+									<div class="row">
+											<div class="col-10 col-md-10">
+
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text text-justify" for="chnId">CHAIR
+															HOLDER</label>
+													</div>
+													<select
+														class="custom-select form-select-sm  text-capitalize"
+														required id="chnId" name="chnId">
+														
+														<option  value="" selected disabled>---SELECT Chair Holder Name---</option>
+														<option th:each="g : ${userss}" th:value="${g.id}"
+														th:selected="${g.id}==${userCoursout.chnId}"
+															th:text="${g.name}"></option>
+													</select>
+													<div class="input-group-append">
+														<button class="btn btn-primary btn-sm">
+															Update Now <i class="fas fa-share"></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									
+									
+									
+									
+								   </form>	
+
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

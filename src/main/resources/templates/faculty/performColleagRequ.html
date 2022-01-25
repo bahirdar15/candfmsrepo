@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"> </h1>
+			
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+				<div class="card-header py-3">
+					<a type="button" class="btn btn-success btn-sm"
+						th:href="@{/request/show_Request}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a>
+				</div>
+
+
+				<!-- start body -->
+				<div class="card-body">
+
+
+					<form  
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/performco/process-ProformRequ}">
+						<!--  <input type="hidden" th:value="${contact.cId}" name="cId"/> -->
+						<input type="hidden" th:value="${user.id}" name="userid" />
+
+
+
+
+
+                      <div class="row   my-2 h-100 align-items-center" th:each="i : ${coursouted}">
+
+							
+							<input type="hidden" th:value="${i.cId}" name="coursoutid" /> <label
+								class="" for="inlineFormCustomSelectPref">Course name:</label>
+							<div class="col-md-5 mb-2 px-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${i.title}"></span>
+							</div>
+
+							<label class="" for="inlineFormCustomSelectPref2">Course
+								Code:</label>
+							<div class="col-md-3 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<b> <span th:text="${i.ccode}"></span>
+							</div>
+
+						</div>
+
+						<div class="row   h-100 align-items-center pb-2">
+							<div class="col-md-12 form-inline px-0">
+								<label class="" for="inlineFormCustomSelectPrefa">My Name: </label>
+								<div class="col-md-3 mb-1" id="inlineFormCustomSelectPrefa"
+									style="border-bottom: 1px solid currentColor;">
+                                           <span th:text="${user.name}"></span>
+                               </div>
+                               
+                               <label class="pl-4" for="inlineFormCustomSelectPref2">Date:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${#dates.format(#dates.createNow(), 'dd/MM/yyyy')}"></span>
+							</div>
+							</div>
+						</div>
+						<div class="row    h-100 align-items-center pb-2">
+							<label class="" for="inlineFormCustomSelectPref">College</label>
+							<div class="col-md-4 mb-2 px-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">FMIE</div>
+
+							
+								
+								<label class="" for="inlineFormCustomSelectPref">Academic
+								Year:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+								style="border-bottom: 1px solid currentColor;">
+								<span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span>
+							</div>
+
+
+						</div>
+						<div class="row    h-100 align-items-center  pb-2">
+							<label class="" for="inlineFormCustomSelectPref2">Department:</label>
+							<div class="col-md-3 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								
+								   <select class="custom-selects pl-0" required id="fmieid"
+										style="border: none; outline: 0; box-shadow: none;"
+										name="fmieid">
+										<option value="" selected disabled>--Select
+											Department--</option>
+										<option th:each="f : ${fmies}" th:value="${f.id}"
+											th:text="${f.name}"></option>
+									</select>
+								
+								</div>
+
+							<label class="px-2" for="inlineFormCustomSelectPref2">Semester:</label>
+							<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<div class="m-0 px-0 text-center">
+									<!-- <label for="fmie" class="col-form-label">: </label> -->
+									<select class="custom-selects pl-0" required id="semesterid"
+										style="border: none; outline: 0; box-shadow: none;"
+										name="semesterid">
+										<option value="" selected disabled>--Select
+											Semester--</option>
+										<option th:each="f : ${semesters}" th:value="${f.id}"
+											th:text="${f.name}"></option>
+									</select>
+								</div>
+							</div>
+
+                             <label class="px-2" for="inlineFormCustomSelectPref2">Approved By:</label>
+							<div class="col-md-3 mb-2 " id="inlineFormCustomSelectPref2"
+								style="border-bottom: 1px solid currentColor;">
+								<div class="m-0 px-0 text-center">
+									<!-- <label for="fmie" class="col-form-label">: </label> -->
+									<select class="custom-selects" required id="approvedby"
+									  style="border: none; outline: 0; box-shadow: none;"
+										name="approvedby">
+										<option value="" selected disabled>---Select Chair Holder---</option>
+										<option th:each="c : ${chairHolder}" th:value="${c.id}"
+											th:text="${c.name}"></option>
+									</select>
+								</div>
+							</div>
+							
+							
+							
+						</div>
+
+
+
+
+
+						<div class="container text-center">
+							<button type="submit" class="btn btn-outline-success btn-sm">Request</button>
+						</div>
+
+					</form>
+
+
+
+				</div>
+				<!-- end body -->
+
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

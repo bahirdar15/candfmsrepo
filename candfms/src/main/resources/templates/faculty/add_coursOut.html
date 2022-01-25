@@ -1,0 +1,4416 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+
+
+
+
+
+
+
+
+
+
+			<!-- start  Content Row -->
+			<div class="row">
+				<!-- start  cotent fulud Row -->
+				<div class="container-fluid">
+
+
+					<form action="#" th:object="${coursout}"
+						enctype="multipart/form-data" method="POST"
+						th:action="@{/faculty/process-cours}" class="mt-2">
+
+
+
+
+
+
+						<div class="row">
+							<!-- Area card -->
+							<div class="col-xl-12 col-lg-10">
+								<div class="card shadow mb-4">
+									<!-- Card Header - Dropdown -->
+									<div
+										class="card-header py-3 d-flex flex-row align-items-center justify-content-between text-center">
+										<h3>
+											<a class="dropdown-item text-left btn-user"
+												th:href="@{/faculty/show_Cours}"><i
+												class="fas fa-arrow-alt-circle-left "></i> Back</a>
+										</h3>
+										<h4 class="m-0 font-weight-bold text-primary ">New Course
+											Outline</h4>
+										<div class="dropdown no-arrow">
+											<a class="dropdown-toggle" href="#" role="button"
+												id="dropdownMenuLink" data-toggle="dropdown"
+												aria-haspopup="true" aria-expanded="false"> <i
+												class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+											</a>
+											<div
+												class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+												aria-labelledby="dropdownMenuLink">
+												<div class="dropdown-header">Dropdown Header:</div>
+												<a class="dropdown-item" th:href="@{/faculty/sample}"><i
+													class="fas fa-sign-in-alt"></i> Sample</a>
+
+												<div class="dropdown-divider"></div>
+												<a class="dropdown-item" href="#">Something else here</a>
+											</div>
+
+										</div>
+									</div>
+									<!-- dropdown fmie  -->
+									<div class="card-body mx-4 pb-0 pt-1">
+										<div class="row text-center">
+											<div class="col-md-5">
+												<div class="m-2 text-center">
+
+													<div class="input-group mb-3 ">
+														<div class="input-group-prepend">
+															<label class="input-group-text form-control-user py-0"
+																for="inputGroupSelect01">CHAIR</label>
+														</div>
+														<!-- <label for="fmie" class="col-form-label">: </label> -->
+														<select class="custom-select custom-selectch" required
+															id="fmieid" name="fmieid">
+															<option value="" selected disabled>---SELECT
+																CHAIR---</option>
+															<option th:each="f : ${fmies}" th:value="${f.id}"
+																th:text="${f.name}"></option>
+																 
+																
+														</select>
+													</div>
+
+												</div>
+											</div>
+											<!-- dropdown year -->
+											<div class="col-md-5">
+												<div class="m-2 text-center">
+
+													<div class="input-group mb-3 ">
+														<div class="input-group-prepend">
+															<label
+																class="input-group-text form-control-user py-0 px-2"
+																for="inputGroupSelect01">SEMESTER</label>
+														</div>
+														<!-- <label for="fmie" class="col-form-label">: </label> -->
+														<select class="custom-select custom-selects" required
+															id="semesterid" name="semesterid">
+															<option value="" selected disabled>---SELECT
+																SEMESTER---</option>
+															<option th:each="f : ${semesters}" th:value="${f.id}"
+																th:utext="${f.name}"></option>
+														</select>
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+										<div class="row text-center">
+											<div class="col-md-5">
+												<div class=" m-2 text-center">
+													<div class="input-group mb-3 ">
+														<div class="input-group-prepend">
+															<label class="input-group-text form-control-user py-0"
+																for="inputGroupSelect01">YEAR</label>
+														</div>
+														<!-- <label for="fmie" class="col-form-label">: </label> -->
+														<select class="custom-select custom-selecty" required
+															id="yearid" name="yearid">
+															<option value="" selected disabled>---SELECT
+																YEAR---</option>
+															<option th:each="f : ${years}" th:value="${f.id}"
+																th:utext="${f.name}"></option>
+														</select>
+													</div>
+
+
+												</div>
+											</div>
+											<!-- dropdown year -->
+											<div class="col-md-5">
+												<div class=" m-2 text-center">
+													<div class="input-group mb-3 ">
+														<div class="input-group-prepend ">
+															<label
+																class="input-group-text form-control-user py-0 pr-4"
+																for="inputGroupSelect01"> GROUP</label>
+														</div>
+														<!-- <label for="fmie" class="col-form-label">: </label> -->
+														<select class="custom-select custom-selectt" required
+															id="grouptid" name="grouptid">
+															<option value="" selected disabled>--- TARGET
+																GROUP---</option>
+															<option th:each="f : ${groupts}" th:value="${f.id}"
+																th:text="${f.name}"></option>
+														</select>
+													</div>
+
+
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+
+									<!-- Card Body -->
+									<div class="card-body mx-4">
+
+
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Course Title</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+
+												<div class="row">
+													<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+														<input name="title" id="title" class="form-control"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Automotive electrical and electronics system " required/>
+													</div>
+													<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+
+														<div class="row">
+															<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+																style="border-right: 1px solid #858796; border-left: 1px solid #858796;">
+																<b>Chair Name:</b>
+															</div>
+															<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+																<input name="chairNameId" class="form-control"
+																	id="chairNameId" type="text"
+																	style="border: none; outline: 0; box-shadow: none; color: red;"
+																	placeholder="Automotive electrical and electronics system " />
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Course Code</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="ccode" id="ccode" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="AEng4171" required/>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Module</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="cmodule" id="cmodule" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="Motor Vehicle Engineering/17/" />
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>ECTS Credits</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="cps" id="cps" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="5 CP" required/>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Contact Hours(per week)</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+
+												<div class="row">
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+														style="border: 1px solid #858796;">
+														<b>Lecture</b>
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+														style="border: 1px solid #858796;">
+														<b>Tutorial</b>
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+														style="border: 1px solid #858796;">
+														<b>Practice(Laboratory)</b>
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+														style="border: 1px solid #858796;">
+														<b>Home Study</b>
+													</div>
+
+												</div>
+												<div class="row">
+
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+														style="border: 1px solid #858796;">
+														<input name="clecture" id="clecture" type="number"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2" />
+													</div>
+													<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+														style="border: 1px solid #858796;">
+														<input name="ctutrial" id="ctutrial" type="number"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1" />
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+														style="border: 1px solid #858796;">
+														<input name="claboratory" id="claboratory" type="number"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3" />
+													</div>
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+														style="border: 1px solid #858796;">
+														<input name="cstudy" id="cstudy" class="w-50"
+															type="number"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="5" />
+													</div>
+												</div>
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Pre-requisites</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="preRequi" id="preRequi" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Target Group</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="tgroupId" id="tgroupId" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="Mechanical Engineering" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Academic Year</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="aYear" id="aYear" type="text"
+													th:value="${#dates.format(#dates.createNow(), 'yyyy')}"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="2013 E.C" disabled />
+												<!-- <dev class="row">
+													   <div class="col-lg-4 col-md-4">
+															<div class="form-group m-0 p-0">
+												                <div class="input-group date" id="datetimepicker4">
+												                    <input type="text" name="aYear" id="aYear" class="form-control" 
+												                    th:value="${#dates.format(#dates.createNow(), 'yyyy')}"
+												                    style="border: none; outline: 0; box-shadow: none;" >
+												                    <div class="input-group-addon input-group-prepend">
+												                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+												                    </div>
+												                </div>
+												            </div>
+												         </div>
+													</dev> -->
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Semester</b>
+											</div>
+											<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<input name="cSemesterId" id="cSemesterId" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="1st" />
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+										<!-- for instractor and chir holder -->
+
+
+
+
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>
+														Course objective and Competences </b></span>
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+												<p>Up on the completion of the course students will be
+													able to:</p>
+
+											</div>
+										</div>
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+
+												<div class="form-group row">
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="courseobjectone" id="courseobjectone"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Sufficient knowledge on operating principles, theory and design of motor vehicles," />
+
+													</div>
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="courseobjecttwo" id="courseobjecttwo"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+													</div>
+													<div class="col-sm-1 codd">
+														<a data-toggle="collapse" href="#multiCollapseExample1po"
+															role="button" aria-expanded="false"
+															aria-controls="multiCollapseExample1po"><i
+															class="fa fa-caret-down fa-2x"></i></a>
+
+													</div>
+													<!-- 	new add onather -->
+													<label for="title"
+														class="col-sm-1 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="courseobjectthree" id="courseobjectthree"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+													</div>
+
+												</div>
+												<div
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12  collapse multi-collapse"
+													id="multiCollapseExample1po">
+
+													<div class="form-group row pt-0">
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjectfour" id="courseobjectfour"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjectfive" id="courseobjectfive"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjectsix" id="courseobjectsix"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjectseven" id="courseobjectseven"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjecteight" id="courseobjecteight"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjectnine" id="courseobjectnine"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+														<label for="title"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+															class="fas fa-circle"></i></label>
+														<div class="col-sm-10">
+															<input name="courseobjectten" id="courseobjectten"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="Sufficient knowledge on design of vehicles, assembly and maintenance." />
+
+														</div>
+
+
+													</div>
+
+
+												</div>
+
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+										<!-- Competences/Learning Outcome -->
+
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>
+														Competences/Learning Outcome </b></span>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div class="form-group row">
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="comlearn1" id="courseobjectone"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Acquire the knowledge and ability of business idea generation and opportunity recognition" />
+													</div>
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="comlearn2" id="courseobjectone"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Communicate with others through business languages" />
+													</div>
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="comlearn3" id="courseobjectone"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Prepare feasibility study and develop a business plan for projects" />
+													</div>
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="comlearn4" id="courseobjectone"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Describe the different business operations and able to develop strategies for business startups" />
+													</div>
+													<label for="title"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+														class="fas fa-circle"></i></label>
+													<div class="col-sm-10">
+														<input name="comlearn5" id="courseobjectone"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Sufficient knowledge on operating principles, theory and design of motor vehicles," />
+													</div>
+												</div>
+
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>Course
+														Description</b></span>
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+												<textarea id="mytext" name="cdescription" rows="4"
+													class="form-control"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="Introduction; Pneumatic tires and wheel; Suspension systems; Vehicle stability; Power train; Vehicle road performance; Braking system; Steering system. Introduction; Pneumatic tires and wheel; Suspension systems; Vehicle stability; Power train; Vehicle road performance; Braking system; Steering system"></textarea>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
+
+
+
+
+
+
+
+
+									<div class="card-body mx-4">
+
+										<div class="row">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center    font-weight-bold text-primary">
+												<h4>
+													<b> Schedule of Lecture Topics, Tutorial, Laboratory
+														and References </b>
+												</h4>
+											</div>
+
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b>Week</b>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<b>Lecture Topics</b>
+											</div>
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Methodologies </b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<b>Lab activities</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<b>References</b>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b> <input name="weekone" id="weekone" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="1" />
+												</b>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<div class="row codd">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+														<label for="email"><a data-toggle="collapse"
+															href="#multiCollapseExample4" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample4"><i
+																class="fa fa-caret-down "></i></a> </label> <input name="chapter1"
+															id="chapter11" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1. Clutch and Gear Box " />
+													</div>
+												</div>
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter11b"
+															id="chapter11" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.1. Classification of motor vehicles " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"> </label> <input name="chapter12b"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.2. Transmission of motion to wheel " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+														<label for="email"> </label> <input name="chapter13b"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.3. Fundamentals of automatic transmission " />
+													</div>
+												</div>
+
+
+
+												<div class="row  collapse" id="multiCollapseExample4">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter14b"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.4. Requirement of Transmission system " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter15"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.5. Different types of clutches " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter16"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.6. purpose of  gear box " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter17"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.7. Determination of gear box ratios for different vehicle applications.  " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter18"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.8. Different types of conventional gear boxes " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter19"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.9. Non-slip differential " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter110"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="1.10. Differential locks - Differential housings " />
+													</div>
+
+												</div>
+
+
+
+											</div>
+
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="methowe11" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe12" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe13" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="actlab11" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab12" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab13" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="tabref11" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref12" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref13" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b> <input name="weektwo" id="weektwo" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="2" />
+												</b>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<div class="row codd">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+														<label for="email"><a data-toggle="collapse"
+															href="#multiCollapseExample14" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample14"><i
+																class="fa fa-caret-down "></i></a> </label> <input name="chapter2"
+															id="chapter11" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2. Drive Line  " />
+													</div>
+												</div>
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter21"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.1. Drive Line  " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter22"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.2. Effect of driving thrust and torque reactions " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter23"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.3. Hotch kiss drive, torque tube drive and radius rods " />
+													</div>
+												</div>
+
+
+												<div class="row  collapse" id="multiCollapseExample14">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter24"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.4. Propeller shaft " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter25"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.5. Universal joints " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter26"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.6. Constant velocity universal joints " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter27"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.7. Front wheel drive " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter28"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.8 Double reduction and twin speed final drives " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter29"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.9. Differential principles " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter210"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="2.10. Construction details of differential unit " />
+													</div>
+
+												</div>
+
+
+
+											</div>
+
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="methowe21" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe22" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe23" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="actlab21" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab22" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab23" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="tabref21" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref22" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref23" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 "
+												style="border: 1px solid #858796;">
+
+												<div class="row">
+
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 pl-1 codd">
+														<a data-toggle="collapse" href="#multiCollapseExample5"
+															role="button" aria-expanded="false"
+															aria-controls="multiCollapseExample5"><i
+															class="fa fa-caret-down "></i></a>
+
+
+													</div>
+													<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 px-0">
+
+														<b> <input name="weekthree" id="weekthree" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3" />
+														</b>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<div class="row codd">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+														<label for="email"><a data-toggle="collapse"
+															href="#multiCollapseExample1115" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample1115"><i
+																class="fa fa-caret-down "></i></a> </label> <input name="chapter3"
+															id="chapter3" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3. Axles and Bearing " />
+													</div>
+												</div>
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter31"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.1. Axles and Bearing" />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter32"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.2. Construction of rear axles " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter33"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.3. Types of loads acting on rear axles " />
+													</div>
+												</div>
+
+
+												<div class="row  collapse" id="multiCollapseExample1115">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter34"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.4. Full floating " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter35"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.5. Three quarter floating and semi floating rear axles. Rear axle housing " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter36"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.6. Construction of different types of axle housings " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter37"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.7. Multi-axle vehicles " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter38"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.8. Construction details of multi drive axle vehicles, types of bearings, loads on the bearings  " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter39"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.9. Inspection and trouble shooting of Differential and Drive axle(front and rear axle) " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter310"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="3.10. Inspection and trouble shooting of Drive shaft and universal joints " />
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="methowe31" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe32" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe33" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="actlab31" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab32" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab33" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="tabref31" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref32" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref33" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="collapse" id="multiCollapseExample5">
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weekfour" id="weekfour" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="4" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExample144" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExample144"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter4"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4. Automatic Transmission " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter41"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.1. TransmissionFundamentals of automatic transmission(Types, Subsystems of automatic transmission)" />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter42"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.2. Simpson rotary gear unit " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter43"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.3. Gear selection and function " />
+														</div>
+													</div>
+
+													<div class="row  collapse" id="multiCollapseExample144">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter44"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.4. Power flow " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter45"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.5. Automatic transmission fluid " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter46"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.6. Transmission oil pump " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter47"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.7. Valve body circuits " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter48"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.8. Electrical control " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter49"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.9. Shaft lock system " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter410"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="4.10. Transmission of motion to wheel " />
+														</div>
+
+													</div>
+
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe41" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe42" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe43" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab41" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab42" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab43" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref41" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref42" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref43" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+											</div>
+
+
+
+
+
+
+
+
+
+
+
+
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weekfive" id="weekfive" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="5" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExample154" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExample154"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter5"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5. Power Unit " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter51"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.1. Two stroke SI engine, merits and demerits" />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter52"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.2. Symmetrical and unsymmetrical port timing diagrams " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter53"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.3. Types of scavenging processes, merits and demerits, scavenging efficiency " />
+														</div>
+													</div>
+
+
+
+													<div class="row  collapse" id="multiCollapseExample154">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter54"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.4. Scavenging pumps " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter55"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.5. Fuel system " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter56"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.6. Rotary valve engine " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter57"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.7. Lubrication system " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter58"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.8. Magneto coil and battery coil spark ignition system " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter59"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.9. Electronic Ignition System " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter510"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="5.10. Starting system " />
+														</div>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe51" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe52" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe53" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab51" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab52" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab53" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref51" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref52" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref53" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+											</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weeksix" id="weeksix" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="6" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExamplel64" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExamplel64"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter6"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6. Suspension Systems " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter61"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.1. Springs and shock absorbers" />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter62"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.2. Suspension systems classification " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter63"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.3. Chassis sprung and un-sprung " />
+														</div>
+													</div>
+
+													<div class="row  collapse" id="multiCollapseExamplel64">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter64"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.4. Leaf springs " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter65"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.5. Coil springs " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter66"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.6. Torsion bar " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter67"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.7. Transmission of motion to wheel " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter68"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.8. Rubber suspension " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter69"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.9. Hydraulic suspension " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter610"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="6.10. Transmission of motion to wheel " />
+														</div>
+
+													</div>
+
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe61" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe62" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe63" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab61" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab62" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab63" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref61" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref62" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref63" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+											</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weekseven" id="weekseven" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="7&8" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExamplel74" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExamplel74"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter7"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7. Vehicle Performance Evaluation and Testing " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter71"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.1. Proper use of equipment’s" />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter72"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.2. Common sense safety rules " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter73"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.3. Testing Procedure " />
+														</div>
+													</div>
+
+
+													<div class="row  collapse" id="multiCollapseExamplel74">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter74"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.4. Typical tune-up " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter75"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.5. Maintenance tune-up " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter76"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.6. Diagnostics tune-up " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter77"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.7. Engine diagnostics " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter78"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.8. Pinpoint testing with an exhaust gas analyzer " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter79"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.9. On vehicle inspection and adjustment practice " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter710"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="7.10. Transmission of motion to wheel " />
+														</div>
+
+													</div>
+
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe71" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe72" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe73" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab71" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab72" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab73" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref71" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref72" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref73" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
+												style="border: 1px solid #858796; background-color: #40405029;">
+												<h4>
+													<b style="color: #0a66ef;">Mid Exam</b>
+												</h4>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b> <input name="weeknine" id="weekone" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="9" />
+												</b>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<div class="row codd">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+														<label for="email"><a data-toggle="collapse"
+															href="#multiCollapseExample48" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample48"><i
+																class="fa fa-caret-down "></i></a> </label> <input name="chapter8"
+															id="chapter11" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8. Fundamentals of Troubleshooting " />
+													</div>
+												</div>
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter81"
+															id="chapter12" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.1. Maintenance tune-up " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"> </label> <input name="chapter82"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.2. Diagnostics tune-up " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+														<label for="email"> </label> <input name="chapter83"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.3. Logical approach " />
+													</div>
+												</div>
+
+
+
+												<div class="row  collapse" id="multiCollapseExample48">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter84"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.4. Verify the complaint " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter85"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.5. Define the problem " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter86"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.6. Isolate the problem  " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter87"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.7. Pinpoint the problem " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter88"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.8. Identify the problem " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter89"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.9. Compression test " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter810"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="8.10. Cylinder leakage test " />
+													</div>
+
+												</div>
+
+
+
+											</div>
+
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="methowe91" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe92" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe93" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="actlab91" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab92" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab93" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="tabref91" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref92" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref93" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b> <input name="weekten" id="weektwo" type="text"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="10" />
+												</b>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<div class="row codd">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+														<label for="email"><a data-toggle="collapse"
+															href="#multiCollapseExamp" role="button"
+															aria-expanded="false" aria-controls="multiCollapseExamp"><i
+																class="fa fa-caret-down "></i></a> </label> <input name="chapter9"
+															id="chapter11" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9. Engine Performance Testing " />
+													</div>
+												</div>
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter91"
+															id="chapter91" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.1. Engine cranking vacuum test " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"> </label> <input name="chapter92"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.2. Indicated Horse power " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+														<label for="email"> </label> <input name="chapter93"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.3. Brake Horse power " />
+													</div>
+												</div>
+
+
+
+												<div class="row  collapse" id="multiCollapseExamp">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter94"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.4. Mean effective pressure " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter95"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.5. Specific fuel consumption " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter96"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.6. Thermal efficiency " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter97"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.7. Mechanical efficiency " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter98"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.8. Transmission of motion to wheel " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter99"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.9. Hydrocarbons " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter910"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="9.10. Exhaust gas analyzer (four-gas analyzer and five gas analyzer) " />
+													</div>
+
+												</div>
+
+
+
+											</div>
+
+
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="methowe101" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe102" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe103" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="actlab101" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab102" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab103" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="tabref101" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref102" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref103" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 "
+												style="border: 1px solid #858796;">
+
+												<div class="row">
+
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 pl-1 codd">
+														<a data-toggle="collapse" href="#multiCollapseExample51"
+															role="button" aria-expanded="false"
+															aria-controls="multiCollapseExample51"><i
+															class="fa fa-caret-down "></i></a>
+
+
+													</div>
+													<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 px-0">
+
+														<b> <input name="weekeleven" id="weekthree"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="11" />
+														</b>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+												style="border: 1px solid #858796;">
+												<div class="row codd">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+														<label for="email"><a data-toggle="collapse"
+															href="#multiCollapseExample1110" role="button"
+															aria-expanded="false"
+															aria-controls="multiCollapseExample1110"><i
+																class="fa fa-caret-down "></i></a> </label> <input name="chapter10"
+															id="chapter3" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10. Exhaust Quality Testing and Emission Controls " />
+													</div>
+												</div>
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter101"
+															id="chapter12" size="30" class="form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.1. Catalytic converters " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"> </label> <input name="chapter102"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.2. Air injection system " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+														<label for="email"> </label> <input name="chapter103"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.3. Catalytic converters " />
+													</div>
+												</div>
+
+
+
+												<div class="row  collapse" id="multiCollapseExample1110">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter104"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.4. Positive crankcase ventilation systems " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter105"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.5. Exhaust gas recirculation systems " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter106"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.6. Spark controls " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter107"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.7. Engine modifications " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter108"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.8. Basic Oscilloscopes (Ignition scope patterns, Primary pattern, Secondary pattern, Electronic ignitions, Charging systems, Electronic fuel injection) " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter109"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.9. Transmission of motion to wheel " />
+													</div>
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+														<label for="email"></label> <input name="chapter1010"
+															id="email" size="30" class="form-control-sm" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="10.10. Detailed scope Analysis ( Firing line, Spark line, Coil output, Coil input, Secondary insulation test, Dwell section, Electronic ignitions) " />
+													</div>
+
+												</div>
+
+											</div>
+
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="methowe111" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe112" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="methowe113" id="weektwo" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="actlab111" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab112" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="actlab113" id="weektwo" type="text" size="13"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<p>
+													<input name="tabref111" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref112" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+												<p>
+													<input name="tabref113" id="weektwo" type="text" size="12"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="-" />
+												</p>
+											</div>
+
+
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="collapse" id="multiCollapseExample51">
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weektwelve" id="weekfour" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="12" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExample1711" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExample1711"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter11"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11. Cylinder Head: Springs, Valves and Valve Seats " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter111"
+																id="chapter12" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.1. Cylinder Head and Valve Train Disassembly " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"> </label> <input name="chapter112"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.2. Cylinder Head components visual and crack inspection  " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+															<label for="email"> </label> <input name="chapter113"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.3. Cylinder Head Crack Repair " />
+														</div>
+													</div>
+
+
+
+													<div class="row  collapse" id="multiCollapseExample1711">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter114"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.4. Cylinder head reconditioning " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter115"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.5. Measuring Valve Guides for Wear " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter116"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.6. Valve Guide Service " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter117"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.7. Valve Guide Replacement " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter118"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.8. Valve fault diagnosis " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter119"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.9. Valve Spring Inspection " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter1110"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="11.10. Valve reconditioning (Valve re-facing, Honing, Valve lapping) " />
+														</div>
+
+													</div>
+
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe121" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe122" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe123" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab121" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab122" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab123" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref121" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref122" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref123" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+											</div>
+
+
+
+
+
+
+
+
+
+
+
+
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weekthirteen" id="weekfive"
+														type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="13" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExample1546" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExample1546"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter12"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12. Camshafts, Lifters, Timing Belts, and Chains " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter121"
+																id="chapter12" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.1. Camshafts, Lifters, Timing Belts, and Chains " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"> </label> <input name="chapter122"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.2. Camshaft and Valve Train Inspection " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+															<label for="email"> </label> <input name="chapter123"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.3. Camshaft Service " />
+														</div>
+													</div>
+
+
+
+													<div class="row  collapse" id="multiCollapseExample1546">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter124"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.4. Lifter Service, and Cam and Lifter Break-in " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter125"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.5. Timing belt inspection service and replacement " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter126"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.6. Timing Chain Inspection and Service " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter127"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.7. Inspect Pushrods " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter128"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.8. Transmission of motion to wheel " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter129"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.9. Pushrod Engine Rocker Arm Service " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter1210"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="12.10. Transmission of motion to wheel " />
+														</div>
+
+													</div>
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe131" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe132" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe133" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab131" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab132" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab133" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref131" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref132" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref133" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+
+											</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weekfourteen" id="weeksix" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="14" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExample8649" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExample8649"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter13"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13. Petrol Fuel System " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter131"
+																id="chapter12" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.1. Petrol Fuel System " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"> </label> <input name="chapter132"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.2. Air cleaner inspection and service " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+															<label for="email"> </label> <input name="chapter133"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.3. Fuel pump  inspection and testing " />
+														</div>
+													</div>
+
+
+
+													<div class="row  collapse" id="multiCollapseExample8649">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter134"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.4. Fuel filter service " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter135"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.5. Carburetor service " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter136"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.6. Cleaning and inspection of  cooling system " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter137"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.7. Water pump and fan belt inspection " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter138"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.8. Inspections of radiator  cap " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter139"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.9. Thermostat test  " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter1310"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="13.10. Radiator reverse flushing " />
+														</div>
+
+													</div>
+
+
+												</div>
+
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe141" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe142" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe143" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab141" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab142" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab143" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref141" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref142" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref143" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+											</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+											<div class="row  ">
+												<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+													style="border: 1px solid #858796;">
+													<b> <input name="weekfifteen" id="weekseven"
+														type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="15&16" />
+													</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<div class="row codd">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+															<label for="email"><a data-toggle="collapse"
+																href="#multiCollapseExampl9" role="button"
+																aria-expanded="false"
+																aria-controls="multiCollapseExampl919"><i
+																	class="fa fa-caret-down "></i></a> </label> <input name="chapter14"
+																id="chapter11" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14. Engine Blocks " />
+														</div>
+													</div>
+													<div class="row">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter141"
+																id="chapter12" size="30" class="form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.1. Engine Blocks " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"> </label> <input name="chapter142"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.2. Cylinder Block: Inspection and Servicing " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+															<label for="email"> </label> <input name="chapter143"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.3. Crankshaft and Bearings Inspection " />
+														</div>
+													</div>
+
+
+
+													<div class="row  collapse" id="multiCollapseExampl9">
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter144"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.4. Pistons, Rings, Pins and Connecting rods  " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter145"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.5. Inspection of oil pump and  oil strainer " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter146"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.6. Transmission of motion to wheel " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter147"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.7. Cleaning and servicing of oil filter " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter148"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.8. Replacement of engine oil and oil filter " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter149"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.9. Intake manifold, Air Cleaner inspection and servicing " />
+														</div>
+														<div
+															class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+															<label for="email"></label> <input name="chapter1410"
+																id="email" size="30" class="form-control-sm" type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="14.10. Exhaust manifold inspection and servicing " />
+														</div>
+
+													</div>
+
+
+												</div>
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="methowe151" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe152" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="methowe153" id="weektwo" type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="actlab151" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab152" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="actlab153" id="weektwo" type="text" size="13"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<p>
+														<input name="tabref151" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref152" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+													<p>
+														<input name="tabref153" id="weektwo" type="text" size="12"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="-" />
+													</p>
+												</div>
+
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+										<div class="row">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
+												style="border: 1px solid #858796; background-color: #40405029;">
+												<h4>
+													<b style="color: #0a66ef;">Final Exam</b>
+												</h4>
+											</div>
+
+										</div>
+
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									<div class="card-body mx-2">
+										<div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Chapters:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="inputGroupSelect019">BEFORE MID</label>
+													</div>
+													<input name="chapbf" id="chapbf" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="8" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="inputGroupSelect091">AFTER MID</label>
+													</div>
+													<input name="chapaf" id="chapaf" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="7" />
+												</div>
+											</div>
+										</div>
+
+										<!-- 	new plan	 -->
+
+										<div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Chapters Course Planned:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group  ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="chapbfmidplan">BEFORE MID</label>
+													</div>
+													<input name="chapbfmidplan" id="chapbfmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="8" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="chapafmidplan">AFTER MID</label>
+													</div>
+													<input name="chapafmidplan" id="chapafmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="7" />
+												</div>
+											</div>
+										</div>
+
+
+										<div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Assessments Course Planned:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="assbfmidplan">BEFORE MID</label>
+													</div>
+													<input name="assbfmidplan" id="assbfmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="4" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="assafmidplan">AFTER MID</label>
+													</div>
+													<input name="assafmidplan" id="assafmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="3" />
+												</div>
+											</div>
+										</div>
+
+
+
+
+
+
+
+
+
+
+									</div>
+
+
+
+
+
+
+
+									<!-- assessment     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+									<div class="card-body mx-4">
+
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>Teaching
+														and Learning Methods </b></span>
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<p>This course will incorporate a combination of
+													lectures, student feedback (discussion), guided in-class
+													discussions, readings, case studies, individual and group
+													exercises. Active participation in all class activities is
+													essential to accomplish the goals of the class.</p>
+
+												<!-- <textarea id="mytext" name="cPolicy" rows="6"
+													class="form-control"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="All students are expected to abide by the code of conduct of students (article 166 and 166.1.1, of the Senate Legislation of Bahir Dar University May 20, 2005) throughout this course. Academic dishonesty, including cheating, fabrication, and plagiarism will not be tolerated and will be reported to concerned bodies for action. Class attendance and participation: You are expected to attend class regularly. If you miss more  than 85% lecture and tutorial and 100% for laboratory class attendance you will not sit for final exam
+														"></textarea> -->
+											</div>
+										</div>
+
+										<div class="row">
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center font-weight-bold text-primary"
+												style="border: 1px solid #858796;">
+												<h4>
+													<b>Assessment Methods</b>
+												</h4>
+											</div>
+
+										</div>
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Assessment Type</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<b>Week</b>
+											</div>
+
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row align-text-center">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+														<p>
+															<b>Assessment Weight(%)</b>
+														</p>
+													</div>
+												</div>
+												<div class="row ">
+													<div class="col text-center"
+														style="border: 1px solid #858796;">
+														<b>1</b>
+													</div>
+													<div class="col text-center"
+														style="border: 1px solid #858796;">
+														<b>2</b>
+													</div>
+													<div class="col text-center"
+														style="border: 1px solid #858796;">
+														<b>3</b>
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-bottom"
+												style="border: 1px solid #858796;">
+												<b>Total</b>
+											</div>
+										</div>
+
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Individual Assignment</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe1" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal1();" value="" id="v10" name="asses11"
+															type="number" placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal1();" id="v11" name="asses12" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal1();" id="v12" name="asses13" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result1" value="0" readonly=true onkeyup="calculate();"
+													type="number" placeholder="11"
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Group Assignment</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe2" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal2();" id="v20" name="asses21" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal2();" id="v21" name="asses22" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal2();" id="v22" name="asses23" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result2" value="0" disabled onkeyup="calculate();"
+													name="ass2" type="number" placeholder="12"
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Quiz</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe3" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal3();" id="v30" name="asses31" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal3();" id="v31" name="asses32" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal3();" id="v32" name="asses33" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result3" value="0" disabled onkeyup="calculate();"
+													name="ass3" type="number" placeholder="12"
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Project</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe4" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal4();" id="v40" name="asses41" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal4();" id="v41" name="asses42" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															onkeyup="cal4();" id="v42" name="asses43" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result4" value="0" disabled onkeyup="calculate();"
+													name="ass4" type="number" placeholder=""
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Project One</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe5" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v50" onkeyup="cal5();" name="asses51" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v51" onkeyup="cal5();" name="asses52" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v52" onkeyup="cal5();" name="asses53" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result5" value="0" disabled onkeyup="calculate();"
+													name="ass5" type="number" placeholder=""
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Project Two</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe6" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v60" onkeyup="cal6();" name="asses61" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v61" onkeyup="cal6();" name="asses62" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v62" onkeyup="cal6();" name="asses63" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result6" value="0" disabled onkeyup="calculate();"
+													name="ass6" type="number" placeholder=""
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Progress</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe7" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v70" onkeyup="cal7();" name="asses71" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v71" onkeyup="cal7();" name="asses72" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v72" onkeyup="cal7();" name="asses73" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result7" value="0" disabled onkeyup="calculate();"
+													name="ass7" type="number" placeholder=""
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Mid Exam</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="text" name="asswe8" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v80" onkeyup="cal8();" name="asses81" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v81" onkeyup="cal8();" name="asses82" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v82" onkeyup="cal8();" name="asses83" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result8" value="0" disabled onkeyup="calculate();"
+													name="ass8" type="text" placeholder=""
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Final Exam</b>
+											</div>
+											<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+												style="border: 1px solid #858796;">
+												<input class="form-control text-center form-control-sm"
+													type="number" name="asswe9" placeholder="1-2"
+													style="border: none; outline: 0; box-shadow: none;">
+											</div>
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+												style="border: 1px solid #858796;">
+												<div class="row">
+
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm "
+															id="v90" onkeyup="cal9();" name="asses91" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v91" onkeyup="cal9();" name="asses92" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+													<div class="col" style="border: 1px solid #858796;">
+														<input class="form-control text-center form-control-sm"
+															id="v92" onkeyup="cal9();" name="asses93" type="number"
+															placeholder=""
+															style="border: none; outline: 0; box-shadow: none;">
+													</div>
+
+
+												</div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm"
+													id="result9" value="0" disabled onkeyup="calculate();"
+													name="ass9" type="text" placeholder=""
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+
+
+
+										<div class="row">
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+												style="border: 1px solid #858796;">
+												<b>Total Mark</b>
+											</div>
+
+											<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+												style="border: 1px solid #858796;">
+												<div class="row"></div>
+											</div>
+											<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+												style="border: 1px solid #858796;">
+												<b><input
+													class="form-control text-center form-control-sm grandtotal"
+													name="asstotal" type="number" placeholder="0" readonly
+													value="" onkeyup="grandtotal();"
+													style="border: none; outline: 0; box-shadow: none;"></b>
+											</div>
+										</div>
+
+
+
+
+
+
+
+									</div>
+
+									<!-- Policy     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+									<div class="card-body mx-4">
+
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>Course
+														Policy</b></span>
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<p>Minimum of 80% attendance during lecture hours, and
+													100% attendance during practical work and tutorial
+													sessions, except for some unprecedented mishaps. All
+													students are expected to abide by the code of conduct of
+													students on BDU, BiT Legislation.</p>
+
+												<!-- <textarea id="mytext" name="cPolicy" rows="6"
+													class="form-control"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="All students are expected to abide by the code of conduct of students (article 166 and 166.1.1, of the Senate Legislation of Bahir Dar University May 20, 2005) throughout this course. Academic dishonesty, including cheating, fabrication, and plagiarism will not be tolerated and will be reported to concerned bodies for action. Class attendance and participation: You are expected to attend class regularly. If you miss more  than 85% lecture and tutorial and 100% for laboratory class attendance you will not sit for final exam
+														"></textarea> -->
+											</div>
+										</div>
+
+
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>Text
+														Book</b></span>
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+												<div class="form-group row">
+													<label for="book1"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm">1</i></label>
+													<div class="col-sm-10">
+														<input name="book1" id="book1"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Heisler, Heinz, Advanced Vehicle Technology," />
+
+													</div>
+													<label for="book2"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm">2</label>
+													<div class="col-sm-10">
+														<input name="book2" id="book2"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="Heisler2, Heinz, Advanced Vehicle Technology." />
+
+													</div>
+
+												</div>
+											</div>
+										</div>
+
+
+
+
+										<style>
+.codd .fa {
+	transition: .10s transform ease-in-out;
+}
+
+.codd .collapsed .fa {
+	transform: rotate(90deg);
+}
+
+.codd .muhi {
+	transition: .10s transform ease-in-out;
+}
+
+.codd .collapsed .muhi {
+	transform: rotate(90deg);
+}
+</style>
+
+										<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+												style="text-align: justify; padding-left: 300px;">
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>Reference
+														Book</b></span>
+
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+												<div class="form-group row mb-0">
+													<label for="title1"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm">1</i></label>
+													<div class="col-sm-10">
+														<input name="refer1" id="refer1"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="John Fenton. “Vehicle Body layout and analysis” Mechanical Engg Publication Ltd. London 1982," />
+
+													</div>
+													<label for="title2"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm">2</label>
+													<div class="col-sm-10">
+														<input name="refer2" id="refer2"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="David A. Crolla, Automotive Engineering powertrain, chassis system and vehicle body." />
+
+													</div>
+													<div class="col-sm-1 codd">
+														<a data-toggle="collapse" href="#multiCollapseExample1"
+															role="button" aria-expanded="false"
+															aria-controls="multiCollapseExample1"><i
+															class="fa fa-caret-down fa-2x"></i></a>
+
+													</div>
+													<label for="title3"
+														class="col-sm-1 col-form-label text-right px-0 form-control-sm">3</label>
+													<div class="col-sm-10">
+														<input name="refer3" id="refer1"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="S.J. Zammit, Motor vehicle engineering science for technicians" />
+
+													</div>
+
+
+												</div>
+
+
+											</div>
+
+											<div
+												class="col-lg-12 col-md-12 col-sm-12 col-xs-12  collapse multi-collapse"
+												id="multiCollapseExample1">
+
+												<div class="form-group row mb-0">
+													<label for="title1"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm">4</i></label>
+													<div class="col-sm-10">
+														<input name="refer4" id="refer1"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="John Fenton. “Vehicle Body layout and analysis” Mechanical Engg Publication Ltd. London 1982," />
+
+													</div>
+													<label for="title2"
+														class="col-sm-2 col-form-label text-right px-0 form-control-sm">5</label>
+													<div class="col-sm-10">
+														<input name="refer5" id="refer1"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="David A. Crolla, Automotive Engineering powertrain, chassis system and vehicle body." />
+
+													</div>
+													<div class="col-sm-1 codd">
+														<a data-toggle="collapse" href="#multiCollapseExample2"
+															role="button" aria-expanded="false"
+															aria-controls="multiCollapseExample2"><i
+															class="fas fa-caret-down fa-2x muhi"></i></a>
+
+													</div>
+													<label for="title3"
+														class="col-sm-1 col-form-label text-right px-0 form-control-sm">6</label>
+													<div class="col-sm-10">
+														<input name="refer6" id="refer1"
+															class="form-control text-left pl-0 py-0 form-control-sm"
+															type="text"
+															style="border: none; outline: 0; box-shadow: none;"
+															placeholder="S.J. Zammit, Motor vehicle engineering science for technicians" />
+
+													</div>
+												</div>
+
+
+
+												<div
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12  collapse pl-2"
+													id="multiCollapseExample2">
+
+													<div class="form-group row">
+														<label for="title1"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm">7</i></label>
+														<div class="col-sm-10">
+															<input name="refer7" id="refer1"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="John Fenton. “Vehicle Body layout and analysis” Mechanical Engg Publication Ltd. London 1982," />
+
+														</div>
+														<label for="title2"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm">8</label>
+														<div class="col-sm-10">
+															<input name="refer8" id="refer1"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="David A. Crolla, Automotive Engineering powertrain, chassis system and vehicle body." />
+
+														</div>
+														<label for="title3"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm">9</label>
+														<div class="col-sm-10">
+															<input name="refer9" id="refer1"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="S.J. Zammit, Motor vehicle engineering science for technicians" />
+
+														</div>
+														<label for="title3"
+															class="col-sm-2 col-form-label text-right px-0 form-control-sm">10</label>
+														<div class="col-sm-10">
+															<input name="refer10" id="refer1"
+																class="form-control text-left pl-0 py-0 form-control-sm"
+																type="text"
+																style="border: none; outline: 0; box-shadow: none;"
+																placeholder="S.J. Zammit, Motor vehicle engineering science for technicians" />
+
+														</div>
+													</div>
+
+
+												</div>
+
+											</div>
+
+
+										</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+									</div>
+
+
+
+
+
+
+								</div>
+							</div>
+							<!-- end Area card -->
+						</div>
+
+
+						<div class="container text-center">
+							<button class="btn btn-outline-primary">Save Course</button>
+						</div>
+
+					</form>
+
+
+
+				</div>
+				<!-- end content fulud-->
+			</div>
+			<!-- finash Content Row -->
+
+
+
+
+
+		</div>
+		<!-- /.container-fluid -->
+
+		<script type="text/javascript">
+			function cal1() {
+				var a = $("#v10").val();
+				var b = $("#v11").val();
+				var c = $("#v12").val();
+				c1 = +a + +b + +c;
+				$("#result1").val(c1);
+				grandtotal();
+			}
+
+			function cal2() {
+				var a = $("#v20").val();
+				var b = $("#v21").val();
+				var c = $("#v22").val();
+				c2 = +a + +b + +c;
+				$("#result2").val(c2);
+				grandtotal();
+			}
+
+			function cal3() {
+				var a = $("#v30").val();
+				var b = $("#v31").val();
+				var c = $("#v32").val();
+				c3 = +a + +b + +c;
+				$("#result3").val(c3);
+				grandtotal();
+			}
+
+			function cal4() {
+				var a = $("#v40").val();
+				var b = $("#v41").val();
+				var c = $("#v42").val();
+				c3 = +a + +b + +c;
+				$("#result4").val(c3);
+				grandtotal();
+			}
+
+			function cal5() {
+				var a = $("#v50").val();
+				var b = $("#v51").val();
+				var c = $("#v52").val();
+				c3 = +a + +b + +c;
+				$("#result5").val(c3);
+				grandtotal();
+			}
+			function cal6() {
+				var a = $("#v60").val();
+				var b = $("#v61").val();
+				var c = $("#v62").val();
+				c3 = +a + +b + +c;
+				$("#result6").val(c3);
+				grandtotal();
+			}
+			function cal7() {
+				var a = $("#v70").val();
+				var b = $("#v71").val();
+				var c = $("#v72").val();
+				c3 = +a + +b + +c;
+				$("#result7").val(c3);
+				grandtotal();
+			}
+			function cal8() {
+				var a = $("#v80").val();
+				var b = $("#v81").val();
+				var c = $("#v82").val();
+				c3 = +a + +b + +c;
+				$("#result8").val(c3);
+				grandtotal();
+			}
+			function cal9() {
+				var a = $("#v90").val();
+				var b = $("#v91").val();
+				var c = $("#v92").val();
+				c3 = +a + +b + +c;
+				$("#result9").val(c3);
+				grandtotal();
+			}
+
+			function grandtotal() {
+				var a = parseInt($("#result1").val(), 10);
+				var b = parseInt($("#result2").val(), 10);
+				var c = parseInt($("#result3").val(), 10);
+				var d = parseInt($("#result4").val(), 10);
+				var e = parseInt($("#result5").val(), 10);
+				var f = parseInt($("#result6").val(), 10);
+				var g = parseInt($("#result7").val(), 10);
+				var h = parseInt($("#result8").val(), 10);
+				var i = parseInt($("#result9").val(), 10);
+				z = a + b + c + d + e + f + g + h + i; //+
+				$(".grandtotal").val(z);
+			}
+		</script>
+
+	</section>
+
+
+</body>
+</html>

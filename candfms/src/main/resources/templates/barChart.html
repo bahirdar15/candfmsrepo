@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>PIE</title>
+<!-- Latest compiled and minified CSS -->
+
+</head>
+<body>  
+ 
+
+                
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                
+                
+                
+                
+                
+                <!-- <form class="user" th:action="@{/qualiity/qu}" method="post">
+						<input type="hidden" th:value="${ayea}" name="ayear1" /> 
+						<input type="hidden" th:value="${semes}" name="semesterid1" /> 
+						<input type="hidden" th:value="${yea}" name="year1" /> 
+						<input type="hidden" th:value="${bm}" name="bam1" /> 
+						<input type="hidden" th:value="${pro}" name="prog1" /> 
+									 
+										
+										
+										
+										<button   class="btn btn-success btn-sm"><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</button>
+									
+					</form> -->
+
+	<figure class="highcharts-figure">
+	  <div id="container"></div>
+	  <br />
+	  <p id="p" class="highcharts-description">
+	    Total Feedback Faculty Of Mechanical and Industrial Engineering <br />
+	     Academic Year: <!-- <span th:text="${ayea}"></span>
+	     Semester: <span th:each="c : ${semesters}" th:if="${c.id}==${semes}" th:utext="${c.name}"></span>
+	     Year: <span th:if="${yea}==0">All</span><span th:unles="${yea}==0"> <span th:each="c : ${years}" th:if="${c.id}==${yea}"
+						th:utext="${c.name}"></span></span>
+	     Program:  <span th:if="${pro == '1'}">Regular</span><span th:if="${pro == '2'}">Extension</span><span th:if="${pro == '3'}">Summer</span>
+	       <span th:if="${bm == '1'}" style="color: rgb(47, 0, 255);">|Before Mid Exam|</span>
+	       <span th:if="${bm == '2'}" style="color: rgb(47, 0, 255);">|After Mid Exam|</span> -->
+	  </p>
+
+	  <table class="table table-bordered" id="datatable" width="100%">
+	    <thead>
+	      <tr>
+	        <th>chair</th>
+	        <th>Chapters</th>
+	        <th>Assessments</th>
+	        <th>Feedback</th>
+	      </tr>
+	    </thead>
+	     <tbody>
+      <tr>
+        <th>Manufacturing grrg hhgttr hgtt</th>
+        <td>20</td>
+        <td>30</td>
+        <td>78</td>
+      </tr>
+      <tr>
+        <th>Mechanical Design yuuytyug ggfty ggghgh</th>
+        <td>87</td>
+        <td>90</td>
+        <td>50</td>
+      </tr>
+     <tr>
+        <th>Manufacturing grrg hhgttr hgtt</th>
+        <td>20</td>
+        <td>30</td>
+        <td>78</td>
+      </tr>
+      <tr>
+        <th>Mechanical Design yuuytyug ggfty ggghgh</th>
+        <td>87</td>
+        <td>90</td>
+        <td>50</td>
+      </tr>
+      <tr>
+        <th>Manufacturing grrg hhgttr hgtt</th>
+        <td>20</td>
+        <td>30</td>
+        <td>78</td>
+      </tr>
+      <tr>
+        <th>Mechanical Design yuuytyug ggfty ggghgh</th>
+        <td>87</td>
+        <td>90</td>
+        <td>50</td>
+      </tr>
+       <tr>
+        <th>Mechanical Design yuuytyug ggfty ggghgh</th>
+        <td>87</td>
+        <td>90</td>
+        <td>50</td>
+      </tr>
+    </tbody>
+	  </table>
+	</figure>
+	
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+	<!-- Latest compiled and minified JavaScript -->
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script th:src="@{/js/highcharts.js}"></script>
+	<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+		<script th:src="@{/js/data.js}"></script>
+		<!-- <script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+		<script th:src="@{/js/accessibility.js}"></script>
+	<script th:src="@{/js/exporting.js}"></script>
+	<script th:src="@{/js/offline-exporting.js}"></script>
+	<script th:src="@{/js/export-data.js}"></script>
+	<script th:inline="javascript">
+	
+	
+	
+	
+	
+	Highcharts.chart('container', {
+		credits: {
+		    enabled: false
+		}, 
+		data: {
+		    table: 'datatable'
+		  },
+		  chart: {
+		    type: 'column'
+		  },
+		  title: {
+		    text: document.getElementById("p").textContent
+		  },
+		  yAxis: {
+			    min: 0,
+	            max:100,
+	            title: {
+	                text: 'Percent (%)'
+		            }
+		  },
+		  tooltip: {
+		        headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+		        pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of 100%<br/>'
+		    }
+		});
+	              
+    	 
+</script>
+
+
+
+
+
+
+
+
+ </div>
+                
+
+ </body>
+</html>

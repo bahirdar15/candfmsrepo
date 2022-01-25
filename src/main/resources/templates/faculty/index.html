@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+	
+	
+	
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+		
+<div class="row ">
+<div class="col-md-12">
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/faculty/index">Fmie Home</a></li>
+   
+  </ol>
+</nav>
+</div>
+</div>
+			
+			
+			
+			<div class="jumbotron pt-4">
+ 
+               <div class="row mb-2">
+				<div class="col-md-12 text-center"> 
+					
+					<h4> 
+				Welcome <b>[[${#request.userPrincipal.principal.fullName}]] </b>
+				
+				Your Role is <span class="badge badge-pill badge-info" sec:authentication="principal.authorities"></span>
+				
+			</h4> 	
+				</div>
+			</div>
+			
+			
+			
+			
+				<div class="row text-center">
+			<div  th:each="p : ${allPost}" class="col-xl-4 col-md-6 mb-4 text-center" >
+					<div class="card border-left-info shadow h-100 py-0">
+						<div class="card-body px-2">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+<span th:text="${p.title}"></span>
+
+</div>
+									<div class="row no-gutters align-items-center">
+
+										<div class="col">
+
+											<span> 
+												<span th:text="${p.description}"></span>
+
+											</span> 
+
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<div class="card-footer px-2 py-0 m-0">
+						<p class="p-0 m-0"><span class="font-weight-bold text-info">Post Date:</span> <span th:text="${p.postdate}"></span></p>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div class="col-xl-4 col-md-6 mb-4 text-center">
+					<div class="card border-left-info shadow h-100 py-0">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div
+										class="text-xs font-weight-bold text-info text-uppercase mb-1">Today
+										Date</div>
+									<div class="row no-gutters align-items-center">
+
+										<div class="col">
+
+											<span><i class=" fas fa-calendar text-gray-300"></i>
+												<span
+												th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy')}"></span>
+
+											</span> <span
+												th:text="${#dates.format(#dates.createNow(), 'hh:mm a')}"></span>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-auto">
+									<i class="fas fa-clock fa-2x text-gray-300"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				              
+			</div>	
+			
+			
+			
+   
+</div>
+			
+
+			<!-- Content Row -->
+			<div class="row text-center">
+
+				<!-- Earnings (Monthly) Card Example -->
+				<!-- <div class="col-xl-3 col-md-6 mb-4">
+					<div class="card border-left-primary shadow h-100 py-2">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div
+										class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+										Active Status</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">150</div>
+								</div>
+								<div class="col-auto">
+									<i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<!-- Earnings (Monthly) Card Example -->
+				<!-- <div class="col-xl-3 col-md-6 mb-4">
+					<div class="card border-left-success shadow h-100 py-2">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div
+										class="text-xs font-weight-bold text-success text-uppercase mb-1">
+										Approved Requests</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+								</div>
+								<div class="col-auto">
+									<i class="fas fa-bell fa-2x text-gray-300"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<!-- Pending Requests Card Example -->
+				<!-- <div class="col-xl-3 col-md-6 mb-4">
+					<div class="card border-left-warning shadow h-100 py-2">
+						<div class="card-body">
+							<div class="row no-gutters align-items-center">
+								<div class="col mr-2">
+									<div
+										class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+										Pending Requests</div>
+									<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+								</div>
+								<div class="col-auto">
+									<i class="fas fa-comments fa-2x text-gray-300"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+				<!-- dateTime -->
+				
+
+
+
+			</div>
+			
+			
+			
+			<br />
+			
+			
+			<!-- <form enctype="multipart/form-data" method="POST"
+						th:action="@{/performco/process-lemukera}">
+						
+		              	<div class="container text-center">
+							<button type="submit" class="btn btn-outline-success btn-sm">Send</button>
+						</div>
+
+					</form> -->
+			                            
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+
+		</div>
+		<!-- /.container-fluid -->
+		
+	</section>
+
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			<p class="mb-4"></p>
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+
+
+
+
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Show All Orders</h6>
+				</div>
+				<div class="card-body">
+
+					<!--  for Cours Chair -->
+					<div class="table-responsive"
+						sec:authorize="hasAuthority('COURSE_CHAIR')">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>Order No</th>
+
+									<th>Mid Exam</th>
+									<th>Semester</th>
+									<th>Status</th>
+									<th>Filled By</th>
+									<th>Endorsed By</th>
+									<th>Filled Date</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="f, status : ${approvedby}"
+									th:with="semester= ${f.semester}">
+									<!-- <td>[[${status.count}]]</td> -->
+									<td th:text="${f.id}"></td>
+									<td><a th:if="${f.bam}=='1'"
+										th:href="@{'/order/'+${f.id}+'/orderdtaile'}"> <span
+											th:text="Before"> </span></a> <a th:if="${f.bam}=='2'"
+										th:href="@{'/order/'+${f.id}+'/orderdtaile'}"> <span
+											th:text="After"> </span></a></td>
+
+									<td><span th:text="${semester.name}"></span></td>
+									<td><a th:if="${f.status}=='Filled'"
+										class="btn btn-warning btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now Request To Course Chair's Processing(Reviewing and Decisioning)"><i
+											class="fa fa-spinner fa-spin"></i> Filled</a> <a
+										th:if="${f.status}=='Approved'" class="btn btn-warning btn-sm"
+										id="apprButton" type="button" disabled data-toggle="tooltip"
+										data-placement="top"
+										title="Now Request To Course Chair's Processing(Reviewing and Decisioning)"><i
+											class="fa fa-spinner fa-spin"></i> Approved</a> <a
+										th:if="${f.status}=='Endorsed'" class="btn btn-success btn-sm"
+										id="apprButton" type="button" disabled data-toggle="tooltip"
+										data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)"><i
+											class="fas fa-check-circle"></i> <span th:text="${f.status}">
+										</span> </a></td>
+
+
+									<td><span th:with="userIns= ${f.user}"
+										th:text="${userIns.name}"></span></td>
+									<td><span th:each="c : ${chairHolder}"
+										th:if="${c.id}==${f.endorsedby}" th:text="${c.name}"></span></td>
+
+
+									<td th:text="${f.filleddate}"></td>
+
+
+									<td>
+
+
+										<div class="row">
+
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+													<a th:href="@{'/order/'+${f.id}+'/orderdtaile'}"
+														class="btn btn-primary btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a>
+														
+														<!-- <a th:href="@{'/order/'+${f.id}+'/instaFeedbackpdf'}"  
+												        data-toggle="popover" data-placement="left" title="Pdf" 
+														data-content="if click this button go to pdf of course guidebook "
+														class="btn btn-success btn-sm" ><i
+														class="fas fa-download"></i></a> -->
+												</div>
+
+											</div>
+										</div>
+
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+					
+					
+
+
+				</div>
+
+
+
+
+
+
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+		<script>
+       function endorsedRequPerofes(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/order/endorsed/"+id;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script>
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

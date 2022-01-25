@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+	<section>
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+
+			<!-- Content Row -->
+			<div class="row">
+
+				<div class="container-fluid mt-1">
+					<div class="col-md-10 offset-md-1">
+						<div th:if="${session.message}" id="hideDiv"
+							th:classappend="${session.message.type}" class="alert "
+							role="alert">
+							<p class="text-center" th:text="${session.message.content}"></p>
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+						</div>
+
+						<div class="row">
+
+
+							
+
+						</div>
+						<div class="row text-center">
+							<div class="col text-center">
+								<h1>
+									<b class="h3 text-gray-900 mb-4"> Update My Profile!</b>
+								</h1>
+							</div>
+						</div>
+
+
+						<form action="#" th:object="${userd}"
+							enctype="multipart/form-data" method="POST"
+							th:action="@{/div/processd-updatUserSaid}" class="mt-2 user">
+							<!--Processing id for internal information-->
+							<input type="hidden" th:value="${userd.id}" name="id" />
+
+							<!-- Title -->
+							<div class="form-group row">
+
+								<!-- style="font-size: .8rem; border-radius: 10rem; padding: 1.5rem 1rem;" -->
+								<div class="col-sm-6 mb-3 mb-sm-0 ">
+
+									<div class="input-group ">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user py-0"
+												id="inputGroupPrepend2">Full Name:</span>
+										</div>
+										<input type="text" th:value="${userd.name}" name="name"
+											placeholder="Enter name here"
+											class="form-control form-control-user" aria-label="Default"
+											aria-describedby="inputGroup-sizing-default" readonly>
+									</div>
+								</div>
+
+								<div class="col-sm-6 mb-3 mb-sm-0">
+								   <div class="input-group ">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user py-0"
+												id="inputGroupPrepend2">User Name:</span>
+										</div>
+										<input type="text" th:value="${userd.uname}" id="uname"
+										name="uname" placeholder="Enter user name here"
+										class="form-control form-control-user" readonly />
+									</div>
+
+									
+								</div>
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-6 mb-3 mb-sm-0">
+								
+								   <div class="input-group ">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user py-0"
+												id="inputGroupPrepend2">Email    :</span>
+										</div>
+										<input type="email" name="email" th:value="${userd.email}"
+										class="form-control form-control-user" id="email_field"
+										aria-describedby="emailHelp" placeholder="abc@gmail.com"
+										required />
+									</div>
+								
+								
+									
+								</div>
+								<div class="col-sm-6 mb-3 mb-sm-0">
+								    <div class="input-group ">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user py-0"
+												id="inputGroupPrepend2">Phone:</span>
+										</div>
+										<input type="text" name="phone" th:value="${userd.phone}"
+										class="form-control form-control-user" id="phone_field"
+										aria-describedby="phoneHelp" placeholder="+251987654321" />
+									</div>
+
+									
+
+
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-12 mb-3 mb-sm-0">
+								   <div class="input-group ">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user py-0 pr-1"
+												id="inputGroupPrepend2">Address:</span>
+										</div>
+										<input type="text" name="address" th:value="${userd.address}"
+										class="form-control form-control-user" id="address_field"
+										aria-describedby="addressHelp"
+										placeholder="Agri.Building Room-53" required />
+									</div>
+								
+									
+
+
+
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-12 mb-3 mb-sm-0">
+
+
+
+
+
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<span class="input-group-text form-control-user">Optinal*
+												about You</span>
+										</div>
+										<textarea id="mytext" name="about" th:text="${userd.about}"
+											class="form-control form-control-user"
+											aria-label="With textarea" placeholder="Optinal* about You"></textarea>
+									</div>
+
+
+								</div>
+							</div>
+
+
+
+
+
+							<button class="btn btn-primary btn-user btn-block"><i
+								class="fas fa-save"></i> Update Now</button>
+
+
+
+						</form>
+
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</div>
+		<!-- /.container-fluid -->
+	</section>
+
+</body>
+</html>

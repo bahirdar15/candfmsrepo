@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/ChairTotal::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+		<!-- <h1><span th:text="${userp.name}"> </span></h1>
+ -->
+		<!-- <h1>Table</h1>
+ -->
+
+
+
+
+
+
+
+
+
+		<!-- startsssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+
+		
+
+
+
+
+
+
+
+
+
+
+
+		<div class="container-fluid">
+			<div class="row text-center  my-2  h-100 align-items-center">
+				<h4>
+					<b>Course Following-Up Checklist:-</b>
+				</h4>
+				<span>
+					<p class="pt-2 pr-2">To be Compiled by Faculty quality
+						assurance & Enhancement office</p>
+				</span>
+			</div>
+			<div class="row  my-2 h-100 align-items-center">
+				<div class="col-md-7 form-inline px-0">
+					<label class="" for="inlineFormCustomSelectPrefa">Faculty:</label>
+					<div class="col-md-8 mb-1" id="inlineFormCustomSelectPrefa"
+						style="border-bottom: 1px solid currentColor;">Mechanical
+						And Industrial Engineering</div>
+				</div>
+				<div class="col-md-5 px-0">
+					<div class="radio-pillbox">
+						<radiogroup>
+						<div class="col-md-1 px-0"
+							style="border: 1px solid currentColor; border-style: dotted;">
+							<input type="radio" name="bam" id="easy16" disabled value="1"
+								class="first" th:checked="${bm == '1'} "> <label
+								for="easy16" class="radio-label"></label>
+						</div>
+						<label for="easy1" class="radio-label"> &nbsp;
+							&nbsp;Before Mid Exam: </label>
+						<div class="col-md-1 px-0"
+							style="border: 1px solid currentColor; border-style: dotted;">
+							<input type="radio" name="bam" disabled id="tricky26" value="2"
+								class="first" th:checked="${bm == '2'} "> <label
+								for="tricky26" class="radio-label"></label>
+						</div>
+						<label for="tricky2" class="radio-label"> &nbsp;
+							&nbsp;After Mid Exam: </label> </radiogroup>
+					</div>
+				</div>
+			</div>
+			<div class="row   my-2 h-100 align-items-center">
+				<label class="" for="inlineFormCustomSelectPref">Academic
+					Year:</label>
+				<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref"
+					style="border-bottom: 1px solid currentColor;">
+					<span th:text="${ayea}"></span>
+				</div>
+
+				<label class="" for="inlineFormCustomSelectPref2">Semester:</label>
+				<div class="col-md-2 mb-2 px-2" id="inlineFormCustomSelectPref2"
+					style="border-bottom: 1px solid currentColor;">
+					<span th:each="c : ${semesters}" th:if="${c.id}==${semes}"
+						th:utext="${c.name}"></span>
+
+				</div>
+
+
+			</div>
+			<div class="row my-2">
+				<div class="radio-pillbox">
+					<radiogroup> <b>
+						<h5>Program</h5>
+					</b> &nbsp; &nbsp;&nbsp; &nbsp;
+					<div class="col-md-1 px-0"
+						style="border: 1px solid currentColor; border-style: dotted;">
+						<input type="radio" disabled name="radio-group2"
+							th:checked="${pro == '1'} " id="easy33" value="1" class="first">
+						<label for="easy33" class="radio-label"></label>
+					</div>
+					<label for="easy" class="radio-label"> &nbsp;
+						&nbsp;Regular: </label>
+
+					<div class="col-md-1 px-0"
+						style="border: 1px solid currentColor; border-style: dotted;">
+						<input type="radio" disabled name="radio-group2"
+							th:checked="${pro == '2'} " id="tricky22" value="2" class="first">
+						<label for="tricky22" class="radio-label"></label>
+					</div>
+					<label for="tricky" class="radio-label"> &nbsp;
+						&nbsp;Extension: </label>
+
+					<div class="col-md-1 px-0"
+						style="border: 1px solid currentColor; border-style: dotted;">
+						<input type="radio" disabled name="radio-group2"
+							th:checked="${pro == '3'} " id="sum22" value="3" class="first">
+						<label for="sum22" class="radio-label"></label>
+					</div>
+					<label for="sum" class="radio-label"> &nbsp; &nbsp;Summer:
+					</label> </radiogroup>
+				</div>
+			</div>
+
+<!-- Start----------------------------------------------------------------------------------------------------------------------- -->
+			<br>
+			<div class="row text-center  h-100 px-0">
+
+				<div class="col-md-4 px-0 justify-content-center"
+					style="border: 1px solid #858796;">
+					<div class="row text-center   h-100 align-items-center ">
+						<div class="col-md-12 col-sm-12 ">Chair</div>
+					</div>
+				</div>
+
+
+
+				<!-- lllllllllll -->
+				<div class="col-md-8 h-100">
+
+					<div class="row text-center   h-100 align-items-center "
+						style="border: 1px solid #858796;"> 
+						<div class="col-md-1 h-100">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12  h-100">Year</div>
+							</div>
+						</div>
+						<div class="col-md-9 ">
+							<div class="row" style="border: 1px solid #858796;">
+								<div class="col-md-5 px-0 py-2"
+									style="text-align: center; border-right: 1px solid #858796;">
+									<div class="row text-center    align-items-center">
+										<div class="col-md-12 col-sm-12 ">Total No Of Chapter</div>
+									</div>
+
+								</div>
+								<div class="col-md-7 px-0 my-2">
+									<div class="row text-center    align-items-center">
+										<div class="col-md-12 col-sm-12">Total Number of
+											Assessments</div>
+									</div>
+
+								</div>
+							</div>
+							<div class="row " style="border: 1px solid #858796;">
+								<div class="col-md-5  "
+									style="text-align: center; border-right: 1px solid #858796;">
+
+									<div class="row text-center h-100   align-items-center">
+										<div class="col-md-6 h-100 px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">Planned</div>
+											</div>
+										</div>
+										<div class="col-md-6 h-100  px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">Covered</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7 ">
+
+									<div class="row text-center  h-100 align-items-center">
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">Planed</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">Delivered</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 py-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  py-0 h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 py-0">FeedBack Given
+													Back To Students</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-2 ">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div>
+
+					</div>
+				</div> 
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- startcode============================================================================================================ -->
+
+
+			<div class="row text-center  h-100 px-0"  >
+
+				<div class="col-md-4 px-0 justify-content-center"
+					style="border: 1px solid #858796;">
+					<div class="row text-center   h-100 align-items-center ">
+						<div class="col-md-12 col-sm-12 ">
+							<span >9999999</span>
+
+						</div>
+					</div>
+				</div> 
+				<div class="col-md-8 h-100">
+<!-- 1st=================================================================== -->
+					<div class="row text-center   h-100 align-items-center "
+						style="border: 1px solid #858796;"> 
+						<div class="col-md-1 h-100">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12  h-100">
+									1<sup>st</sup>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 ">
+
+							<div class="row " style="border: 1px solid #858796;">
+								<div class="col-md-5  "
+									style="text-align: center; border-right: 1px solid #858796;">
+
+									<div class="row text-center h-100   align-items-center">
+										<div class="col-md-6 h-100 px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">
+<span   >7777</span>
+</div>
+											</div>
+										</div>
+										<div class="col-md-6 h-100  px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 " >
+												<span >kkkkkk</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7 ">
+
+									<div class="row text-center  h-100 align-items-center">
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">3
+												
+												<!-- <span th:each="c : ${coursChair}"
+										th:if="${c.id}==${f.approvedby}" th:text="${c.name}"></span> -->
+										
+										 
+										
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">4</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 py-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  py-0 h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 py-0">5</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-2 ">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div> 
+						
+						
+					</div>
+
+					<div class="row text-center   h-100 align-items-center "
+						style="border: 1px solid #858796;">
+
+ <!-- 2nd=================================================================== -->
+						<div class="col-md-1 h-100">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12  h-100">
+									2<sup>nd</sup>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 ">
+
+							<div class="row " style="border: 1px solid #858796;">
+								<div class="col-md-5  "
+									style="text-align: center; border-right: 1px solid #858796;">
+
+									<div class="row text-center h-100   align-items-center">
+										<div class="col-md-6 h-100 px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">
+												<!-- <span th:text="${ncp2}"></span> -->
+												</div>
+											</div>
+										</div>
+										<div class="col-md-6 h-100  px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">
+												<span th:text="${ncco2}"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7 ">
+
+									<div class="row text-center  h-100 align-items-center">
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">g</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">g</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 py-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  py-0 h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 py-0">g</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-2 ">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">gg</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+					</div>
+<!-- 3nd=================================================================== -->
+					<div class="row text-center   h-100 align-items-center "
+						style="border: 1px solid #858796;">
+
+
+
+
+
+
+
+						<div class="col-md-1 h-100">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12  h-100">
+									3<sup>rd</sup>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 ">
+
+							<div class="row " style="border: 1px solid #858796;">
+								<div class="col-md-5  "
+									style="text-align: center; border-right: 1px solid #858796;">
+
+									<div class="row text-center h-100   align-items-center">
+										<div class="col-md-6 h-100 px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">1</div>
+											</div>
+										</div>
+										<div class="col-md-6 h-100  px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">2</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7 ">
+
+									<div class="row text-center  h-100 align-items-center">
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">3</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">4</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 py-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  py-0 h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 py-0">5</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-2 ">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+					</div>
+
+<!-- 4nd=================================================================== -->
+					<div class="row text-center   h-100 align-items-center "
+						style="border: 1px solid #858796;">
+
+
+
+
+
+
+
+						<div class="col-md-1 h-100">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12  h-100">
+									4<sup>th</sup>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 ">
+
+							<div class="row " style="border: 1px solid #858796;">
+								<div class="col-md-5  "
+									style="text-align: center; border-right: 1px solid #858796;">
+
+									<div class="row text-center h-100   align-items-center">
+										<div class="col-md-6 h-100 px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">1</div>
+											</div>
+										</div>
+										<div class="col-md-6 h-100  px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">2</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7 ">
+
+									<div class="row text-center  h-100 align-items-center">
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">3</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">4</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 py-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  py-0 h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 py-0">5</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-2 ">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+					</div>
+
+
+					<div class="row text-center   h-100 align-items-center "
+						style="border: 1px solid #858796;">
+
+
+
+
+
+
+<!-- 5nd=================================================================== -->
+						<div class="col-md-1 h-100">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12  h-100">
+									5<sup>th</sup>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 ">
+
+							<div class="row " style="border: 1px solid #858796;">
+								<div class="col-md-5  "
+									style="text-align: center; border-right: 1px solid #858796;">
+
+									<div class="row text-center h-100   align-items-center">
+										<div class="col-md-6 h-100 px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">1</div>
+											</div>
+										</div>
+										<div class="col-md-6 h-100  px-0"
+											style="border: 1px solid #858796;">
+											<div class="row text-center h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">2</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-7 ">
+
+									<div class="row text-center  h-100 align-items-center">
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 ">3</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center   h-100 align-items-center ">
+												<div class="col-md-12 col-sm-12 ">4</div>
+											</div>
+										</div>
+										<div class="col-md-4 px-0 py-0 h-100"
+											style="border: 1px solid #858796;">
+											<div class="row text-center  py-0 h-100  align-items-center ">
+												<div class="col-md-12 col-sm-12 py-0">5</div>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-2 ">
+							<div class="row text-center   h-100 align-items-center ">
+								<div class="col-md-12 col-sm-12 ">Remark</div>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+					</div>
+
+
+				</div>
+
+
+
+				<!-- llllllllllll -->
+			</div>
+
+
+			<br> 
+			<br>
+
+
+
+
+			<div class="row   my-0  h-100 align-items-center">
+				<div class="col-md-1 px-0">
+					<h6>
+						<b>Summary:- </b>
+					</h6>
+				</div>
+				<div class="col-md-11">
+					<p class="pt-2 pr-2">1. About planed and covered chapters in
+						the course.</p>
+				</div>
+			</div>
+			<div class="row  my-0  h-100 align-items-center">
+				<div class="col-md-1 px-0"></div>
+				<div class="col-md-11">
+					<span class="pr-4">
+						<p class="pt-2 pr-2">2. About number of Assessments planed,
+							delivered and feedback given back to the students using table,
+							histogram or pie chart.</p>
+					</span>
+				</div>
+			</div>
+
+
+			<!-- pppppppppppppppppppppppppppppppppppppppppppppppppppppp -->
+			<div class="row   my-2 h-100 align-items-center">
+				<label class="" for="inlineFormCustomSelectPref">1. Faculty
+					Quality officer’s name:</label>
+				<div class="col-md-3 px-1 mb-2" id="inlineFormCustomSelectPref"
+					style="border-bottom: 1px solid currentColor;">2021</div>
+
+				<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+				<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+					style="border-bottom: 1px solid currentColor;">first</div>
+
+				<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+				<div class="col-md-1 px-1 mb-2" id="inlineFormCustomSelectPref2"
+					style="border-bottom: 1px solid currentColor;">6/27/2021</div>
+				(Compiled)
+
+			</div>
+
+
+
+			<div class="row   my-2 h-100 align-items-center">
+				<label class="" for="inlineFormCustomSelectPref">2. Faculty
+					Dean’s name:</label>
+				<div class="col-md-4 px-1 mb-2" id="inlineFormCustomSelectPref"
+					style="border-bottom: 1px solid currentColor;">2021</div>
+
+				<label class="" for="inlineFormCustomSelectPref2">Signature:</label>
+				<div class="col-md-2 px-1 mb-2" id="inlineFormCustomSelectPref2"
+					style="border-bottom: 1px solid currentColor;">first</div>
+
+				<label class="" for="inlineFormCustomSelectPref2">Date:</label>
+				<div class="col-md-1 px-1 mb-2" id="inlineFormCustomSelectPref2"
+					style="border-bottom: 1px solid currentColor;">6/27/2021</div>
+				(Endorsed)
+			</div>
+			<p>N.B :- * indicates total number of courses delivered under
+				chairs for each batch/year(for 1st, 2nd, …).</p>
+			<br>
+			<br>
+
+			<!-- kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk -->
+
+		</div>
+		<!-- pppppppppppppppp -->
+
+
+
+
+
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

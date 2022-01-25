@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Spring Boot - Thymeleaf</title>
+    <style>
+    div.footer {
+                display: block;
+                text-align: left;           
+                position: running(footer);
+                background-color: powderblue;
+                color: red;
+    
+            }
+    @page {
+    
+                size: A4 portrait; 
+               /*  size: A4 landscape; */
+                @bottom-right {                
+                    content: "Page " counter(page) " of " counter(pages);
+                }
+                @bottom-left {                
+                     content: element(footer);                 
+    
+                }
+                counter-increment: page;
+                counter-reset: page 1;
+            }
+    </style>
+</head>
+<body class="flex items-center justify-center h-screen">
+<div class="rounded-lg border shadow-lg p-10 w-3/5">
+    <div class="flex flex-row justify-between pb-4">
+        <div>
+            <h2 class="text-xl font-bold">Order #<span class="text-green-600" ></span>
+            </h2>
+        </div>
+        <div>
+            <div class="text-xl font-bold" ></div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>Text
+													Book</b></span>
+
+										</div>
+    <div class="flex flex-col pb-8">
+        <div class="pb-2">
+            <h2 class="text-xl font-bold">Delivery Address</h2>
+        </div>
+        
+    </div>
+    <table class="table-fixed w-full text-right border rounded">
+        <thead class="bg-gray-100">
+        <tr>
+            <th class="text-left pl-4">Product</th>
+            <th>Qty</th>
+            
+           
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="f : ${orderEntry}">
+            <td class="pl-4 text-left" th:text="${f.title}"></td>
+            <td th:text="${f.ccode}"></td>
+           
+            
+        </tr>
+        </tbody>
+    </table>
+    
+    
+    
+    
+    
+    <div class="row">
+										<div
+											class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center font-weight-bold text-primary">
+											<h4>
+												<b> </b>
+											</h4>
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Course Title</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<div class="row">
+												<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+													<span th:text="${coursout.Title}"></span>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+															style="border-right: 1px solid #858796; border-left: 1px solid #858796;">
+															<b>Chair Name:</b>
+														</div>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+															
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Course Code</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+																					</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Module</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>ECTS Credits</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Contact Hours(per week)</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Lecture</b>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<b>Tutorial</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<b>Practice(Laboratory)</b>
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Home Study</b>
+												</div>
+
+											</div>
+											<div class="row">
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+
+													
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													
+												</div>
+											</div>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Pre-requisites</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Target Group</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Academic Year</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											
+										</div>
+									</div>
+									<div class="row" th:if="${coursout.assessment9 != 0}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Semester</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4" th:with="sem= ${coursout.semester}"
+											style="border: 1px solid #858796;">
+											<span th:text="${sem.name}"></span>
+										</div>
+									</div>
+
+
+    
+    
+    <br /><br /><br /><b>tt</b>
+    
+    
+    <br />
+    
+    <h1>jonnnnnnnnnnnnnnn</h1>
+    <div class="flex flex-row-reverse p-5">
+        <h2 class="font-medium  bg-gray-200 p-2 rounded">
+            Grand Total: <span class="text-green-600" ></span>
+        </h2>
+    </div>
+    <h2 class="text-xl font-bold">Payment Details</h2>
+    <br /><br /><br /><b>tt</b>
+    
+    
+    <br />
+    
+    <h1>jonnnnnnnnnnnnnnn</h1>
+    <div class="flex flex-row-reverse p-5">
+        <h2 class="font-medium  bg-gray-200 p-2 rounded">
+            Grand Total: <span class="text-green-600" ></span>
+        </h2>
+    </div>
+    <h2 class="text-xl font-bold">Payment Details</h2>
+    <br /><br /><br /><b>tt</b>
+    
+    
+    <br />
+    
+    <h1>jonnnnnnnnnnnnnnn</h1>
+    <div class="flex flex-row-reverse p-5">
+        <h2 class="font-medium  bg-gray-200 p-2 rounded">
+            Grand Total: <span class="text-green-600" ></span>
+        </h2>
+    </div>
+    <h2 class="text-xl font-bold">Payment Details</h2>
+    
+</div>
+ <div class="footer" >
+         
+    </div>
+</body>
+</html>

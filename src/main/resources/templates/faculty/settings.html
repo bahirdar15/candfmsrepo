@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row ">
+				<div class="col-md-12">
+					<div class="card">
+						<div class="card-body">
+							<h3 class="mb-3">Change password</h3>
+							
+							       <div th:if="${session.message}" id="hideDiv"
+										th:classappend="${session.message.type}" class="alert "
+										role="alert">
+										<p class="text-center" th:text="${session.message.content}"></p>
+										<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+									</div>
+
+							<form class="user" th:action="@{/div/change-password}" method="post">
+								<!-- old password field -->
+								<div class="form-group row justify-content-center">
+
+									<div class="col-sm-6 mb-3 mb-sm-0 col-md-6 text-center">
+										<div class="input-group ">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user py-0 pr-2"
+													id="inputGroupPrepend2">Old Password:  </span>
+											</div>
+											<input type="text" name="oldPassword"
+												class="form-control form-control-user" id="address_field"
+												aria-describedby="addressHelp"
+												placeholder="Enter Old Password" required />
+										</div>
+
+
+									</div>
+
+
+								</div>
+								<!-- new password field -->
+								<div class="form-group row justify-content-center">
+									<div class="col-sm-6 mb-3 mb-sm-0 text-center">
+										<div class="input-group ">
+											<div class="input-group-prepend">
+												<span class="input-group-text form-control-user py-0 pr-1"
+													id="inputGroupPrepend2">New Password:</span>
+											</div>
+											<input type="text" name="newPassword"
+												class="form-control form-control-user" id="address_field"
+												aria-describedby="addressHelp"
+												placeholder="Enter New Password" required />
+										</div>
+									</div>
+								</div>
+								<div class="form-group row justify-content-center">
+									<div class="col-sm-6 mb-3 mb-sm-0 ">
+										<div class="form-group row justify-content-center">
+											<div class="col-sm-6 mb-3 mb-sm-0 text-center">
+												<button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-save"></i> 
+									Update</button>
+
+											</div>
+											<div class="col-sm-6 mb-3 mb-sm-0 text-center">
+												<button type="reset"
+									class="btn btn-warning  text-white  btn-user btn-block"><i class="fas fa-user-times"></i> Reset</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+	</section>
+
+</body>
+</html>

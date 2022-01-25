@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800"></h1>
+			
+			<div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Show All Data</h6>
+				</div>
+				<div class="card-body">
+
+
+
+
+
+					<!--   for Lacture -->
+
+					<div class="table-responsive"
+						sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>ID,countNo</th>
+									
+									<th>Title</th>
+									<th>code</th>
+									
+								<!-- 	<th>ApprovedBy</th> -->
+                                    <th>status</th>									
+									<th>Action</th>
+								</tr>
+							</thead>
+					<!-- th:with="user= ${c.user}" c.chnId  th:text="${userbychn.name}"
+												 <input type="hidden" th:value="${c.chnId}" name="chnId" /> -->
+							<tbody>
+								<tr th:each="c,status : ${userCoursouts}" th:with="coursout= ${c.coursout}" >
+									<td >[[${c.id}]],[[${status.count}]]</td>
+									
+									<td > 
+									<a th:href="@{'/request/'+${c.id}+'/coursout'}"> 
+										<span th:text="${coursout.title}"></span></a></td>
+									      
+									<td >[[${coursout.ccode}]]</td>
+									
+								<!-- 	<td th:text="${c.chnId}">pp</td > -->
+									<!-- <td th:text="${userd.name}"></td > -->
+                                    <!-- <td th:text="${c.statust}"></td> -->	
+                                    <td><a th:if="${c.statust}=='Pending'"
+										class="btn btn-warning btn-sm" id="apprButton"
+										sec:authorize="hasAuthority('ROLE_INSTRUCTOR')" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)"><i
+											class="fa fa-spinner fa-spin"></i> Pending....</a> 
+									   <a th:if="${c.statust}=='Approved'" class="btn btn-success btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now You Can print"><i class="fas fa-check-circle"></i>
+											<span th:text="${c.statust}"> </span> </a></td>
+                                    
+                                    <!--   <td th:text="${corsDitaile.code}"></td> -->								
+									<td>
+										<div class="row">
+											<div class="col-md-2 text-right">
+												<form method="post"
+													th:action="@{'/request/update-request/'+${c.id}}" th:if="${c.statust}=='Pending'"
+													class="mr-2" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+													<button type="submit" class="btn btn-primary btn-sm"
+														id="editButtonnn">
+														<i class="fas fa-edit"></i>
+													</button>
+												</form>
+											</div>
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+													<a th:href="@{'/request/'+${c.id}+'/coursout'}"
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a>
+														
+														 <a href="#" th:if="${c.statust}=='Pending'"
+														th:onclick="|DeleteUserCoursoutss(${c.id})|"
+														class="btn btn-danger btn-sm" id="deleteButtonnn"
+														sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"><i
+														class="fas fa-trash"></i></a> 
+														
+														<!-- <a  href="#" th:href="@{'/request/'+${c.id}+'/print'}"
+														th:if="${c.statust}=='Approved'"
+														class="btn btn-primary btn-sm" id="print"><i
+														class="fas fa-print"></i></a> -->
+														
+														<a th:href="@{'/order/'+${c.id}+'/cart'}"  th:if="${c.statust}=='Approved'"
+														data-toggle="popover" title="FeedBack bitton" 
+														data-content="FeedBack on this course guidebook." sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"
+														class="btn btn-primary btn-sm" id="cartButton"><i class="fas fa-file-import"></i></a> 
+														
+																										       
+												        <a th:href="@{'/request/'+${c.id}+'/courspdf'}"  th:if="${c.statust}=='Approved'"
+												        data-toggle="popover" data-placement="left" title="Pdf" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"
+														data-content="if click this button go to pdf of course guidebook "
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-download "></i></a> 
+														
+														<a th:href="@{'/performco/'+${c.coursoutid}+'/newProCoRec'}"  th:if="${c.statust}=='Approved'"
+														data-toggle="popover" title="PERFORMANCE EVALUATION" 
+														data-content="PERFORMANCE EVALUATION on this course guidebook." sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"
+														class="btn btn-primary btn-sm" id="cartButtonnnn"><i class="fas fa-file-import"></i></a> 
+
+
+
+                                                        <a   th:if="${c.statust}=='Approved'"
+												        data-toggle="popover" data-placement="left" title="Share button" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')"
+														data-content="if click this button go to details of course guidebook and you can request on the Form of bottom  "
+														class="btn btn-success btn-sm" id="detailsButton"><i class="fas fa-share-alt"></i></a> 
+												</div>
+
+											</div>
+										</div>
+
+
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+					<!--   for chair -->
+					<div class="table-responsive"
+						sec:authorize="hasAuthority('ROLE_CHAIR_HOLDER')">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Title</th>
+									<th>code</th>
+									<th>RequestBy</th>
+									<th>status</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="c,status : ${chirIdUc}" th:with="coursout= ${c.coursout}" >
+									<td th:text="${c.id}"></td>
+									<td > 
+									<a th:href="@{'/faculty/'+${c.coursoutid}+'/coursout'}"> 
+										<span th:text="${coursout.title}"></span></a></td>
+									      
+									<td >[[${coursout.ccode}]]</td>
+									<td th:with="user= ${c.user}">[[${user.name}]]</td>
+									<td><a th:if="${c.statust}=='Pending'"
+										th:onclick="|apprCours(${c.id})|"
+										class="btn btn-warning btn-sm" id="apprButton"
+										sec:authorize="hasAuthority('ROLE_CHAIR_HOLDER')" data-toggle="tooltip"
+										data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)"><i
+											class="fa fa-spinner fa-spin"></i> Pending....</a>
+											
+											 
+
+                                              <a
+										th:if="${c.statust}=='Approved'"
+										class="btn btn-success btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now You Can print"><i class="fas fa-check-circle"></i>
+											<span th:text="${c.statust}"> </span> </a>
+											
+											</td>
+									
+									<td>
+
+										<div class="row">
+											
+											<div class="col-md-12  text-left">
+												<div class="btn-group">
+													<a th:href="@{'/faculty/'+${c.coursoutid}+'/coursout'}"
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a> 
+														
+														<a  href="#" th:href="@{'/request/'+${c.id}+'/print'}"
+														th:if="${c.statust}=='Approved'"
+														class="btn btn-primary btn-sm" id="print"><i
+														class="fas fa-download "></i></a>
+
+												</div>
+
+											</div>
+										</div>
+
+
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+
+
+
+
+
+
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

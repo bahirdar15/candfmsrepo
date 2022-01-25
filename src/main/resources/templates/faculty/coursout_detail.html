@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+
+<head>
+</head>
+
+<body>
+
+
+
+	<section>
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+
+			<!-- <div th:if="${session.message}" id="hideDiv"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div> -->
+
+
+
+
+
+
+
+
+
+
+			<!-- start  Content Row -->
+			<div class="row">
+				<!-- start  cotent fulud Row -->
+				<div class="container-fluid">
+
+
+
+
+
+
+
+
+
+
+					<div class="row">
+						<!-- Area card -->
+						<div class="col-xl-12 col-lg-10">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+
+								<div
+									class="card-header pl-0 py-3 d-flex flex-row align-items-center justify-content-between text-center">
+									<h3>
+									
+										<a sec:authorize="hasAnyAuthority('INSTRUCTOR,CHAIR_HOLDER,COURSE_CHAIR,STUDENT,APO,ADVISOR,ASSISTANT,QUALITY,DEAN')" 
+										onclick="goBack()" class="dropdown-item text-left btn-user pr-0" ><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</a>
+											
+											<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/faculty/show_Cours}" 
+											 class="dropdown-item text-left btn-user pr-0" ><i
+											class="fas fa-arrow-alt-circle-left "></i> Back</a>
+									</h3>
+									<h4 class="m-0 font-weight-bold text-primary ">
+										 Course Guidebook
+									</h4>
+									<!-- <i class="fas fa-file-alt"></i> -->
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"> <i
+											class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div
+											class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+											aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<a class="dropdown-item" th:href="@{/faculty/sample}"><i
+												class="fas fa-sign-in-alt"></i> Sample</a>
+
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div>
+
+									</div>
+								</div>
+
+								<!-- Card Body -->
+								<div class="card-body mx-4">
+
+
+									<div class="row">
+										<div
+											class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center font-weight-bold text-primary">
+											<h4>
+												<b> </b>
+											</h4>
+										</div>
+
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Course Title</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<div class="row">
+												<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+													<span th:text="${coursout.Title}"></span>
+												</div>
+												<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+
+													<div class="row">
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+															style="border-right: 1px solid #858796; border-left: 1px solid #858796;">
+															<b>Chair Name:</b>
+														</div>
+														<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+
+															<span th:text="${fmieName.name}"></span>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Course Code</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<b th:text="${coursout.ccode}"></b>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Module</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<span th:text="${coursout.cmodule}"></span>
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>ECTS Credits</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<span th:text="${coursout.cps}"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Contact Hours(per week)</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Lecture</b>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<b>Tutorial</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<b>Practice(Laboratory)</b>
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Home Study</b>
+												</div>
+
+											</div>
+											<div class="row">
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+
+													<span th:text="${coursout.clecture}"></span>
+												</div>
+												<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+													style="border: 1px solid #858796;">
+													<span th:text="${coursout.ctutrial}"></span>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+
+													<span th:text="${coursout.claboratory}"></span>
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<span th:text="${coursout.cstudy}"></span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Pre-requisites</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${coursout.preRequi}"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Target Group</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${grouptName.name}"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Academic Year</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${coursout.aYear}"></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Semester</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:utext="${semesterName.name}"></span>
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+									<!-- for instractor and chir holder -->
+
+									<div class="row"
+										sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Instructor's Full Name</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+											<span th:text="${user.name}"></span>
+
+										</div>
+									</div>
+
+									<div class="row"
+										sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Instructor's Address</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-4 col-xs-4"
+											style="border: 1px solid #858796;">
+
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<b>Office No:</b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<b>E-mail: </b>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<b>Phone No:</b>
+												</div>
+
+
+											</div>
+											<div class="row">
+
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<span th:text="${user.address}"></span>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<span th:text="${user.email}"></span>
+												</div>
+												<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+													style="border: 1px solid #858796;">
+													<span th:text="${user.phone}"></span>
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+									<div class="row" th:if="${!coursout.courseobjectone.empty}">
+
+
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>
+													Course objective and Competences </b></span>
+
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+											<p>Up on the completion of the course students will be
+												able to:</p>
+
+										</div>
+									</div>
+									<div class="row">
+
+
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+
+
+											<div class="form-group row"
+												th:if="${!coursout.courseobjectone.empty}">
+
+												<label for="title"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10">
+													<span th:text="${coursout.courseobjectone}"></span>
+												</div>
+
+												<label for="title"
+													th:if="${!coursout.courseobjecttwo.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjecttwo.empty}">
+													<span th:text="${coursout.courseobjecttwo}"></span>
+												</div>
+
+												<!-- add new -->
+												<label for="title"
+													th:if="${!coursout.courseobjectthree.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectthree.empty}">
+													<span th:text="${coursout.courseobjectthree}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjectfour.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectfour.empty}">
+													<span th:text="${coursout.courseobjectfour}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjectfive.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectfive.empty}">
+													<span th:text="${coursout.courseobjectfive}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjectsix.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectsix.empty}">
+													<span th:text="${coursout.courseobjectsix}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjectseven.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectseven.empty}">
+													<span th:text="${coursout.courseobjectseven}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjecteight.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjecteight.empty}">
+													<span th:text="${coursout.courseobjecteight}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjectnine.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectnine.empty}">
+													<span th:text="${coursout.courseobjectnine}"></span>
+												</div>
+												<label for="title"
+													th:if="${!coursout.courseobjectten.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10"
+													th:if="${!coursout.courseobjectten.empty}">
+													<span th:text="${coursout.courseobjectten}"></span>
+												</div>
+
+
+
+
+											</div>
+
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+									<!-- Competences/Learning Outcome -->
+
+									<div class="row" th:if="${!coursout.comlearn.comlearn1.empty}">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>
+													Competences/Learning Outcome </b></span>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.comlearn.comlearn1.empty}">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="form-group row">
+												<label for="title"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10">
+													<span th:text="${coursout.comlearn.comlearn1}"></span>
+												</div>
+												<label for="title" th:if="${!coursout.comlearn.comlearn2.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10" th:if="${!coursout.comlearn.comlearn2.empty}">
+													<span th:text="${coursout.comlearn.comlearn2}"></span>
+												</div>
+												
+												<label for="title" th:if="${!coursout.comlearn.comlearn3.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10" th:if="${!coursout.comlearn.comlearn3.empty}">
+													<span th:text="${coursout.comlearn.comlearn3}"></span>
+												</div>
+												
+												
+												
+												<label for="title" th:if="${!coursout.comlearn.comlearn4.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10" th:if="${!coursout.comlearn.comlearn4.empty}">
+													<span th:text="${coursout.comlearn.comlearn4}"></span>
+												</div>
+												<label for="title" th:if="${!coursout.comlearn.comlearn5.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm"><i
+													class="fas fa-circle"></i></label>
+												<div class="col-sm-10" th:if="${!coursout.comlearn.comlearn5.empty}">
+													<span th:text="${coursout.comlearn.comlearn5}"></span>
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+
+
+
+									<div class="row">
+
+
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2 "
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>Course
+													Description</b></span>
+
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+											<b th:text="${coursout.cdescription}"></b>
+
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
+
+
+
+
+
+
+
+
+
+
+								<div class="card-body mx-4" th:with="week= ${coursout.week}">
+									<div th:with="last= ${coursout.chapterlast}">
+										<div th:with="af= ${coursout.chapteraf}">
+											<div th:with="bf= ${coursout.chapterbf}">
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center    font-weight-bold text-primary">
+														<h4>
+															<b> Schedule of Lecture Topics, Tutorial, Laboratory
+																and References </b>
+														</h4>
+													</div>
+
+												</div>
+
+
+												<div class="row">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b>Week</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+															style="border: 1px solid #858796;">
+															<b>Lecture Topics</b>
+														</div>
+														<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+															style="border: 1px solid #858796;">
+															<b>Methodologies </b>
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+															style="border: 1px solid #858796;">
+															<b>Lab activities</b>
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+															style="border: 1px solid #858796;">
+															<b>References</b>
+														</div>
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row" th:if="${!week.weekone.empty}">
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+														style="border: 1px solid #858796;">
+														<b> <span th:text="${week.weekone}"></span>
+														</b>
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"
+														th:if="${!week.weekone.empty}"
+														style="border: 1px solid #858796;">
+														<div class="row " th:if="${!bf.chapter1.empty}">
+															<div
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+
+																<span th:text="${bf.chapter1}"></span>
+															</div>
+														</div>
+														<div class="row" th:if="${!bf.chapter1.empty}">
+															<div th:if="${!bf.chapter11b.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter11b}"></span>
+															</div>
+															<div th:if="${!bf.chapter12b.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter12b}"></span>
+															</div>
+															<div th:if="${!bf.chapter13b.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																<span th:text="${bf.chapter13b}"></span>
+															</div>
+
+															<div th:if="${!bf.chapter14b.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter14b}"></span>
+															</div>
+															<div th:if="${!bf.chapter15.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter15}"></span>
+															</div>
+															<div th:if="${!bf.chapter16.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter16}"></span>
+															</div>
+															<div th:if="${!bf.chapter17.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter17}"></span>
+															</div>
+															<div th:if="${!bf.chapter18.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter18}"></span>
+															</div>
+															<div th:if="${!bf.chapter19.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter19}"></span>
+															</div>
+															<div th:if="${!bf.chapter110.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter110}"></span>
+															</div>
+
+														</div>
+
+
+
+													</div>
+											
+											
+											            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" 
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe11}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe12}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe13}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab11}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab12}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab13}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref11}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref12}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref13}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row" th:if="${!week.weektwo.empty}">
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+														style="border: 1px solid #858796;">
+														<b> <span th:text="${week.weektwo}"></span>
+														</b>
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+														style="border: 1px solid #858796;">
+														<div class="row ">
+															<div th:if="${!bf.chapter2.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																<span th:text="${bf.chapter2}"></span>
+															</div>
+														</div>
+														<div class="row">
+															<div th:if="${!bf.chapter21.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter21}"></span>
+															</div>
+															<div th:if="${!bf.chapter22.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter22}"></span>
+															</div>
+															<div th:if="${!bf.chapter23.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter23}"></span>
+															</div>
+
+															<div th:if="${!bf.chapter24.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter24}"></span>
+															</div>
+															<div th:if="${!bf.chapter25.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter25}"></span>
+															</div>
+															<div th:if="${!bf.chapter26.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter26}"></span>
+															</div>
+															<div th:if="${!bf.chapter27.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter27}"></span>
+															</div>
+															<div th:if="${!bf.chapter28.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter28}"></span>
+															</div>
+															<div th:if="${!bf.chapter29.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter29}"></span>
+															</div>
+															<div th:if="${!bf.chapter210.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter210}"></span>
+															</div>
+
+														</div>
+
+
+
+													</div>
+											
+											
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe21}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe22}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe23}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" 
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab21}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab22}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab23}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref21}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref22}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref23}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row" th:if="${!week.weekthree.empty}">
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 "
+														style="border: 1px solid #858796;">
+
+
+
+														<b> <span th:text="${week.weekthree}"></span>
+														</b>
+
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+														style="border: 1px solid #858796;">
+														<div class="row">
+															<div th:if="${!bf.chapter3.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																<span th:text="${bf.chapter3}"></span>
+															</div>
+														</div>
+														<div class="row">
+															<div th:if="${!bf.chapter31.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter31}"></span>
+															</div>
+															<div th:if="${!bf.chapter32.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter32}"></span>
+															</div>
+															<div th:if="${!bf.chapter33.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter33}"></span>
+															</div>
+
+															<div th:if="${!bf.chapter34.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter34}"></span>
+															</div>
+															<div th:if="${!bf.chapter35.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter35}"></span>
+															</div>
+															<div th:if="${!bf.chapter36.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter36}"></span>
+															</div>
+															<div th:if="${!bf.chapter37.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter37}"></span>
+															</div>
+															<div th:if="${!bf.chapter38.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter38}"></span>
+															</div>
+															<div th:if="${!bf.chapter39.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter39}"></span>
+															</div>
+															<div th:if="${!bf.chapter310.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${bf.chapter310}"></span>
+															</div>
+
+														</div>
+
+													</div>
+												
+												
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe31}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe32}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe33}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab31}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab32}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab33}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref31}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref32}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref33}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div>
+													<div class="row  " th:if="${!week.weekfour.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weekfour}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row">
+																<div th:if="${!bf.chapter4.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																	<span th:text="${bf.chapter4}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!bf.chapter41.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter41}"></span>
+																</div>
+																<div th:if="${!bf.chapter42.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter42}"></span>
+																</div>
+																<div th:if="${!bf.chapter43.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter43}"></span>
+																</div>
+
+																<div th:if="${!bf.chapter44.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter44}"></span>
+																</div>
+																<div th:if="${!bf.chapter45.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter45}"></span>
+																</div>
+																<div th:if="${!bf.chapter46.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter46}"></span>
+																</div>
+																<div th:if="${!bf.chapter47.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter47}"></span>
+																</div>
+																<div th:if="${!bf.chapter48.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter48}"></span>
+																</div>
+																<div th:if="${!bf.chapter49.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter49}"></span>
+																</div>
+																<div th:if="${!bf.chapter410.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter410}"></span>
+																</div>
+
+															</div>
+
+
+														</div>
+													
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe41}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe42}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe43}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab41}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab42}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab43}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref41}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref42}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref43}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+													<div class="row  " th:if="${!week.weekfive.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weekfive}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row">
+																<div th:if="${!bf.chapter5.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																	<span th:text="${bf.chapter5}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!bf.chapter51.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter51}"></span>
+																</div>
+																<div th:if="${!bf.chapter52.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter52}"></span>
+																</div>
+																<div th:if="${!bf.chapter53.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter53}"></span>
+																</div>
+
+																<div th:if="${!bf.chapter54.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter54}"></span>
+																</div>
+																<div th:if="${!bf.chapter55.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter55}"></span>
+																</div>
+																<div th:if="${!bf.chapter56.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter56}"></span>
+																</div>
+																<div th:if="${!bf.chapter57.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter57}"></span>
+																</div>
+																<div th:if="${!bf.chapter58.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter58}"></span>
+																</div>
+																<div th:if="${!bf.chapter59.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter59}"></span>
+																</div>
+																<div th:if="${!bf.chapter510.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${bf.chapter510}"></span>
+																</div>
+
+															</div>
+
+														</div>
+												
+												
+												
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe51}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe52}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe53}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab51}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab52}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab53}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref51}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref52}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref53}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+													<div class="row  " th:if="${!week.weeksix.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weeksix}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row ">
+																<div th:if="${!last.chapter6.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+
+																	<span th:text="${last.chapter6}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!last.chapter61.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter61}"></span>
+																</div>
+																<div th:if="${!last.chapter62.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter62}"></span>
+																</div>
+																<div th:if="${!last.chapter63.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter63}"></span>
+																</div>
+
+																<div th:if="${!last.chapter64.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter64}"></span>
+																</div>
+																<div th:if="${!last.chapter65.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter65}"></span>
+																</div>
+																<div th:if="${!last.chapter66.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter66}"></span>
+																</div>
+																<div th:if="${!last.chapter67.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter67}"></span>
+																</div>
+																<div th:if="${!last.chapter68.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter68}"></span>
+																</div>
+																<div th:if="${!last.chapter69.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter69}"></span>
+																</div>
+																<div th:if="${!last.chapter610.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter610}"></span>
+																</div>
+
+															</div>
+
+
+														</div>
+												
+												
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe61}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe62}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe63}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab61}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab62}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab63}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref61}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref62}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref63}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+													<div class="row  " th:if="${!week.weekseven.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weekseven}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row">
+
+																<div th:if="${!last.chapter7.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																	<span th:text="${last.chapter7}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!last.chapter71.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter71}"></span>
+																</div>
+																<div th:if="${!last.chapter72.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter72}"></span>
+																</div>
+																<div th:if="${!last.chapter73.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter73}"></span>
+																</div>
+
+																<div th:if="${!last.chapter74.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter74}"></span>
+																</div>
+																<div th:if="${!last.chapter75.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter75}"></span>
+																</div>
+																<div th:if="${!last.chapter76.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter76}"></span>
+																</div>
+																<div th:if="${!last.chapter77.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter77}"></span>
+																</div>
+																<div th:if="${!last.chapter78.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter78}"></span>
+																</div>
+																<div th:if="${!last.chapter79.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter79}"></span>
+																</div>
+																<div th:if="${!last.chapter710.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter710}"></span>
+																</div>
+
+															</div>
+
+
+														</div>
+													
+													
+													
+													
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe71}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe72}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe73}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab71}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab72}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab73}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref71}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref72}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref73}"></span> </p>
+																
+														</div>
+
+													</div>
+												</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
+														style="border: 1px solid #858796; background-color: #40405029;">
+														<h4>
+															<b style="color: #0a66ef;">Mid Exam</b>
+														</h4>
+													</div>
+												</div>
+
+
+
+
+
+
+
+
+
+												<div class="row" th:if="${!week.weeknine.empty}">
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+														style="border: 1px solid #858796;">
+														<b> <span th:text="${week.weeknine}"></span>
+														</b>
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+														style="border: 1px solid #858796;">
+														<div class="row ">
+
+															<div th:if="${!af.chapter8.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																<span th:text="${af.chapter8}"></span>
+															</div>
+
+														</div>
+														<div class="row">
+															<div th:if="${!af.chapter81.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter81}"></span>
+															</div>
+															<div th:if="${!af.chapter82.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter82}"></span>
+															</div>
+															<div th:if="${!af.chapter83.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																<span th:text="${af.chapter83}"></span>
+															</div>
+
+															<div th:if="${!af.chapter84.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter84}"></span>
+															</div>
+															<div th:if="${!af.chapter85.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter85}"></span>
+															</div>
+															<div th:if="${!af.chapter86.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter86}"></span>
+															</div>
+															<div th:if="${!af.chapter87.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter87}"></span>
+															</div>
+															<div th:if="${!af.chapter88.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter88}"></span>
+															</div>
+															<div th:if="${!af.chapter89.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter89}"></span>
+															</div>
+															<div th:if="${!af.chapter810.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter810}"></span>
+															</div>
+
+														</div>
+
+
+
+													</div>
+											
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe91}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe92}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe93}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab91}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab92}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab93}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref91}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref92}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref93}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row" th:if="${!week.weekten.empty}">
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+														style="border: 1px solid #858796;">
+														<b> <span th:text="${week.weekten}"></span>
+														</b>
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+														style="border: 1px solid #858796;">
+														<div class="row ">
+															<div th:if="${!af.chapter9.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																<span th:text="${af.chapter9}"></span>
+															</div>
+														</div>
+														<div class="row">
+															<div th:if="${!af.chapter91.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter91}"></span>
+															</div>
+															<div th:if="${!af.chapter92.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter92}"></span>
+															</div>
+															<div th:if="${!af.chapter93.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																<span th:text="${af.chapter93}"></span>
+															</div>
+
+															<div th:if="${!af.chapter94.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter94}"></span>
+															</div>
+															<div th:if="${!af.chapter95.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter95}"></span>
+															</div>
+															<div th:if="${!af.chapter96.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter96}"></span>
+															</div>
+															<div th:if="${!af.chapter97.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter97}"></span>
+															</div>
+															<div th:if="${!af.chapter98.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter98}"></span>
+															</div>
+															<div th:if="${!af.chapter99.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter99}"></span>
+															</div>
+															<div th:if="${!af.chapter910.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter910}"></span>
+															</div>
+
+														</div>
+
+
+
+													</div>
+												
+												
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe101}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe102}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe103}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab101}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab102}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab103}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref101}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref102}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref103}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row" th:if="${!week.weekeleven.empty}">
+													<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 "
+														style="border: 1px solid #858796;">
+
+
+
+														<b> <span th:text="${week.weekeleven}"></span>
+														</b>
+
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+														style="border: 1px solid #858796;">
+														<div class="row ">
+															<div th:if="${!af.chapter10.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+
+																<span th:text="${af.chapter10}"></span>
+															</div>
+														</div>
+														<div class="row">
+															<div th:if="${!af.chapter101.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter101}"></span>
+															</div>
+															<div th:if="${!af.chapter102.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter102}"></span>
+															</div>
+															<div th:if="${!af.chapter103.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																<span th:text="${af.chapter103}"></span>
+															</div>
+
+															<div th:if="${!af.chapter104.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter104}"></span>
+															</div>
+															<div th:if="${!af.chapter105.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter105}"></span>
+															</div>
+															<div th:if="${!af.chapter106.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter106}"></span>
+															</div>
+															<div th:if="${!af.chapter107.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter107}"></span>
+															</div>
+															<div th:if="${!af.chapter108.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter108}"></span>
+															</div>
+															<div th:if="${!af.chapter109.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter109}"></span>
+															</div>
+															<div th:if="${!af.chapter1010.empty}"
+																class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																<span th:text="${af.chapter1010}"></span>
+															</div>
+
+														</div>
+
+													</div>
+											
+											
+											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe111}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe112}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe113}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab111}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab112}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab113}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref111}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref112}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref113}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div>
+													<div class="row  " th:if="${!week.weektwelve.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weektwelve}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row ">
+																<div th:if="${!af.chapter11.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+
+																	<span th:text="${af.chapter11}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!af.chapter111.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter111}"></span>
+																</div>
+																<div th:if="${!af.chapter112.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter112}"></span>
+																</div>
+																<div th:if="${!af.chapter113.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																	<span th:text="${af.chapter113}"></span>
+																</div>
+
+																<div th:if="${!af.chapter114.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter114}"></span>
+																</div>
+																<div th:if="${!af.chapter115.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter115}"></span>
+																</div>
+																<div th:if="${!af.chapter116.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter116}"></span>
+																</div>
+																<div th:if="${!af.chapter117.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter117}"></span>
+																</div>
+																<div th:if="${!af.chapter118.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter118}"></span>
+																</div>
+																<div th:if="${!af.chapter119.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter119}"></span>
+																</div>
+																<div th:if="${!af.chapter1110.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter1110}"></span>
+																</div>
+
+															</div>
+
+
+														</div>
+													
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe121}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe122}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe123}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab121}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab122}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab123}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref121}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref122}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref123}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+													<div class="row  " th:if="${!week.weekthirteen.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weekthirteen}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row ">
+																<div th:if="${!af.chapter12.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+
+																	<span th:text="${af.chapter12}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!af.chapter121.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter121}"></span>
+																</div>
+																<div th:if="${!af.chapter122.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter122}"></span>
+																</div>
+																<div th:if="${!af.chapter123.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																	<span th:text="${af.chapter123}"></span>
+																</div>
+
+																<div th:if="${!af.chapter124.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter124}"></span>
+																</div>
+																<div th:if="${!af.chapter125.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter125}"></span>
+																</div>
+																<div th:if="${!af.chapter126.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter126}"></span>
+																</div>
+																
+																<div th:if="${af.chapter127 != ''}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter127}"></span>
+																</div>
+																
+																<div th:if="${af.chapter128 != ''}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter128}"></span>
+																</div>
+																<div th:if="${af.chapter129 != ''}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter129}"></span>
+																</div>
+																<div th:if="${af.chapter1210 != ''}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${af.chapter1210}"></span>
+																</div>
+
+															</div>
+
+														</div>
+												
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe131}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe132}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe133}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" 
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab131}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab132}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab133}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref131}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref132}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref133}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+													<div class="row  " th:if="${!week.weekfourteen.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weekfourteen}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row ">
+																<div th:if="${!last.chapter13.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+
+																	<span th:text="${last.chapter13}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!last.chapter131.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter131}"></span>
+																</div>
+																<div th:if="${!last.chapter132.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter132}"></span>
+																</div>
+																<div th:if="${!last.chapter133.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																	<span th:text="${last.chapter133}"></span>
+																</div>
+
+																<div th:if="${!last.chapter134.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter134}"></span>
+																</div>
+																<div th:if="${!last.chapter135.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter135}"></span>
+																</div>
+																<div th:if="${!last.chapter136.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter136}"></span>
+																</div>
+																<div th:if="${!last.chapter137.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter137}"></span>
+																</div>
+																<div th:if="${!last.chapter138.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter138}"></span>
+																</div>
+																<div th:if="${!last.chapter139.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter139}"></span>
+																</div>
+																<div th:if="${!last.chapter1310.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter1310}"></span>
+																</div>
+
+															</div>
+
+
+														</div>
+												
+												
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe141}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe142}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe143}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab141}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab142}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab143}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref141}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref142}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref143}"></span> </p>
+																
+														</div>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+													<div class="row  " th:if="${!week.weekfifteen.empty}">
+														<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"
+															style="border: 1px solid #858796;">
+															<b> <span th:text="${week.weekfifteen}"></span>
+															</b>
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 "
+															style="border: 1px solid #858796;">
+															<div class="row">
+																<div th:if="${!last.chapter14.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline">
+																	<span th:text="${last.chapter14}"></span>
+																</div>
+															</div>
+															<div class="row">
+																<div th:if="${!last.chapter141.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter141}"></span>
+																</div>
+																<div th:if="${!last.chapter142.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter142}"></span>
+																</div>
+																<div th:if="${!last.chapter143.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5 ">
+
+																	<span th:text="${last.chapter143}"></span>
+																</div>
+
+																<div th:if="${!last.chapter144.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter144}"></span>
+																</div>
+																<div th:if="${!last.chapter145.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter145}"></span>
+																</div>
+																<div th:if="${!last.chapter146.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter146}"></span>
+																</div>
+																<div th:if="${!last.chapter147.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter147}"></span>
+																</div>
+																<div th:if="${!last.chapter148.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter148}"></span>
+																</div>
+																<div th:if="${!last.chapter149.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter149}"></span>
+																</div>
+																<div th:if="${!last.chapter1410.empty}"
+																	class="col-lg-12 col-md-12 col-sm-12 col-xs-12 form-inline pl-5">
+																	<span th:text="${last.chapter1410}"></span>
+																</div>
+
+															</div>
+
+
+														</div>
+													
+													
+													
+													
+													<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.methodo.methowe151}"></span> </p>
+															<p><span th:text="${coursout.methodo.methowe152}"></span> </p>																
+															<p><span th:text="${coursout.methodo.methowe153}"></span> </p>									
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.actilab.actlab151}"></span> </p>																
+															<p><span th:text="${coursout.actilab.actlab152}"></span> </p>														
+															<p><span th:text="${coursout.actilab.actlab153}"></span> </p>
+																
+														</div>
+														<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"  
+															style="border: 1px solid #858796;">
+															<p><span th:text="${coursout.tabref.tabref151}"></span> </p>								
+															<p><span th:text="${coursout.tabref.tabref152}"></span> </p>															
+															<p><span th:text="${coursout.tabref.tabref153}"></span> </p>
+																
+														</div>
+
+													</div>
+												</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+												<div class="row">
+													<div
+														class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center"
+														style="border: 1px solid #858796; background-color: #40405029;">
+														<h4>
+															<b style="color: #0a66ef;">Final Exam</b>
+														</h4>
+													</div>
+
+												</div>
+
+											</div>
+
+
+										</div>
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								<!-- assessment     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+								<div class="card-body mx-4">
+									
+
+
+									<div class="row">
+
+
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>Teaching
+													and Learning Methods </b></span>
+
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<p>This course will incorporate a combination of
+												lectures, student feedback (discussion), guided in-class
+												discussions, readings, case studies, individual and group
+												exercises. Active participation in all class activities is
+												essential to accomplish the goals of the class.</p>
+
+											
+										</div>
+									</div>
+
+
+
+									<div class="row">
+										<div
+											class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center font-weight-bold text-primary"
+											style="border: 1px solid #858796;">
+											<h4>
+												<b>Assessment Methods</b>
+											</h4>
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Assessment Type</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center" 
+											style="border: 1px solid #858796;">
+											<b>Week</b>
+										</div>
+
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
+											style="border: 1px solid #858796;">
+											<div class="row align-text-center">
+												<div
+													class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center ">
+													<p>
+														<b>Assessment Weight(%)</b>
+													</p>
+												</div>
+											</div>
+											<div class="row ">
+												<div class="col text-center"
+													style="border: 1px solid #858796;">
+													<b>1</b>
+												</div>
+												<div class="col text-center"
+													style="border: 1px solid #858796;">
+													<b>2</b>
+												</div>
+												<div class="col text-center"
+													style="border: 1px solid #858796;">
+													<b>3</b>
+												</div>
+
+
+											</div>
+										</div>
+
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center "
+											style="border: 1px solid #858796;">
+											<b>Total</b>
+										</div>
+									</div>
+
+<!-- th:if="${!last.chapter149.empty}"
+<span th:text="${last.chapter149}"></span> -->
+
+
+									<div class="row my-0" th:if="${!coursout.assess.asses11.empty} or ${!coursout.assess.asses12.empty} or ${!coursout.assess.asses13.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Individual Assignment</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">											
+												<p><span th:text="${coursout.asweek.asswe1}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row justify-content-center align-items-center">
+
+												<div class="col-md-4 text-center mb-0" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses11 != ''} ? ${coursout.assess.asses11} : '-'"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses12 != ''} ? ${coursout.assess.asses12} : '-'"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses13 != ''} ? ${coursout.assess.asses13} : '-'"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses11 != ''} ? ${coursout.assess.asses11} : '0' )+  (${coursout.assess.asses12 != ''} ? ${coursout.assess.asses12} : '0') + (${coursout.assess.asses13 != ''} ? ${coursout.assess.asses13} : '0')"></span>
+												</b>
+										</div>
+									</div>
+
+
+									<div class="row"  th:if="${!coursout.assess.asses21.empty} or ${!coursout.assess.asses22.empty} or ${!coursout.assess.asses23.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Group Assignment</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe2}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses21}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses22}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses23}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											
+												<b> <span th:text="(${coursout.assess.asses21 != ''} ? ${coursout.assess.asses21} : '0' )+  (${coursout.assess.asses22 != ''} ? ${coursout.assess.asses22} : '0') + (${coursout.assess.asses23 != ''} ? ${coursout.assess.asses23} : '0')"
+												></span></b>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.assess.asses31.empty} or ${!coursout.assess.asses32.empty} or ${!coursout.assess.asses33.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Quiz</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe3}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses31}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses32}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses33}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses31 != ''} ? ${coursout.assess.asses31} : '0' )+  (${coursout.assess.asses32 != ''} ? ${coursout.assess.asses32} : '0') + (${coursout.assess.asses33 != ''} ? ${coursout.assess.asses33} : '0')"
+												></span></b>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.assess.asses41.empty} or ${!coursout.assess.asses42.empty} or ${!coursout.assess.asses43.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Project</b>
+										</div>
+
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe4}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses41}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses42}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses43}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses41 != ''} ? ${coursout.assess.asses41} : '0' )+  (${coursout.assess.asses42 != ''} ? ${coursout.assess.asses42} : '0') + (${coursout.assess.asses43 != ''} ? ${coursout.assess.asses43} : '0')"
+												></span></b>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.assess.asses51.empty} or ${!coursout.assess.asses52.empty} or ${!coursout.assess.asses53.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Project One</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe5}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses51}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses52}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses53}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses51 != ''} ? ${coursout.assess.asses51} : '0' )+  (${coursout.assess.asses52 != ''} ? ${coursout.assess.asses52} : '0') + (${coursout.assess.asses53 != ''} ? ${coursout.assess.asses53} : '0')"
+													></span></b>
+										</div>
+									</div>
+
+
+
+									<div class="row" th:if="${!coursout.assess.asses61.empty} or ${!coursout.assess.asses62.empty} or ${!coursout.assess.asses63.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Project Two</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe6}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses61}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses62}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses63}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses61 != ''} ? ${coursout.assess.asses61} : '0' )+  (${coursout.assess.asses62 != ''} ? ${coursout.assess.asses62} : '0') + (${coursout.assess.asses63 != ''} ? ${coursout.assess.asses63} : '0')"
+													></span></b>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.assess.asses71.empty} or ${!coursout.assess.asses72.empty} or ${!coursout.assess.asses73.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Progress</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe7}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses71}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses72}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses73}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses71 != ''} ? ${coursout.assess.asses71} : '0' )+  (${coursout.assess.asses72 != ''} ? ${coursout.assess.asses72} : '0') + (${coursout.assess.asses73 != ''} ? ${coursout.assess.asses73} : '0')"
+												></span></b>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.assess.asses81.empty} or ${!coursout.assess.asses82.empty} or ${!coursout.assess.asses83.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Mid Exam</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe8}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses81}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses82}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses83}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b><b> <span th:text="(${coursout.assess.asses81 != ''} ? ${coursout.assess.asses81} : '0' )+  (${coursout.assess.asses82 != ''} ? ${coursout.assess.asses82} : '0') + (${coursout.assess.asses83 != ''} ? ${coursout.assess.asses83} : '0')"
+												></span></b>
+										</div>
+									</div>
+
+
+									<div class="row" th:if="${!coursout.assess.asses91.empty} or ${!coursout.assess.asses92.empty} or ${!coursout.assess.asses93.empty}">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Final Exam</b>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"
+											style="border: 1px solid #858796;">
+											<p><span th:text="${coursout.asweek.asswe9}"></span></p>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center"
+											style="border: 1px solid #858796;">
+											<div class="row">
+
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses91}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses92}"></span></p>
+												</div>
+												<div class="col" style="border: 1px solid #858796;">
+														<p><span th:text="${coursout.assess.asses93}"></span></p>
+												</div>
+
+												<!-- th:value="${coursout.assess.asses11}+${coursout.assess.asses12}+${coursout.assess.asses13}" -->
+											</div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b> <span th:text="(${coursout.assess.asses91 != ''} ? ${coursout.assess.asses91} : '0' )+  (${coursout.assess.asses92 != ''} ? ${coursout.assess.asses92} : '0') + (${coursout.assess.asses93 != ''} ? ${coursout.assess.asses93} : '0')"
+												></span></b>
+										</div>
+									</div>
+
+
+
+
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Total Mark</b>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8"
+											style="border: 1px solid #858796;">
+											<div class="row"></div>
+										</div>
+										<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-center"
+											style="border: 1px solid #858796;">
+											<b><span th:text="${coursout.assess.asstotal}"></span>%</b>
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+								</div>
+
+								<!-- Policy     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+
+
+
+
+
+
+
+
+								<div class="card-body mx-4">
+
+									<div class="row">
+
+
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+												style="text-align: justify; padding-left: 300px;">
+
+												<img th:src="@{/img/bullet.png}" alt="Smiley face"
+													height="20" width="20"> <span class="p-2"><b>Course
+														Policy</b></span>
+
+											</div>
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<p>Minimum of 80% attendance during lecture hours, and
+													100% attendance during practical work and tutorial
+													sessions, except for some unprecedented mishaps. All
+													students are expected to abide by the code of conduct of
+													students on BDU, BiT Legislation.</p>
+
+												<!-- <textarea id="mytext" name="cPolicy" rows="6"
+													class="form-control"
+													style="border: none; outline: 0; box-shadow: none;"
+													placeholder="All students are expected to abide by the code of conduct of students (article 166 and 166.1.1, of the Senate Legislation of Bahir Dar University May 20, 2005) throughout this course. Academic dishonesty, including cheating, fabrication, and plagiarism will not be tolerated and will be reported to concerned bodies for action. Class attendance and participation: You are expected to attend class regularly. If you miss more  than 85% lecture and tutorial and 100% for laboratory class attendance you will not sit for final exam
+														"></textarea> -->
+											</div>
+										</div>
+
+
+									<div class="row" th:if="${!coursout.book1.empty}">
+
+
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>Text
+													Book</b></span>
+
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+											<div class="form-group row">
+												<label for="book1" th:if="${!coursout.book1.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">1.</label>
+												<div class="col-sm-10">
+													<span th:text="${coursout.book1}"></span>
+												</div>
+												<label for="book2" th:if="${!coursout.book2.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">2.</label>
+												<div class="col-sm-10">
+													<span th:text="${coursout.book2}"></span>
+												</div>
+
+											</div>
+										</div>
+									</div>
+
+
+
+									<div class="row">
+
+
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pt-2"
+											style="text-align: justify; padding-left: 300px;">
+
+											<img th:src="@{/img/bullet.png}" alt="Smiley face"
+												height="20" width="20"> <span class="p-2"><b>Reference
+													Book</b></span>
+
+										</div>
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+											<div class="form-group row" th:each="c : ${coursout}"
+												th:with="ref= ${c.refer}">
+												<label for="refer1" th:if="${!ref.refer1.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">1.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer1}"></span>
+												</div>
+												<label for="refer2" th:if="${!ref.refer2.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">2.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer2}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer3.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">3.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer3}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer4.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">4.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer4}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer5.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">5.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer5}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer6.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">6.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer6}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer7.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">7.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer7}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer8.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">8.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer8}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer9.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">9.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer9}"></span>
+												</div>
+												<label for="refer3" th:if="${!ref.refer10.empty}"
+													class="col-sm-2 col-form-label text-right px-0 form-control-sm">10.</label>
+												<div class="col-sm-10">
+													<span th:text="${ref.refer10}"></span>
+												</div>
+											</div>
+
+
+										</div>
+									</div>
+
+								</div>
+
+
+
+
+
+
+
+								<!-- <div class="card-body mx-4"
+									sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+									<div class="row">
+										<div class="col-md-5 p-0 m-0">
+											<hr />
+										</div>
+										<div class="col-md-3 ">
+											<p class="font-weight-light  text-capitalize">Your Form
+												For Request</p>
+										</div>
+										<div class="col-md-4 p-0 m-0">
+											<hr />
+										</div>
+									</div>
+								</div>
+ -->
+
+
+
+
+
+
+								<!-- Submit by Instractor    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+								<div class="card-body mx-4"
+									sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+									<form action="#" th:object="${userCoursout}"
+										enctype="multipart/form-data" method="POST"
+										th:action="@{/request/process-userCours}" class="mt-2">
+										<input type="hidden" th:value="${user.id}" name="userid" /> <input
+											type="hidden" th:value="${coursout.cId}" name="coursoutid" />
+
+
+
+
+										<!-- <div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Chapters Your Planned:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group  ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="chapbfmidplan">BEFORE MID</label>
+													</div>
+													<input name="chapbfmidplan" id="chapbfmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="8" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="chapafmidplan">AFTER MID</label>
+													</div>
+													<input name="chapafmidplan" id="chapafmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="7" />
+												</div>
+											</div>
+										</div> -->
+
+
+										<!-- <div class="form-group row">
+											<div class="col-sm-4 mb-3 mb-sm-0 pr-0">
+												<h6 class="font-weight-bold text-primary">Number Of
+													Assessments Your Planned:</h6>
+											</div>
+											<div class="col-sm-4 mb-3 mb-sm-0 px-0">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="assbfmidplan">BEFORE MID</label>
+													</div>
+													<input name="assbfmidplan" id="assbfmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="4" />
+												</div>
+											</div>
+
+											<div class="col-sm-4 mb-3 mb-sm-0  px-3">
+												<div class="input-group mb-3 ">
+													<div class="input-group-prepend">
+														<label class="input-group-text form-control-user py-0"
+															for="assafmidplan">AFTER MID</label>
+													</div>
+													<input name="assafmidplan" id="assafmidplan" required
+														class="form-control form-control-user py-0 font-weight-bold text-primary"
+														type="number" placeholder="3" />
+												</div>
+											</div>
+										</div> -->
+
+
+
+
+
+
+
+										<!-- <div class="row">
+											<div class="col-10 col-md-10">
+
+												<div class="input-group mb-3">
+													<div class="input-group-prepend">
+														<label class="input-group-text text-justify" for="chnId">CHAIR
+															HOLDER</label>
+													</div>
+													<select
+														class="custom-select form-select-sm  text-capitalize"
+														required id="chnId" name="chnId">
+														<option value="" selected disabled>---SELECT YOUR
+															CHAIR HOLDER FOR APPROVED---</option>
+														<option th:each="g : ${getRCHname}" th:value="${g.id}"
+															th:text="${g.name}"></option>
+													</select>
+													<div class="input-group-append">
+														<button class="btn btn-primary btn-sm">
+															Request Now <i class="fas fa-share"></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div> -->
+
+									</form>
+								</div>
+
+
+
+
+
+								<div class="card-body mx-4">
+									<div class="row">
+										<div class="col-md-12">
+											<hr />
+										</div>
+
+
+									</div>
+								</div>
+
+
+
+
+							</div>
+						</div>
+						<!-- end Area card -->
+					</div>
+
+
+
+
+
+
+				</div>
+				<!-- end content fulud-->
+			</div>
+			<!-- finash Content Row -->
+
+
+
+
+
+
+		</div>
+		<!-- /.container-fluid -->
+
+	</section>
+
+
+</body>
+
+</html>

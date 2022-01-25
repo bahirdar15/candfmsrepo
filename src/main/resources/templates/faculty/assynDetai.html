@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+<section>   
+ 
+
+                
+                
+                
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4 mt-2">
+                        <div class="card-header pl-0 py-3 d-flex flex-row align-items-right justify-content-between text-right">
+                           <h6> <a type="button" class="dropdown-item text-left btn-user pr-0"
+						th:href="@{/assign/assignShow}"><i
+						class="fas fa-arrow-alt-circle-left"></i> Back </a></h6>
+						
+					<!-- 	th:href="@{'/assign/'+${assigninstaDetil.instaId}+'/removeDenied'}" -->
+                         <!--  <h6 class="">
+										<a type="button" class="dropdown-item text-left btn-user pr-0 text-right text-danger"
+						><i
+						class="fas fa-trash"></i> Remove All Denied Request  </a>
+									</h6> -->
+                        </div>
+                        <div class="card-body">
+                           <div class="table-responsive" >
+                            
+                            
+                            
+                           
+                            
+													
+								
+													
+													
+                                <table class="table table-striped table-advance table-hover" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>  
+                  <!-- <th><i class="icon_table"></i>Id:</th>      -->        
+                    <th><i class="icon_table"></i>No</th>
+                    <!--  <th><i class="icon_table"></i>UcAssign ID:</th>
+                    <th><i class="icon_table"></i>Course ID:</th>
+                     -->
+                    <th><i class="icon_table"></i>Course Title:</th>
+                    
+                    <th><i class="icon_cogs"></i>Course Code:</th>
+                    <th><i class="icon_cogs"></i>Year:</th>
+					<th><i class="icon_cogs"></i>Semester:</th>
+                    <!-- <th><i class="icon_cogs"></i>Action:</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                     
+                  <tr th:each="c,status : ${assigninstaDetil}">
+                 <!--  <td th:text="${c.id}"></td>       -->          
+                    <td >[[${status.count}]]</td>      
+                    <!-- <td th:text="${c.userCoursoutAssignid}"></td>           
+                      <td th:text="${c.coursout.cId}"></td> -->
+                    <td th:text="${c.coursout.title}"></td>                                      
+                    <td><a href="#"
+										th:href="@{'/faculty/'+${c.coursout.cId}+'/coursout'}"> <span
+											th:text="${c.coursout.ccode}"> </span></a></td>
+                    <td th:utext="${c.coursout.year.name}"></td>
+					<td th:utext="${c.coursout.semester.name}"></td>
+                <!--    <td>
+                                        
+										
+                                        
+                                
+                                
+                                
+                                
+                                
+                                
+                                <div class="row">
+
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+												    	<a th:if="${c.statust}=='0'" sec:authorize="hasAuthority('ROLE_CHAIR_HOLDER')"
+										class="btn btn-warning btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Accepting Now Request To Course Chair's Processing(Reviewing and Decisioning)">  Assigned</a>
+										
+										
+										
+										<a th:if="${c.statust}=='1'" sec:authorize="hasAuthority('ROLE_CHAIR_HOLDER')"
+										class="btn btn-info btn-sm" id="apprButton" type="button"
+										 data-toggle="tooltip" data-placement="top"
+										 th:onclick="|assignapproved(${c.id})|"
+										title="Now Request To Course Chair's Processing(Reviewing and Decisioning)"><i
+										class="fa fa-spinner fa-spin"></i> Pending...</a>
+										
+										
+										<a th:if="${c.statust}=='2'" class="btn btn-success btn-sm"
+										id="apprButton" type="button" disabled data-toggle="tooltip"
+										data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)"> Approved</a>
+											
+											<a
+										th:if="${c.statust}=='3'" class="btn btn-danger btn-sm"
+										id="apprButton" type="button" disabled data-toggle="tooltip"
+										data-placement="top"
+										title="Now Request To admin Processing(Reviewing and Decisioning)">
+											Denied</a> 
+														
+														
+												</div>
+
+											</div>
+										</div>
+                                </td> -->
+                                
+                                
+                                
+										
+										
+										
+										
+										
+                  </tr>
+        </tbody>
+        
+       </table>
+     
+       
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ <script>
+       function assignapproved(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/assign/assignapproved/"+id;
+    		   } else {
+    		     swal("Cours is not Approved...!!");
+    		   }
+    		 });
+       }
+ </script> 
+  
+ 
+</section>  
+                
+   
+</body>
+</html>

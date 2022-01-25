@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800">Data Tables</h1>
+			<p class="mb-4">DataTables is a third party plugin that is used
+				to generate the demo table below.</p>
+			<div th:if="${session.message}"
+				th:classappend="${session.message.type}" class="alert " role="alert">
+				<p class="text-center" th:text="${session.message.content}"></p>
+				<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+			</div>
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Show All Data</h6>
+				</div>
+				
+				
+				<!-- for instructore -->
+				<div class="card-body" sec:authorize="hasAuthority('ROLE_INSTRUCTOR')">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr>
+									<th>#ID</th>
+									<th>Mid Exam</th>
+									<th>Semester</th>
+									<th>Filled Date</th>
+									<th>Status</th>
+									
+									<th>Approved By</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="f : ${instaOrder}"
+									th:with="semester= ${f.semester}">
+									<td th:text="${f.id}"></td>
+									<td><a th:if="${f.bam}=='1'"
+										th:href="@{'/order/'+${f.id}+'/orderdtaile'}"> <span
+											th:text="Before"> </span></a> <a th:if="${f.bam}=='2'"
+										th:href="@{'/order/'+${f.id}+'/orderdtaile'}"> <span
+											th:text="After"> </span></a></td>
+									<td><span th:text="${semester.name}"></span></td>
+									<td th:text="${f.filleddate}"></td>
+									<td>
+									    <a th:if="${f.status}=='Filled'"
+										class="btn btn-warning btn-sm" id="apprButton" type="button"
+										disabled data-toggle="tooltip" data-placement="top"
+										title="Now Request To Course Chair's Processing(Reviewing and Decisioning)"><i
+											class="fa fa-spinner fa-spin"></i> Filled</a> 
+											
+										<a th:if="${f.status}=='Approved'" class="btn btn-success btn-sm"
+										id="apprButton" type="button" disabled data-toggle="tooltip"
+										data-placement="top" title="Now You Can allow all"><i
+											class="fas fa-check-circle"></i> <span th:text="${f.status}">
+										</span> </a>
+										
+								  </td>
+										
+										
+									<td  >
+									    <span th:each="c : ${coursChair}" th:if="${c.id}==${f.approvedby}" th:text="${c.name}"></span> </td>
+									
+									<td>
+										<div class="row">
+											<div class="col-md-4  text-left">
+												<div class="btn-group">
+													<a th:href="@{'/order/'+${f.id}+'/orderdtaile'}"
+														class="btn btn-success btn-sm" id="detailsButton"><i
+														class="fas fa-file-alt"></i></a>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+			</div>
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+   <script>
+       function endorsedOrders(id){
+    	   swal({
+    		   title: "Are you sure?",
+    		   text: "Once deleted, you will not be able to recover this imaginary file!",
+    		   icon: "warning",
+    		   buttons: true,
+    		   dangerMode: true,
+    		 })
+    		 .then((willDelete) => {
+    		   if (willDelete) {
+    		      window.location="/order/endorsed/"+id;
+    		   } else {
+    		     swal("Your imaginary file is safe!");
+    		   }
+    		 });
+       }
+    </script> 
+
+
+	</section>
+
+
+</body>
+</html>

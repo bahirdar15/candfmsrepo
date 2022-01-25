@@ -1,0 +1,167 @@
+body {
+  /* margin: 20; */
+ /*  padding: 3rem; */
+}
+
+table { 
+  border: solid thin; 
+  border-collapse: collapse; 
+}
+table caption { 
+  padding-bottom: 0.5em; 
+}
+table th, 
+table td { 
+  border: solid thin;
+  padding: 0.1rem 0.2rem 0.2rem;
+  vertical-align: middle; 
+   text-align: left; 
+    /* white-space: nowrap; */
+}
+
+
+.mytab th, 
+.mytab td { 
+  border: solid thin;
+  padding: 0.1rem 1rem ;
+  vertical-align:bottom; 
+   text-align: left; 
+    /* white-space: nowrap; */
+}
+
+/* 
+table tbody td:first-child::after { 
+  content: leader(". "); 
+} */
+
+p {
+  font-family: "Times New Roman", Times, serif;
+  padding: 0.1rem;
+  margin: 0.1rem;
+  margin-left: 1rem;
+}
+h3 {
+  font-family: "Times New Roman", Times, serif;
+  padding: 0.1rem;
+  margin: 0.1rem;
+  
+}
+
+
+
+
+/* ======================================for check box================================= */
+
+
+ label input {
+  display: none; }/* Hide the default checkbox 
+ 
+
+/* Style the artificial checkbox */
+ label span {
+  height: 10px;
+  width: 20px;
+  border: none;
+  display: inline-block;
+  position: relative;
+} 
+
+/* Style its checked state...with a ticked icon */
+ /* [type=checkbox]:checked + span:before {
+  content: '\2714';
+  position: absolute;
+  top: -5px;
+  left: 0;
+}  */
+
+
+h1 {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  margin-bottom: 30px;
+  /* background: url('images/headbg.png') top left repeat; */
+  padding: 10px 0;
+}
+
+
+/* .my_table {
+  font-size: 14px;
+   vertical-align: middle; 
+   text-align: center; 
+} */
+
+.my_table  td{
+  font-size: 14px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-bottom: 0px;
+  padding-top: 0vh;
+  margin-bottom: 0px;
+}
+
+.my_th{
+  font-size: 14px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding-bottom: 0px;
+  padding-top: 0vh;
+}
+
+.my_td{
+  font-size: 14px;
+  border: solid thin; 
+  vertical-align: middle; 
+   text-align: center; 
+}
+
+.myth  th,td{
+  font-size: 14px;
+  vertical-align: middle; 
+  text-align: center; 
+
+}
+
+.py {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+/*-------------------------------------- 2nd table========================================== */
+/* 
+#table-example-1 { 
+  border: solid thin; 
+  border-collapse: collapse; 
+}
+#table-example-1 caption { 
+  padding-bottom: 0.5em; 
+}
+#table-example-1 th, 
+#table-example-1 td { 
+  border: solid thin;
+  padding: 0.5rem 2rem;
+}
+#table-example-1 td {
+  white-space: nowrap;
+}
+#table-example-1 th { 
+  font-weight: normal; 
+}
+#table-example-1 td { 
+  border-style: none solid; 
+  vertical-align: top; 
+}
+#table-example-1 th { 
+  padding: 0.2em; 
+  vertical-align: middle; 
+  text-align: center; 
+}
+
+#table-example-1 tbody td:first-child::after { 
+  content: leader(". "); '
+}
+
+body {
+  padding: 1rem;
+} */

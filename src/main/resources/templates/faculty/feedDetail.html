@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="faculty/blank::layout(~{::section})">
+<head  >   
+</head>
+<body>
+<section>
+                                 
+
+
+   
+	<div class="card mr-3 ml-3" th:if=${feedback}>
+          <div class="card-body" >
+               <div class="container text-center">
+                   <h1>Shown Contact Detailes</h1>
+                                   <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+									  <p class="text-center" th:text="${session.message.content}"></p>
+									  <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+								  </div>
+                    
+					<h3 class="mt-3" ><span >nameoffeed</span>(<span th:text="${feedback.nameoffeed}"></span>)</h3>	
+               
+                    <table class="table">
+					  <thead>
+					    <tr>
+					      		<th scope="col">#ID</th>
+					            <th scope="col">SCMUSER<span th:text="${feedback.fId}"></span></th>
+					            
+					            
+					   	</tr>
+					  </thead>
+					  <tbody>
+					     
+					   <tr>
+					      		<th scope="col">status</th>
+					            <td ><span th:text="${feedback.status}"></span></td>
+					             
+					   	</tr>
+					   	
+					   
+					  </tbody>
+					          
+			    	</table>
+				              <div class="description mt-3">
+					               <th:block th:utext="${feedback.description}"></th:block>
+					          </div>
+					          
+					        <div class="container mt-3">
+					              <button th:onclick="|DeletedFeedback(${feedback.fId})|" class="btn btn-danger btn-sm btn-block">Delete</button>
+								  
+								  
+								  <!--  As the request is POST, we have to write it in  -->
+								   
+                              <form th:action="@{'/faculty/update-feed/'+${feedback.fId}}" method="POST" class="mt-2">
+                                <button type="submit" class="btn btn-sm btn-primary btn-block">Update</button>
+                              </form>
+
+					          </div>
+               
+               
+               </div>
+          </div>	
+          
+          </div>
+	              <h1 class="text-center p-3 bg-danger text-white" th:unless="${feedback}">You don't have permission to see this contact......!!!</h1>
+	
+</section>
+	
+	
+</body>
+</html>

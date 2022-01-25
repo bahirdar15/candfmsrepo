@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+
+
+
+	<section>
+
+
+
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<div
+				class="d-sm-flex align-items-center justify-content-between mb-4">
+
+			</div>
+
+
+
+
+			<style>
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: #85879680;
+	opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #85879680;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+	color: #85879680;
+}
+
+::textarea .jo { /* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: red;
+	opacity: 1; /* Firefox */
+}
+
+::-webkit-textarea-placeholder {
+	font-size: 25px;
+	color: red;
+}
+</style>
+
+
+
+
+
+
+			<!-- start  Content Row -->
+			<div class="row">
+
+
+
+
+
+
+				<div class="container-fluid">
+					<div class="row">
+
+						<!-- Area Chart -->
+						<div class="col-xl-12 col-lg-10">
+							<div class="card shadow mb-4">
+								<!-- Card Header - Dropdown -->
+								<div
+									class="card-header py-3 d-flex flex-row align-items-center justify-content-between text-center">
+									<h4 class="m-0 font-weight-bold text-primary ">
+										<a class="dropdown-item" th:href="@{/faculty/addCours}"><i
+											class="fas fa-arrow-alt-circle-left"></i> Back</a>
+									</h4>
+									<div class="dropdown no-arrow">
+										<a class="dropdown-toggle" href="#" role="button"
+											id="dropdownMenuLink" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="false"> <i
+											class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+										</a>
+										<div
+											class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+											aria-labelledby="dropdownMenuLink">
+											<div class="dropdown-header">Dropdown Header:</div>
+											<a class="dropdown-item" href="sample.html">Sample</a>
+
+											<div class="dropdown-divider"></div>
+											<a class="dropdown-item" href="#">Something else here</a>
+										</div>
+
+									</div>
+								</div>
+								<!-- Card Body -->
+								<div class="card-body mx-4">
+
+
+
+
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"
+											style="border: 1px solid #858796;">
+											<b>Course Title</b>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<input name="title" id="title" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="Automotive electrical and electronics system " />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"
+											style="border: 1px solid #858796;">
+											<b>Course Code</b>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<input name="code" id="code" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="AEng 3181" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"
+											style="border: 1px solid #858796;">
+											<b>Lecturer</b>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+
+											<input name="lname" id="lname" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="Tesfahun Tiku" /> <input name="laddress"
+												id="laddress" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="Agri. Building(office No. 83)" /> <input
+												name="lemail" id="lemail" type="email"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="autsffffc@gmail.com" /> <input name="ltel"
+												id="ltel" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="+25191831..." />
+
+										</div>
+
+									</div>
+
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"
+											style="border: 1px solid #858796;">
+											<b>ECTS Credits</b>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<input name="ects" id="ects" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="5 CP" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"
+											style="border: 1px solid #858796;">
+											<b>Contact Hours(per week)</b>
+										</div>
+										<div class="col-lg-8 col-md-8 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+
+											<div class="row">
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Lecture</b>
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Tutorial</b>
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Practice(Laboratory)</b>
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<b>Home Study</b>
+												</div>
+
+											</div>
+											<div class="row">
+
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<input name="clecture" id="clecture" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="2" />
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<input name="ctutrial" id="ctutrial" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="1" />
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<input name="claboratory" id="claboratory" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="3" />
+												</div>
+												<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+													style="border: 1px solid #858796;">
+													<input name="cstudy" id="cstudy" class="w-50" type="text"
+														style="border: none; outline: 0; box-shadow: none;"
+														placeholder="5" />
+												</div>
+											</div>
+
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											style="border: 1px solid #858796;">
+
+
+
+											<h6>
+												<b>Course Description:</b>
+											</h6>
+											<p>&nbsp;&nbsp;&nbsp; &nbsp;Application of electrical in
+												modern cars,up on the completion of the course knowledge on
+												operating principles, theory and design of motor vehicles
+												knowledge on operating principles, theory and design of
+												motor vehicles knowledge on operating principles, theory and
+												design of motor vehicles knowledge on operating principles,
+												theory and design of motor vehicles knowledge on operating
+												principles, theory and design of motor vehicles knowledge on
+												operating principles, theory and design of motor vehicles
+												knowledge on operating principles, theory and design of
+												motor vehicles students will able to knowledge on operating
+												principles, theory and design of motor vehicles</p>
+
+
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											style="border: 1px solid #858796;">
+
+											<h6>
+												<b>Course objective and Competences :</b>
+											</h6>
+											<p>&nbsp;&nbsp;&nbsp; &nbsp;Up on the completion of the
+												course students will able to&nbsp; &nbsp; &nbsp; &nbsp;
+												&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+												&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+											<ul>
+												<li>Sufficient knowledge on operating principles,
+													theory and design of motor vehicles,</li>
+												<li>Sufficient knowledge on design of vehicles,
+													assembly and maintenance&nbsp;</li>
+											</ul>
+
+										</div>
+									</div>
+
+
+
+
+
+
+
+
+
+								</div>
+
+								<br>
+								<br>
+								<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+								<div class="card-body mx-4">
+
+
+
+
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b>Week</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+											<b>Course Contents</b>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b> <input name="weekone" id="weekone" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="1&2" />
+											</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+
+
+
+											<p>
+												<strong>1. Introduction:</strong>
+											</p>
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+														<li>1.1. Classification of motor vehicles</li>
+														<li>1.2. Transmission of motion to wheel</li>
+													</ul>
+												</li>
+											</ol>
+
+
+
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b> <input name="weektwo" id="weektwo" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="2&3" />
+											</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+
+
+
+											<p>
+												<strong>2. Pneumatic Tires and Wheels:</strong>
+											</p>
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+														<li>2.1. Classification of motor vehicles</li>
+														<li>2.2. Classification of motor vehicle</li>
+														<li>2.3. Roiling resistance</li>
+														<li>2.4. Slip angle and cornering moment</li>
+													</ul>
+												</li>
+											</ol>
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b> <input name="weekfour" id="weekfour" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="4&5" />
+											</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+
+
+
+
+											<p>
+												<strong>3. Suspension Systems:</strong>
+											</p>
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+
+														<li>3.1. Springs and shock absorbers</li>
+														<li>3.2. Suspension systems classification</li>
+														<li>3.3. Configuration and roll centers of dependent
+															and independent</li>
+
+													</ul>
+												</li>
+											</ol>
+
+
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											style="border: 1px solid #858796;">
+											<b style="color: red;"><h3>Mid Exam</h3></b>
+										</div>
+
+									</div>
+
+
+
+
+
+
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b> <input name="weekfour" id="weekfour" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="6" />
+											</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+
+
+											<p>
+												<strong>4. Power Train:</strong>
+											</p>
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+
+
+														<li>4.1 Clutch</li>
+														<li>4.2 Sliding mesh and synchromesh gear box</li>
+														<li>4.3 Differential gearbox and transfer case</li>
+														<li>4.4 Planetary gearbox</li>
+														<li>4.5 Automatic transmission</li>
+
+
+													</ul>
+												</li>
+											</ol>
+
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b> <input name="weekfive" id="weekfive" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="7&8" />
+											</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+
+
+
+											<p>
+												<strong>5. Road Performance of Motor Vehicles::</strong>
+											</p>
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+														<li>5.1 Resistance force on motor vehicle</li>
+														<li>5.2 Tractive force diagram of motor vehicle</li>
+														<li>5.3 Steady motion performance</li>
+														<li>5.4 Acceleration performance</li>
+													</ul>
+												</li>
+											</ol>
+
+
+
+
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"
+											style="border: 1px solid #858796;">
+											<b> <input name="weeksix" id="weeksix" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="9" />
+											</b>
+										</div>
+										<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"
+											style="border: 1px solid #858796;">
+
+
+
+
+											<p>
+												<strong>6. Braking system:</strong>
+											</p>
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+														<li>6.1 Hydraulic braking system with and without
+															booster.</li>
+														<li>6.2 Braking moments for shoe and disc brakes.</li>
+														<li>6.3 Antilock braking system.</li>
+														<li>6.4 Distance travelled during braking.</li>
+													</ul>
+												</li>
+											</ol>
+
+
+
+
+										</div>
+									</div>
+
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											style="border: 1px solid #858796;">
+											<b style="color: red;"><h3>Final Exam</h3></b>
+										</div>
+
+									</div>
+
+								</div>
+
+
+								<!-- aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa---------------->
+
+								<div class="card-body mx-4">
+
+
+
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Semester</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+											style="border: 1px solid #858796;">
+											<b> <input name="semester" id="semester" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="2nd semester(3rd-year)" />
+											</b>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Teaching and Learing Methods</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+											style="border: 1px solid #858796;">
+
+
+
+
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+														<li>Active interactive model of teaching and learing
+															involving students in the lesson by way of group
+															discussion and activitics</li>
+
+													</ul>
+												</li>
+											</ol>
+
+
+
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Assessment/Evaluation</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+											style="border: 1px solid #858796;">
+											<b> <input name="assessment" id="assessment" type="text"
+												style="border: none; outline: 0; box-shadow: none;"
+												placeholder="As Per The Rule Of The University" />
+											</b>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"
+											style="border: 1px solid #858796;">
+											<b>Attendance Requirements</b>
+										</div>
+										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9"
+											style="border: 1px solid #858796;">
+
+
+
+											<ol>
+												<li style="list-style-type: none;">
+													<ul style="list-style-type: square;">
+														<li>Minimum of 85% attenndance during lecture</li>
+														<li>100% attenndance during practical
+															work(laboratory), except for some unprecedented mishaps</li>
+													</ul>
+												</li>
+											</ol>
+
+
+
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											style="border: 1px solid #858796;">
+											<b> Reference</b>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+											style="border: 1px solid #858796;">
+
+
+											<ol>
+												<li>John Fenton. &ldquo;Vehicle Body layout and
+													analysis&rdquo; Mechanical Engg Publication Ltd. London
+													1982.</li>
+												<li>David A. Crolla, Automotive Engineering powertrain,
+													chassis system and vehicle body</li>
+											</ol>
+
+										</div>
+
+									</div>
+
+
+
+								</div>
+
+
+
+
+
+
+
+
+
+
+
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+
+				<br> <br> <br> <br> <br> <br> <br>
+
+				<br> <br> <br> <br> <br>
+
+
+			</div>
+			<!-- finash Content Row -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+		<!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+	</section>
+
+
+</body>
+</html>

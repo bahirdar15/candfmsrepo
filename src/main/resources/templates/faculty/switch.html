@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+</head>
+<body>
+	<section>
+
+		<div class="container-fluid">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">Switch On/off
+						Button</h6>
+				</div>
+				<div class="card-body"
+					style="background-color: #d1dad3; font-size: 17px; font-family: 'Poppins', sans-serif;">
+
+
+
+
+
+
+					<div class="row ">
+						<h3 class="mb-3"></h3>
+						<div class="col-md-12">
+
+							<!-- style="background-color: #d1dad3;font-size: 17px;font-family: 'Poppins', sans-serif;"		 -->
+
+
+							<!-- start -->
+							<style>
+* {
+	box-shadow: none;
+}
+
+/* body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #d1dad3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 17px;
+} */
+.container23 {
+	max-width: 1000px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.switch-holder {
+	display: flex;
+	padding: 10px 20px;
+	border-radius: 10px;
+	margin-bottom: 30px;
+	box-shadow: -8px -8px 15px rgba(255, 255, 255, .7), 10px 10px 10px
+		rgba(0, 0, 0, .3), inset 8px 8px 15px rgba(255, 255, 255, .7), inset
+		10px 10px 10px rgba(0, 0, 0, .3);
+	justify-content: space-between;
+	align-items: center;
+}
+
+.switch-label {
+	/*  width: 150px; */
+	
+}
+
+.switch-label i {
+	margin-right: 5px;
+}
+
+.switch-toggle {
+	height: 40px;
+}
+
+.switch-toggle input[type="checkbox"] {
+	position: absolute;
+	opacity: 0;
+	z-index: -2;
+}
+
+.switch-toggle input[type="checkbox"]+label {
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	border-radius: 20px;
+	margin: 0;
+	cursor: pointer;
+	box-shadow: inset -8px -8px 15px rgba(255, 255, 255, .6), inset 10px
+		10px 10px rgba(0, 0, 0, .25);
+}
+
+.switch-toggle input[type="checkbox"]+label::before {
+	position: absolute;
+	content: 'OFF';
+	font-size: 13px;
+	text-align: center;
+	line-height: 25px;
+	top: 8px;
+	left: 8px;
+	width: 45px;
+	height: 25px;
+	border-radius: 20px;
+	background-color: #d1dad3;
+	box-shadow: -3px -3px 5px rgba(255, 255, 255, .5), 3px 3px 5px
+		rgba(0, 0, 0, .25);
+	transition: .3s ease-in-out;
+}
+
+.switch-toggle input[type="checkbox"]:checked+label::before {
+	left: 50%;
+	content: 'ON';
+	color: #fff;
+	background-color: #00b33c;
+	box-shadow: -3px -3px 5px rgba(255, 255, 255, .5), 3px 3px 5px #00b33c;
+}
+</style>
+
+
+
+							<div class="container2 text-center pr-4">
+
+
+								<div class="row pl-4 text-center">
+									<div class="col-md-5 text-left">
+
+										<div class="switch-holder">
+											<div class="switch-label">
+												<i class="fas fa-comments"></i> <span>Feed Back System</span>
+											</div>
+											<div class="switch-toggle">
+												<input type="checkbox" id="wi"
+													th:checked="${switchFeedback1.idswitcch==1}" value="1">
+												<label for="wi"></label>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="col-md-6">
+
+
+										<div class="switcah-holder">
+											<div class="switch-label text-center m-0">
+												<i class="fas fa-tasks"></i><span>Requester</span>
+											</div>
+											<div class="switch-toggle">
+												<input type="checkbox" id="blue1" 
+												th:checked="${switchFeedback2.idswitcch==1}" value="2">
+												<label for="blue1"></label>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<br />
+							<div class="container2 text-center pr-4">
+
+
+								<div class="row pl-4 text-center">
+									<div class="col-md-5 text-center">
+
+										<div class="switch-holder">
+											<div class="switch-label">
+												<i class="fas fa-edit"></i><span>Performance System</span>
+											</div>
+											<div class="switch-toggle">
+												<input type="checkbox" id="loc" 
+												th:checked="${switchPro1.idswitcch==1}" value="3"> <label
+													for="loc"></label>
+											</div>
+										</div>
+
+
+									</div>
+									<div class="col-md-6">
+
+
+										<div class="switcah-holder">
+											<div class="switch-label text-center m-0">
+												<i class="fas fa-tasks"></i><span>Evaluator</span>
+											</div>
+											<div class="switch-toggle">
+												<input type="checkbox" id="blu" 
+												th:checked="${switchPro2.idswitcch==1}" value="4"> <label
+													for="blu"></label>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+
+
+							<!-- end -->
+
+
+
+
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('input[id="wi"]').click(function() {
+					var val = $(this).attr("value");
+					window.location = "/div/switchfeedback1/" + val;
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('input[id="blue1"]').click(function() {
+					var val = $(this).attr("value");
+					window.location = "/div/switchfeedback2/" + val;
+				});
+			});
+		</script>
+	<!-- Performance -->	
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('input[id="loc"]').click(function() {
+					var val = $(this).attr("value");
+					window.location = "/div/switchPerformance1/" + val;
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('input[id="blu"]').click(function() {
+					var val = $(this).attr("value");
+					window.location = "/div/switchPerformance2/" + val;
+				});
+			});
+		</script>
+	</section>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="faculty/blank::layout(~{::section})">
+<head>
+
+
+<link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+</head>
+<body>
+
+
+
+	<section>
+
+
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
+			<!-- Page Heading -->
+
+			<!-- Content Row -->
+			<div class="row">
+
+
+
+
+
+				<div class="container">
+					<dev class="row">
+					<div class="col-md-8 offset-md-2">
+						<div class="my-card mt-0">
+
+							<!-- <div th:if="${session.message}" id="hideDiv"
+								th:classappend="${session.message.type}" class="alert "
+								role="alert">
+								<p class="text-center" th:text="${session.message.content}"></p>
+								<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+							</div> -->
+
+						
+								<div class="row">
+									
+
+										<h3>
+											<a class="dropdown-item text-left btn-user"
+												th:href="@{/div/showAdmin}"><i
+												class="fas fa-arrow-alt-circle-left "></i> Back</a>
+										</h3>
+									
+									</div>
+									<div class="row text-center">
+									   <div class="col text-center">
+										<h1><b class="h3 text-gray-900 mb-2" >
+											Create an Account!</b>
+										</h1>
+									   </div>
+									</div> 
+								
+							<p><strong>Warning:</strong>N.B :- * One CHAIR_HOLDER For One Chair(sub-fmie) otherwise errors on same page</p>
+			
+
+							<form class="user"  th:action="@{/div/do_register}" th:object="${user}"
+								method="post" >
+                                     <!-- th:object="${user}" -->
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input  type="text" name="name"
+											class="form-control form-control-user"
+											
+											id="name_field" aria-describedby="emailHelp"
+											placeholder="Enter Full Name Here" required />
+										
+									</div>
+
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input type="text" name="uname"
+											class="form-control form-control-user"
+											th:classappend="${#fields.hasErrors('uname') ?  'is-invalid':''}" 
+											id="uname_field" aria-describedby="emailHelp"
+											placeholder="Enter User Name Here"  />
+											<div class="invalid-feedback" th:each="e :${#fields.errors('uname')}" th:text="${e}">
+					        
+					      </div>
+										
+									</div>
+								</div>
+
+
+
+								<div class="form-group row">
+									<div class="col-sm-6 mb-1 mb-sm-0">
+
+										<input type="password" name="password"
+											class="form-control form-control-user" id="password_field"
+											aria-describedby="emailHelp"
+											placeholder="Enter Password Here" required />
+									</div>
+
+									
+								</div>
+								
+								<div class="form-group row">
+									
+									<div class="col-sm-12 mb-1 mb-sm-0 pt-1">
+										<div class="input-group mb-1 ">
+										    <div class="input-group-prepend">
+									          	<label class="input-group-text form-control-user py-0" for="inputGroupSelect01">CHAIR NAME</label>
+									            </div>											
+											<select class="custom-select form-control-user py-0 font-weight-bold text-primary" 
+												required id="depar" name="depar">
+												<option value="" selected disabled>---SELECT ---</option>
+												<option th:each="f : ${fmies}"  th:value="${f.id}" th:text="${f.name}"></option>											
+											</select>									
+										</div>
+									</div>
+									
+									
+								</div>
+								
+								
+								
+								<div class="form-group row">									
+									<div class="col-sm-12 mb-1 mb-sm-0 pt-1">
+										<div class="input-group mb-1 ">
+										    <div class="input-group-prepend">
+									          	<label class="input-group-text form-control-user py-0" for="inputGroupSelect01">DESIGNATION</label>
+									            </div> 
+											<select multiple class="multiple-select  custom-select form-control-user py-0 font-weight-bold text-primary" 
+												required id="roles" name="roles">
+												<!-- <option value="" selected disabled>---SELECT---</option> -->
+												<option th:each="role: ${listRoles}" th:text="${role.name}" th:value="${role.id}"></option>																
+											</select>
+										</div>
+									</div>																	
+								</div>
+
+								<div class="form-group form-check text-center">
+									<p>You are sure above designation validated from this university You are responsible!!</p>
+									<input type="checkbox" name="agreement" id="agreement"
+										class="form-check-input" /> <label for="agreement">Accept
+										terms and conditions</label>
+								</div>
+								<button type="submit" class="btn btn-primary btn-user btn-block"><i class="fas fa-save"></i> 
+									Register Account</button>
+								<button type="reset"
+									class="btn btn-warning  text-white  btn-user btn-block"><i class="fas fa-user-times"></i> Reset</button>
+
+
+							</form>
+						</div>
+					</div>
+					</dev>
+
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			</div>
+			<!--/ Content Row End -->
+		</div>
+		<!-- /.container-fluid -->
+		<!-- /.container-fluid -->
+
+
+
+
+
+
+
+
+
+
+<script th:src="@{/select/select2.min.js}"></script>
+<script> 
+$(".multiple-select").select2({
+	 // maximumSelectionLength: 2
+	});
+	
+$('select').select2({
+	  placeholder: '--Select--',
+	  allowClear: true
+	});
+</script> 
+
+	</section>
+
+
+</body>
+</html>

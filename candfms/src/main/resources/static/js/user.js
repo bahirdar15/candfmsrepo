@@ -1,0 +1,5 @@
+function saveUser(){
+	
+	$('#lname').hide();
+	
+}
